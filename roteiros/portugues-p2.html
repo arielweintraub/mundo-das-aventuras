@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diário de Estudos · Português P2</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#3b2a4a; --muted:#7d6b8c;
+    --k:#ff6fa8; --kl:#ffe3ef;   /* Kafka - rosa */
+    --n:#8b6cf0; --nl:#ece6ff;   /* Narrativa - lilás */
+    --e:#18b7a0; --el:#d9f7f1;   /* Escrita - menta */
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Nunito,system-ui,sans-serif;color:var(--ink);line-height:1.5;
+    background:linear-gradient(160deg,#fde7f3 0%,#efe7ff 45%,#e2f7f3 100%);background-attachment:fixed;min-height:100vh}
+  .wrap{max-width:760px;margin:0 auto;padding:16px 14px 60px}
+  header{border-radius:26px;padding:22px 20px;color:#fff;position:relative;overflow:hidden;
+    background:linear-gradient(135deg,#ff6fa8,#b583ff 60%,#7fd8ff);box-shadow:0 10px 30px rgba(181,131,255,.35)}
+  header h1{font-family:Fredoka;font-size:30px;line-height:1.05;margin:0 0 6px}
+  header p{margin:0;font-weight:600;opacity:.95}
+  header .spark{position:absolute;font-size:26px;opacity:.85;animation:tw 2.4s infinite}
+  @keyframes tw{50%{transform:scale(1.3) rotate(15deg);opacity:.4}}
+  .howto{background:rgba(255,255,255,.75);backdrop-filter:blur(6px);border-radius:18px;padding:12px 14px;margin:14px 0;border:2px dashed #d9b8ff;font-size:15px}
+  .bar-wrap{position:sticky;top:0;z-index:10;padding:8px 0 10px}
+  .pbox{background:rgba(255,255,255,.88);backdrop-filter:blur(8px);border-radius:20px;padding:10px 12px;box-shadow:0 4px 16px rgba(139,108,240,.18)}
+  .ptop{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+  .ptitle{font-family:Fredoka;font-weight:600;font-size:16px}
+  .count{color:#ff4f93}
+  .stickers{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+  .st{width:28px;height:28px;border-radius:9px;border:2px dashed #d7c8ef;display:grid;place-items:center;font-size:15px;filter:grayscale(1);opacity:.3;transition:.35s}
+  .st.on{filter:none;opacity:1;border:2px solid #ffb3d1;background:#fff;transform:rotate(-8deg) scale(1.1)}
+  .bar{height:9px;background:#efe6fb;border-radius:9px;margin-top:8px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff6fa8,#b583ff,#18b7a0);transition:width .4s}
+  .btns button{font:800 13px Nunito;border:0;border-radius:12px;padding:6px 10px;background:#f3e9ff;color:var(--ink);cursor:pointer}
+  .bloco{margin:24px 0 8px;display:flex;align-items:center;gap:10px}
+  .bloco .tape{font-family:Fredoka;font-weight:600;font-size:19px;padding:4px 14px;border-radius:6px;transform:rotate(-1.5deg);background:var(--cl);color:var(--c);border:2px solid var(--c)}
+  .bloco small{color:var(--muted);font-weight:700;font-size:13px}
+  .card{background:rgba(255,255,255,.92);border-radius:22px;margin:10px 0;box-shadow:0 4px 0 var(--cl);border:2px solid var(--cl);overflow:hidden}
+  .head{display:flex;gap:12px;align-items:center;padding:14px;cursor:pointer;user-select:none}
+  .ico{width:50px;height:50px;flex:0 0 50px;border-radius:16px;background:var(--cl);display:grid;place-items:center;font-size:26px}
+  .ht{flex:1}
+  .tag{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--c)}
+  .ht h3{margin:0;font-family:Fredoka;font-weight:600;font-size:19px;line-height:1.15}
+  .ht p{margin:2px 0 0;color:var(--muted);font-size:14px}
+  .arrow{font-size:20px;color:var(--c);transition:transform .25s}
+  .card.open .arrow{transform:rotate(180deg)}
+  .body{display:none;padding:0 16px 16px;border-top:2px dashed var(--cl)}
+  .card.open .body{display:block;animation:pop .25s}
+  @keyframes pop{from{opacity:0;transform:translateY(-6px)}to{opacity:1}}
+  .k{--c:var(--k);--cl:var(--kl)} .n{--c:var(--n);--cl:var(--nl)} .e{--c:var(--e);--cl:var(--el)}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+  .chip{background:var(--cl);border-radius:30px;padding:5px 11px;font-weight:700;font-size:14px}
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0}
+  .flow .s{background:var(--cl);border:2px solid var(--c);border-radius:14px;padding:6px 10px;font-weight:800;font-size:14px;text-align:center}
+  .flow .a{font-weight:800;color:var(--c);font-size:20px}
+  table{width:100%;border-collapse:collapse;margin:10px 0;font-size:14px}
+  th,td{padding:6px 8px;text-align:left;vertical-align:top}
+  th{background:var(--cl)}
+  tr:nth-child(even) td{background:#faf7fd}
+  .end{color:#ff4f93;font-weight:800}
+  .box{border-radius:14px;padding:10px 12px;margin:10px 0;font-size:14.5px}
+  .dica{background:#eef7ff;border:2px solid #9cc8f5}
+  .dica::before{content:"⭐ Vale ponto: ";font-weight:800;color:#2a6fb5}
+  .peg{background:#fff0f3;border:2px solid #ff9db5}
+  .peg::before{content:"⚠️ Pegadinha: ";font-weight:800;color:#d6336c}
+  .ouro{background:linear-gradient(135deg,#fff3c4,#ffd6ec);border-radius:14px;padding:10px 12px;font-weight:700;margin:10px 0}
+  .ouro::before{content:"💖 Frase de ouro: ";font-weight:800}
+  .ex{background:#faf7fd;border-left:4px solid var(--c);border-radius:8px;padding:8px 10px;font-size:14.5px;margin:8px 0;font-style:italic}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+  .mini{background:var(--cl);border-radius:14px;padding:8px 10px;font-size:14px}
+  .mini b{display:block;font-family:Fredoka;font-weight:600;font-size:16px}
+  .final{background:linear-gradient(135deg,#8b6cf0,#ff6fa8);color:#fff;border-radius:24px;padding:20px;text-align:center;margin-top:24px}
+  .final h3{font-family:Fredoka;font-size:24px;margin:0 0 6px}
+  footer{margin-top:24px;font-size:13px;color:var(--muted);background:rgba(255,255,255,.85);border-radius:16px;padding:12px 14px}
+  footer h4{margin:0 0 6px;color:var(--ink)}
+  @media(max-width:480px){.grid2{grid-template-columns:1fr}.ht h3{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="spark" style="right:18px;top:12px">✨</span><span class="spark" style="right:60px;top:52px;animation-delay:.8s">💫</span><span class="spark" style="right:24px;bottom:12px;animation-delay:1.4s">⭐</span>
+  <h1>Diário de Estudos 📓<br>Português · P2</h1>
+  <p>Kafka e a boneca viajante · Momentos da ação · Escrita caprichada</p>
+</header>
+
+<div class="howto">💡 <b>Como usar:</b> leia o título, <b>fale em voz alta</b> tudo o que lembra e só depois abra para conferir. Cada card aberto ganha um adesivo na sua coleção! 🩷</div>
+
+<div class="bar-wrap"><div class="pbox">
+  <div class="ptop"><div class="ptitle">🎀 Minha coleção · <span class="count" id="count">0 / 12</span></div>
+  <div class="btns"><button onclick="toggleAll(true)">abrir todos</button> <button onclick="toggleAll(false)">fechar todos</button></div></div>
+  <div class="stickers" id="stk"></div>
+  <div class="bar"><i id="bar"></i></div>
+</div></div>
+
+<!-- KAFKA -->
+<div class="bloco k"><span class="tape">📚 O livro</span><small>Kafka e a boneca viajante · Jordi Sierra i Fabra</small></div>
+
+<div class="card k" data-s="🧸">
+  <div class="head"><div class="ico">🧸</div><div class="ht"><div class="tag">Livro</div><h3>Quem é quem e onde tudo começa</h3><p>personagens, lugar e tempo da história</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <table>
+      <tr><th>Personagem</th><th>Quem é</th></tr>
+      <tr><td>✒️ <b>Franz Kafka</b></td><td>um escritor de verdade, que existiu</td></tr>
+      <tr><td>👧 <b>Elsi</b></td><td>uma menina que encontra Kafka no parque</td></tr>
+      <tr><td>🪆 <b>Brígida</b></td><td>a boneca de Elsi</td></tr>
+    </table>
+    <div class="grid2">
+      <div class="mini"><b>📍 Espaço</b>um parque em Berlim, na Alemanha (parque de Steglitz)</div>
+      <div class="mini"><b>🕰️ Tempo</b>no passado, cerca de 100 anos atrás (1923)</div>
+    </div>
+    <div class="dica">a história é inspirada em algo que <b>pode ter acontecido de verdade</b> com Kafka.</div>
+  </div>
+</div>
+
+<div class="card k" data-s="💌">
+  <div class="head"><div class="ico">💌</div><div class="ht"><div class="tag">Livro</div><h3>O carteiro de bonecas</h3><p>a ideia de Kafka e as cartas da Brígida</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <div class="flow"><div class="s">Elsi chora: perdeu<br>a boneca Brígida 😢</div><div class="a">→</div><div class="s">Kafka diz que Brígida<br>foi <b>viajar</b> ✈️</div><div class="a">→</div><div class="s">ele se apresenta como<br><b>carteiro de bonecas</b> 📮</div><div class="a">→</div><div class="s">todo dia leva uma<br><b>carta da Brígida</b> 💌</div></div>
+    <p>Nas cartas, Brígida conta suas <b>aventuras pelo mundo</b>. Kafka passou cerca de <b>três semanas</b> escrevendo e caprichava nelas tanto quanto nos livros dele.</p>
+    <p><b>Por que cartas, e não a verdade?</b> Para Elsi não ficar triste, entender a "partida" aos poucos e continuar sonhando.</p>
+    <div class="peg">Kafka não encontrou a boneca. Ele <b>inventou</b> a viagem e escreveu as cartas como se fosse a Brígida.</div>
+  </div>
+</div>
+
+<div class="card k" data-s="💍">
+  <div class="head"><div class="ico">💍</div><div class="ht"><div class="tag">Livro</div><h3>Como a história termina e o que ela ensina</h3><p>o desfecho e o que muda para Elsi e para Kafka</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <p>Kafka sofre sem saber <b>como terminar</b> as cartas sem deixar Elsi triste de novo.</p>
+    <p>A solução: na última carta, Brígida conta que <b>encontrou um amor, vai se casar e não vai voltar</b>, e pede que Elsi fique feliz por ela. Elsi aceita a despedida e fica feliz.</p>
+    <div class="grid2">
+      <div class="mini"><b>👧 Para Elsi</b>aprendeu a se despedir sem perder a alegria</div>
+      <div class="mini"><b>✒️ Para Kafka</b>as cartas também trouxeram alegria e sentido para ele</div>
+    </div>
+    <div class="ouro">Kafka usou a imaginação e a escrita para ajudar Elsi a lidar com a perda da boneca de um jeito carinhoso.</div>
+    <div class="dica">nas perguntas de opinião (ex.: "você concorda com a atitude de Kafka?"), dê <b>sua opinião + pelo menos 2 argumentos</b>.</div>
+  </div>
+</div>
+
+<!-- NARRATIVA -->
+<div class="bloco n"><span class="tape">🎬 Momentos da ação</span><small>Semanas 10 a 14</small></div>
+
+<div class="card n" data-s="🎢">
+  <div class="head"><div class="ico">🎢</div><div class="ht"><div class="tag">Semanas 10–12</div><h3>Os 4 momentos de uma narrativa</h3><p>a "montanha-russa" de toda história</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <div class="flow"><div class="s">1️⃣ Situação inicial<br><small>(introdução)</small></div><div class="a">→</div><div class="s">2️⃣ Conflito<br><small>(desenvolvimento)</small></div><div class="a">→</div><div class="s">3️⃣ Clímax<br><small>o pico 🎢</small></div><div class="a">→</div><div class="s">4️⃣ Desfecho<br><small>a solução</small></div></div>
+    <table>
+      <tr><td>1️⃣</td><td>conhecemos personagens, lugar e tempo</td></tr>
+      <tr><td>2️⃣</td><td>aparece um problema que muda tudo</td></tr>
+      <tr><td>3️⃣</td><td>momento de <b>maior tensão ou emoção</b></td></tr>
+      <tr><td>4️⃣</td><td>os acontecimentos chegam a uma solução ou conclusão</td></tr>
+    </table>
+    <div class="peg">nem toda narrativa é <b>linear</b>: às vezes os fatos não aparecem na ordem em que aconteceram.</div>
+  </div>
+</div>
+
+<div class="card n" data-s="🏡">
+  <div class="head"><div class="ico">🏡</div><div class="ht"><div class="tag">Semana 12</div><h3>Situação inicial</h3><p>o equilíbrio e os 3 elementos que ela apresenta</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <p>É o <b>começo</b> da história. Mostra um <b>equilíbrio</b>: tudo calmo, o grande problema ainda não apareceu.</p>
+    <div class="chips"><span class="chip">👩‍👧 personagens (quem é o principal e como é)</span><span class="chip">📍 espaço (onde)</span><span class="chip">🕰️ tempo (quando)</span></div>
+    <p>Também pode mostrar <b>costumes, sentimentos, relações, desejos e atividades</b> dos personagens: como era a vida antes da mudança.</p>
+    <div class="ex">"Bia morava numa casinha na praia e todo fim de tarde catava conchas com a avó." (equilíbrio)</div>
+    <div class="dica">o tempo pode ser presente, passado, futuro ou até um tempo <b>imaginário</b>.</div>
+  </div>
+</div>
+
+<div class="card n" data-s="⚡">
+  <div class="head"><div class="ico">⚡</div><div class="ht"><div class="tag">Semanas 13–14</div><h3>Conflito e clímax</h3><p>o problema que quebra o equilíbrio e o momento de maior tensão</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <p><b>Conflito:</b> acontece algo que <b>muda a situação inicial</b>: um problema, uma perda, uma descoberta, algo inesperado ou uma dificuldade.</p>
+    <div class="ex">"Um dia, uma onda gigante levou a caixinha de conchas da Bia." (conflito)</div>
+    <p><b>Clímax:</b> o momento de <b>maior tensão ou emoção</b>, quando tudo pode dar certo… ou errado!</p>
+    <div class="ex">"Bia entrou no mar atrás da caixinha, a onda vinha chegando e…" (clímax)</div>
+    <div class="dica">lembra de <b>O galo e a raposa</b>? Conflito: a raposa quer comer o galo e inventa a "proclamação de paz" para ele descer.</div>
+  </div>
+</div>
+
+<div class="card n" data-s="🌈">
+  <div class="head"><div class="ico">🌈</div><div class="ht"><div class="tag">Semana 14</div><h3>Desfecho</h3><p>como os acontecimentos se resolvem</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <p>É o <b>final</b>: o conflito chega a uma <b>solução ou conclusão</b> (que pode ser feliz ou não).</p>
+    <div class="ex">"…ela agarrou a caixinha bem a tempo. Desde então, Bia guarda as conchas num pote fechado." (desfecho)</div>
+    <div class="dica">em <b>O galo e a raposa</b>, o galo diz que vê cães chegando e a raposa vai embora. Isso mostra que a "paz" era mentira.</div>
+    <div class="ouro">Para explicar o desfecho, ligue ele ao conflito: "a história termina assim porque…".</div>
+  </div>
+</div>
+
+<!-- ESCRITA -->
+<div class="bloco e"><span class="tape">✏️ Escrita caprichada</span><small>avaliada nas respostas e na produção de texto</small></div>
+
+<div class="card e" data-s="🏃‍♀️">
+  <div class="head"><div class="ico">🏃‍♀️</div><div class="ht"><div class="tag">Verbos</div><h3>Verbos e as conjugações</h3><p>o que indicam · -AR e -ER · pessoa e tempo</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <p>Verbos indicam:</p>
+    <div class="grid2">
+      <div class="mini"><b>🤸 Ação</b>pular, desenhar, correr</div>
+      <div class="mini"><b>🎉 Acontecimento</b>acontecer, surgir</div>
+      <div class="mini"><b>😴 Estado</b>estar, ficar, permanecer</div>
+      <div class="mini"><b>🌧️ Fenômeno da natureza</b>chover, ventar, trovejar</div>
+    </div>
+    <table>
+      <tr><th>1ª conjugação</th><th>2ª conjugação</th></tr>
+      <tr><td>terminam em <span class="end">-AR</span><br>pintar, nadar, sonhar</td><td>terminam em <span class="end">-ER</span><br>beber, vender, aprender</td></tr>
+    </table>
+    <p>O verbo <b>muda</b> conforme <b>quem faz</b> (pessoa: eu, ele, nós, eles) e <b>quando</b> (tempo: presente ou passado).</p>
+  </div>
+</div>
+
+<div class="card e" data-s="⏳">
+  <div class="head"><div class="ico">⏳</div><div class="ht"><div class="tag">Verbos</div><h3>Presente x passado: os padrões</h3><p>os finais que se repetem em cada conjugação</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <table>
+      <tr><th></th><th>-AR presente</th><th>-AR passado</th><th>-ER presente</th><th>-ER passado</th></tr>
+      <tr><td>eu</td><td>pint<span class="end">o</span></td><td>pint<span class="end">ei</span></td><td>beb<span class="end">o</span></td><td>beb<span class="end">i</span></td></tr>
+      <tr><td>ele/ela</td><td>pint<span class="end">a</span></td><td>pint<span class="end">ou</span></td><td>beb<span class="end">e</span></td><td>beb<span class="end">eu</span></td></tr>
+      <tr><td>nós</td><td>pint<span class="end">amos</span></td><td>pint<span class="end">amos</span></td><td>beb<span class="end">emos</span></td><td>beb<span class="end">emos</span></td></tr>
+      <tr><td>eles/elas</td><td>pint<span class="end">am</span></td><td>pint<span class="end">aram</span></td><td>beb<span class="end">em</span></td><td>beb<span class="end">eram</span></td></tr>
+    </table>
+    <p>O <b>começo</b> (pint-, beb-) fica igual; o que muda é o <b>final</b>. Conhecendo o padrão, dá para conjugar outros verbos!</p>
+    <div class="peg">com <b>nós</b>, presente e passado são iguais (nós pintamos). Quem mostra o tempo são palavras como <b>hoje</b> e <b>ontem</b>.</div>
+    <div class="peg">atenção na escrita: jogar → eu jo<b>gu</b>ei · dançar → eu dan<b>c</b>ei · brincar → eu brin<b>qu</b>ei.</div>
+  </div>
+</div>
+
+<div class="card e" data-s="👯‍♀️">
+  <div class="head"><div class="ico">👯‍♀️</div><div class="ht"><div class="tag">Concordância</div><h3>Concordância nominal e verbal</h3><p>as palavras "combinando" entre si</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <p><b>Nominal (gênero e número):</b> artigo e adjetivo combinam com o substantivo.</p>
+    <table>
+      <tr><th></th><th>singular</th><th>plural</th></tr>
+      <tr><td>masculino</td><td>o gato fofo</td><td>os gatos fofos</td></tr>
+      <tr><td>feminino</td><td>a gata fofa</td><td>as gatas fofas</td></tr>
+    </table>
+    <p><b>Verbal (tempo e pessoa):</b> o verbo combina com quem faz a ação.</p>
+    <div class="ex">✅ As meninas <b>dançaram</b>. · ❌ As meninas dançou.</div>
+    <div class="peg">"a turma" é uma palavra no singular: <b>a turma foi</b>, e não "a turma foram".</div>
+  </div>
+</div>
+
+<div class="card e" data-s="❗">
+  <div class="head"><div class="ico">❗</div><div class="ht"><div class="tag">Pontuação</div><h3>Pontuação e parágrafos</h3><p>os sinais, os diálogos e quando mudar de parágrafo</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <table>
+      <tr><td><b>.</b> ponto final</td><td>termina a frase</td></tr>
+      <tr><td><b>?</b> interrogação</td><td>pergunta</td></tr>
+      <tr><td><b>!</b> exclamação</td><td>emoção, susto, surpresa</td></tr>
+      <tr><td><b>,</b> vírgula</td><td>separa itens de uma lista e pequenas pausas</td></tr>
+      <tr><td><b>:</b> dois-pontos</td><td>anuncia a fala de alguém</td></tr>
+      <tr><td><b>–</b> travessão</td><td>começa a fala do personagem no diálogo</td></tr>
+    </table>
+    <div class="ex">A raposa disse:<br>– Desça para a gente conversar!</div>
+    <p><b>Parágrafo:</b> começa com um espacinho (recuo). Mude de parágrafo quando mudar a <b>ideia</b> ou o <b>momento da história</b>; no diálogo, cada fala nova vai numa linha nova.</p>
+    <div class="dica">um texto bom tem um parágrafo para cada momento: situação inicial, conflito, clímax e desfecho.</div>
+  </div>
+</div>
+
+<div class="card e" data-s="🎵">
+  <div class="head"><div class="ico">🎵</div><div class="ht"><div class="tag">Acentuação</div><h3>Acentuação</h3><p>agudo, circunflexo e til</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <div class="grid2">
+      <div class="mini"><b>´ agudo</b>som aberto: café, árvore, história, país</div>
+      <div class="mini"><b>^ circunflexo</b>som fechado: você, avô, ônibus</div>
+      <div class="mini"><b>~ til</b>som nasal: mão, coração, conclusão</div>
+    </div>
+    <div class="peg"><b>avó</b> (aberto, a mãe da mãe) é diferente de <b>avô</b> (fechado, o pai da mãe). O acento muda o sentido!</div>
+    <div class="dica">na dúvida, leia a palavra em voz alta e veja qual sílaba é a mais "forte".</div>
+  </div>
+</div>
+
+<div class="final">
+  <h3>🎀 Diário completo!</h3>
+  <p>Agora é hora do <b>jogo</b>: vamos ver quantos pontos você faz! 🎮✨</p>
+</div>
+
+<footer>
+  <h4>Para o papai · o que não veio nos anexos</h4>
+  1. Fichas "Apoio – Estrutura da narrativa" (sem. 10), "Conflito" (sem. 13), "Conflito – Clímax – Desfecho" (sem. 14) e "Apoio – Kafka" (sem. 14). Conflito, clímax e desfecho foram explicados com base no texto da ficha de Situação inicial.<br>
+  2. Os cards do livro foram montados com resumos públicos da história, não com o livro. Confira com ela os detalhes, principalmente o final (Brígida se casa).<br>
+  3. Pontuação, parágrafos e acentuação não tinham ficha anexa; usei o conteúdo padrão de 4º ano.
+</footer>
+</div>
+<script>
+  const cards=[...document.querySelectorAll('.card')],opened=new Set(),stk=document.getElementById('stk');
+  cards.forEach((c,i)=>{const s=document.createElement('div');s.className='st';s.textContent=c.dataset.s;stk.appendChild(s);
+    c.querySelector('.head').addEventListener('click',()=>{c.classList.toggle('open');if(c.classList.contains('open'))opened.add(i);upd();});});
+  function upd(){const n=opened.size,t=cards.length;document.getElementById('count').textContent=n+' / '+t;document.getElementById('bar').style.width=(n/t*100)+'%';[...stk.children].forEach((s,i)=>s.classList.toggle('on',opened.has(i)));}
+  function toggleAll(o){cards.forEach((c,i)=>{c.classList.toggle('open',o);if(o)opened.add(i);});upd();}
+  upd();
+</script>
+</body>
+</html>

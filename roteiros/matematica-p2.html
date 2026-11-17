@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diário de Estudos · Matemática P2</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#3b2a4a; --muted:#7d6b8c;
+    --k:#ff6fa8; --kl:#ffe3ef;   /* Kafka - rosa */
+    --n:#8b6cf0; --nl:#ece6ff;   /* Narrativa - lilás */
+    --e:#18b7a0; --el:#d9f7f1;   /* Escrita - menta */
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Nunito,system-ui,sans-serif;color:var(--ink);line-height:1.5;
+    background:linear-gradient(160deg,#fde7f3 0%,#efe7ff 45%,#e2f7f3 100%);background-attachment:fixed;min-height:100vh}
+  .wrap{max-width:760px;margin:0 auto;padding:16px 14px 60px}
+  header{border-radius:26px;padding:22px 20px;color:#fff;position:relative;overflow:hidden;
+    background:linear-gradient(135deg,#ff6fa8,#b583ff 60%,#7fd8ff);box-shadow:0 10px 30px rgba(181,131,255,.35)}
+  header h1{font-family:Fredoka;font-size:30px;line-height:1.05;margin:0 0 6px}
+  header p{margin:0;font-weight:600;opacity:.95}
+  header .spark{position:absolute;font-size:26px;opacity:.85;animation:tw 2.4s infinite}
+  @keyframes tw{50%{transform:scale(1.3) rotate(15deg);opacity:.4}}
+  .howto{background:rgba(255,255,255,.75);backdrop-filter:blur(6px);border-radius:18px;padding:12px 14px;margin:14px 0;border:2px dashed #d9b8ff;font-size:15px}
+  .bar-wrap{position:sticky;top:0;z-index:10;padding:8px 0 10px}
+  .pbox{background:rgba(255,255,255,.88);backdrop-filter:blur(8px);border-radius:20px;padding:10px 12px;box-shadow:0 4px 16px rgba(139,108,240,.18)}
+  .ptop{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+  .ptitle{font-family:Fredoka;font-weight:600;font-size:16px}
+  .count{color:#ff4f93}
+  .stickers{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+  .st{width:28px;height:28px;border-radius:9px;border:2px dashed #d7c8ef;display:grid;place-items:center;font-size:15px;filter:grayscale(1);opacity:.3;transition:.35s}
+  .st.on{filter:none;opacity:1;border:2px solid #ffb3d1;background:#fff;transform:rotate(-8deg) scale(1.1)}
+  .bar{height:9px;background:#efe6fb;border-radius:9px;margin-top:8px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff6fa8,#b583ff,#18b7a0);transition:width .4s}
+  .btns button{font:800 13px Nunito;border:0;border-radius:12px;padding:6px 10px;background:#f3e9ff;color:var(--ink);cursor:pointer}
+  .bloco{margin:24px 0 8px;display:flex;align-items:center;gap:10px}
+  .bloco .tape{font-family:Fredoka;font-weight:600;font-size:19px;padding:4px 14px;border-radius:6px;transform:rotate(-1.5deg);background:var(--cl);color:var(--c);border:2px solid var(--c)}
+  .bloco small{color:var(--muted);font-weight:700;font-size:13px}
+  .card{background:rgba(255,255,255,.92);border-radius:22px;margin:10px 0;box-shadow:0 4px 0 var(--cl);border:2px solid var(--cl);overflow:hidden}
+  .head{display:flex;gap:12px;align-items:center;padding:14px;cursor:pointer;user-select:none}
+  .ico{width:50px;height:50px;flex:0 0 50px;border-radius:16px;background:var(--cl);display:grid;place-items:center;font-size:26px}
+  .ht{flex:1}
+  .tag{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--c)}
+  .ht h3{margin:0;font-family:Fredoka;font-weight:600;font-size:19px;line-height:1.15}
+  .ht p{margin:2px 0 0;color:var(--muted);font-size:14px}
+  .arrow{font-size:20px;color:var(--c);transition:transform .25s}
+  .card.open .arrow{transform:rotate(180deg)}
+  .body{display:none;padding:0 16px 16px;border-top:2px dashed var(--cl)}
+  .card.open .body{display:block;animation:pop .25s}
+  @keyframes pop{from{opacity:0;transform:translateY(-6px)}to{opacity:1}}
+  .k{--c:var(--k);--cl:var(--kl)} .n{--c:var(--n);--cl:var(--nl)} .e{--c:var(--e);--cl:var(--el)}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+  .chip{background:var(--cl);border-radius:30px;padding:5px 11px;font-weight:700;font-size:14px}
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0}
+  .flow .s{background:var(--cl);border:2px solid var(--c);border-radius:14px;padding:6px 10px;font-weight:800;font-size:14px;text-align:center}
+  .flow .a{font-weight:800;color:var(--c);font-size:20px}
+  table{width:100%;border-collapse:collapse;margin:10px 0;font-size:14px}
+  th,td{padding:6px 8px;text-align:left;vertical-align:top}
+  th{background:var(--cl)}
+  tr:nth-child(even) td{background:#faf7fd}
+  .end{color:#ff4f93;font-weight:800}
+  .box{border-radius:14px;padding:10px 12px;margin:10px 0;font-size:14.5px}
+  .dica{background:#eef7ff;border:2px solid #9cc8f5}
+  .dica::before{content:"⭐ Vale ponto: ";font-weight:800;color:#2a6fb5}
+  .peg{background:#fff0f3;border:2px solid #ff9db5}
+  .peg::before{content:"⚠️ Pegadinha: ";font-weight:800;color:#d6336c}
+  .ouro{background:linear-gradient(135deg,#fff3c4,#ffd6ec);border-radius:14px;padding:10px 12px;font-weight:700;margin:10px 0}
+  .ouro::before{content:"💖 Frase de ouro: ";font-weight:800}
+  .ex{background:#faf7fd;border-left:4px solid var(--c);border-radius:8px;padding:8px 10px;font-size:14.5px;margin:8px 0;font-style:italic}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+  .mini{background:var(--cl);border-radius:14px;padding:8px 10px;font-size:14px}
+  .mini b{display:block;font-family:Fredoka;font-weight:600;font-size:16px}
+  .final{background:linear-gradient(135deg,#8b6cf0,#ff6fa8);color:#fff;border-radius:24px;padding:20px;text-align:center;margin-top:24px}
+  .final h3{font-family:Fredoka;font-size:24px;margin:0 0 6px}
+  footer{margin-top:24px;font-size:13px;color:var(--muted);background:rgba(255,255,255,.85);border-radius:16px;padding:12px 14px}
+  footer h4{margin:0 0 6px;color:var(--ink)}
+  @media(max-width:480px){.grid2{grid-template-columns:1fr}.ht h3{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="spark" style="right:18px;top:12px">✨</span><span class="spark" style="right:60px;top:52px;animation-delay:.8s">💫</span><span class="spark" style="right:24px;bottom:12px;animation-delay:1.4s">⭐</span>
+  <h1>Diário de Estudos 📓<br>Matemática · P2</h1>
+  <p>Contas armadas · Divisão · Frações</p>
+</header>
+
+<div class="howto">💡 <b>Como usar:</b> leia o título, <b>fale em voz alta</b> tudo o que lembra e só depois abra para conferir. Cada card aberto ganha um adesivo na sua coleção! 🩷</div>
+
+<div class="bar-wrap"><div class="pbox">
+  <div class="ptop"><div class="ptitle">🎀 Minha coleção · <span class="count" id="count">0 / 13</span></div>
+  <div class="btns"><button onclick="toggleAll(true)">abrir todos</button> <button onclick="toggleAll(false)">fechar todos</button></div></div>
+  <div class="stickers" id="stk"></div>
+  <div class="bar"><i id="bar"></i></div>
+</div></div>
+
+<!-- CONTAS -->
+<div class="bloco e"><span class="tape">✖️ Contas armadas</span><small>multiplicação e subtração</small></div>
+
+<div class="card e" data-s="✖️">
+  <div class="head"><div class="ico">✖️</div><div class="ht"><div class="tag">Multiplicação</div><h3>Multiplicação armada (2 algarismos)</h3><p>multiplicar por partes e o "vai um"</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <p>Para fazer <b>76 × 12</b>, a gente multiplica por partes: primeiro pelo <b>2</b>, depois pelo <b>10</b>, e soma.</p>
+    <div class="flow"><div class="s">76 × 2 = <b>152</b></div><div class="a">+</div><div class="s">76 × 10 = <b>760</b></div><div class="a">=</div><div class="s"><b>912</b></div></div>
+    <table>
+      <tr><td></td><td style="text-align:right;font-family:monospace;font-size:17px">&nbsp;&nbsp;76<br>×&nbsp;12<br>—————<br>&nbsp;152<br>+760<br>—————<br>&nbsp;912</td><td>1ª linha: × 2<br>2ª linha: × 10 (por isso começa com <b>0</b>)<br>Depois soma as duas.</td></tr>
+    </table>
+    <div class="peg"><b>não esqueça o "vai um"!</b> 6 × 2 = 12: escreve 2, vai 1. 7 × 2 = 14, <b>mais 1</b> = 15. Resultado: 152 (e não 142, nem 162).</div>
+    <div class="dica">multiplicar por 10 é só acrescentar um zero (24 × 10 = 240); por 100, dois zeros (24 × 100 = 2.400).</div>
+  </div>
+</div>
+
+<div class="card e" data-s="➖">
+  <div class="head"><div class="ico">➖</div><div class="ht"><div class="tag">Subtração</div><h3>Subtração com empréstimo</h3><p>quando o número de cima é menor · como conferir</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <p>Exemplo: <b>1.300 − 1.152</b></p>
+    <div class="flow"><div class="s">unidades: 0 − 2 não dá<br>→ pede emprestado</div><div class="a">→</div><div class="s">o vizinho empresta 1<br>e o 0 vira 10</div><div class="a">→</div><div class="s">10 − 2 = 8 …<br>resultado <b>148</b></div></div>
+    <div class="dica"><b>Confira somando:</b> 148 + 1.152 = 1.300. Se a soma voltar ao número de cima, está certo!</div>
+    <div class="peg">quem emprestou fica com <b>1 a menos</b>. Esse é o erro mais comum.</div>
+  </div>
+</div>
+
+<!-- DIVISÃO -->
+<div class="bloco n"><span class="tape">➗ Divisão</span><small>Semanas 10, 14 e 15</small></div>
+
+<div class="card n" data-s="🍪">
+  <div class="head"><div class="ico">🍪</div><div class="ht"><div class="tag">Ideias da divisão</div><h3>As duas ideias da divisão</h3><p>repartir igualmente e quantas vezes cabe</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <div class="grid2">
+      <div class="mini"><b>🤝 Repartir igualmente</b>"36 figurinhas para 4 amigas. Quanto cada uma ganha?" → 9 para cada.</div>
+      <div class="mini"><b>📦 Quantas vezes cabe</b>"48 ovos em caixas de 6. Quantas caixas?" → 8 caixas.</div>
+    </div>
+    <p>As duas são resolvidas com <b>divisão</b>!</p>
+    <div class="dica">na prova, leia com calma: "quanto cada um" = repartir; "quantos grupos/caixas/arranjos" = quantas vezes cabe.</div>
+  </div>
+</div>
+
+<div class="card n" data-s="🚌">
+  <div class="head"><div class="ico">🚌</div><div class="ht"><div class="tag">Semana 14 · 245 ÷ 5</div><h3>Estratégias para dividir</h3><p>os jeitos que a turma usou para dividir sem a conta armada</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <p>Exemplo novo: <b>196 ÷ 4</b></p>
+    <table>
+      <tr><td>1️⃣ <b>Decompor</b></td><td>196 = 160 + 36 → 160÷4 = 40 e 36÷4 = 9 → 40 + 9 = <b>49</b></td></tr>
+      <tr><td>2️⃣ <b>Multiplicações que dão</b></td><td>40 × 4 = 160 e 9 × 4 = 36 → 40 + 9 = <b>49</b></td></tr>
+      <tr><td>3️⃣ <b>Arredondar e ajustar</b></td><td>50 × 4 = 200. De 196 para 200 faltam 4 → tira 1 do 50 → <b>49</b></td></tr>
+      <tr><td>4️⃣ <b>Testar</b></td><td>45+45+45+45 = 180 (pouco) · 49+49+49+49 = 196 ✔</td></tr>
+    </table>
+    <div class="dica"><b>confira multiplicando:</b> 49 × 4 = 196.</div>
+  </div>
+</div>
+
+<div class="card n" data-s="🃏">
+  <div class="head"><div class="ico">🃏</div><div class="ht"><div class="tag">Semana 15</div><h3>Algoritmo da divisão por estimativa</h3><p>dividir em rodadas, como na distribuição de cartas</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <p>É como distribuir cartas em <b>rodadas</b>. Exemplo: <b>85 ÷ 4</b></p>
+    <table>
+      <tr><th>Rodada</th><th>Cada um recebe</th><th>Usei</th><th>Sobrou</th></tr>
+      <tr><td>1ª</td><td>10</td><td>40</td><td>45</td></tr>
+      <tr><td>2ª</td><td>10</td><td>40</td><td>5</td></tr>
+      <tr><td>3ª</td><td>1</td><td>4</td><td><b>1</b></td></tr>
+      <tr><td><b>Total</b></td><td><b>21</b></td><td></td><td>resto <b>1</b></td></tr>
+    </table>
+    <p><b>Com divisor de 2 algarismos</b> (ex.: 368 ÷ 16), faça antes uma "<b>colinha</b>" do divisor:</p>
+    <div class="chips"><span class="chip">16 × 1 = 16</span><span class="chip">16 × 2 = 32</span><span class="chip">16 × 5 = 80</span><span class="chip">16 × 10 = 160</span><span class="chip">16 × 20 = 320</span></div>
+    <div class="flow"><div class="s">368 − 320<br>(20 cada)</div><div class="a">→</div><div class="s">sobram 48</div><div class="a">→</div><div class="s">48 − 48<br>(3 cada)</div><div class="a">→</div><div class="s">20 + 3 = <b>23</b><br>resto 0</div></div>
+    <div class="peg">o <b>resto nunca pode ser igual ou maior que o divisor</b>. Se sobrou 16 dividindo por 16, ainda dá mais uma rodada!</div>
+  </div>
+</div>
+
+<div class="card n" data-s="🚐">
+  <div class="head"><div class="ico">🚐</div><div class="ht"><div class="tag">Problemas</div><h3>O que fazer com o resto</h3><p>a sobra muda a resposta do problema</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <p><b>50 ÷ 8 = 6, resto 2.</b> Mas a resposta depende da pergunta:</p>
+    <table>
+      <tr><td>🍦 "Com R$ 50, quantos sorvetes de R$ 8?"</td><td><b>6</b> sorvetes (sobram R$ 2)</td></tr>
+      <tr><td>🚐 "Vans de 8 lugares para 50 pessoas?"</td><td><b>7</b> vans (ninguém pode ficar para trás!)</td></tr>
+    </table>
+    <div class="dica">problemas de 2 passos: descubra primeiro o total (× ou +) e depois tire ou reparta (− ou ÷). Ex.: R$ 80 − R$ 16 = R$ 64 → 64 ÷ 8 = 8 sucos.</div>
+    <div class="peg">"Noah, seus 3 amigos e 4 amigas" = <b>8 pessoas</b>, não 7! Conte todo mundo.</div>
+  </div>
+</div>
+
+<!-- FRAÇÕES -->
+<div class="bloco k"><span class="tape">🍫 Frações</span><small>Semanas 14 e 15</small></div>
+
+<div class="card k" data-s="🍕">
+  <div class="head"><div class="ico">🍕</div><div class="ht"><div class="tag">Ficha 55</div><h3>Numerador e denominador</h3><p>o que cada número da fração quer dizer · partes iguais</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <div class="flow"><div class="s" style="font-size:22px;line-height:1.1">3<br>—<br>8</div><div class="a">→</div><div class="s"><b>3 = numerador</b>: partes que eu uso/pinto<br><b>8 = denominador</b>: em quantas partes o inteiro foi dividido</div></div>
+    <div class="peg">as partes precisam ser <b>iguais</b>! Um retângulo cortado em 4 pedaços de tamanhos diferentes não mostra quartos.</div>
+    <div class="dica">fração com numerador igual ao denominador (6/6, 8/8) é o <b>inteiro todo</b>.</div>
+  </div>
+</div>
+
+<div class="card k" data-s="🔤">
+  <div class="head"><div class="ico">🔤</div><div class="ht"><div class="tag">Ficha 55</div><h3>Como se lê uma fração</h3><p>de meio até os "avos"</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <table>
+      <tr><td>1/2 meio</td><td>1/3 um terço</td><td>1/4 um quarto</td></tr>
+      <tr><td>1/5 um quinto</td><td>1/6 um sexto</td><td>1/7 um sétimo</td></tr>
+      <tr><td>1/8 um oitavo</td><td>1/9 um nono</td><td>1/10 um décimo</td></tr>
+    </table>
+    <p>Depois do 10 usamos <b>"avos"</b>: 1/11 um onze avos · 5/12 cinco doze avos.</p>
+    <div class="peg">exceções: <b>1/100 um centésimo</b> e <b>1/1000 um milésimo</b>.</div>
+  </div>
+</div>
+
+<div class="card k" data-s="🍫">
+  <div class="head"><div class="ico">🍫</div><div class="ht"><div class="tag">Semana 15</div><h3>Repartindo inteiros</h3><p>dividir um chocolate sem sobrar nada</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <p>Lembra do chocolate de <b>10 quadradinhos</b>? Para 4 pessoas: cada uma recebe <b>2 quadradinhos e 1/2</b> (ou 2 e 2/4, que é a mesma coisa!).</p>
+    <p>Exemplo novo: barra com <b>7 quadradinhos para 3 amigas</b>:</p>
+    <div class="flow"><div class="s">2 inteiros<br>para cada (6)</div><div class="a">→</div><div class="s">sobra 1 quadradinho</div><div class="a">→</div><div class="s">corta em 3 →<br>1/3 para cada</div><div class="a">=</div><div class="s"><b>2 e 1/3</b></div></div>
+    <div class="dica">primeiro dê os <b>inteiros</b>; o que sobrar, corte em partes iguais (tantas quantas forem as pessoas).</div>
+  </div>
+</div>
+
+<div class="card k" data-s="⚖️">
+  <div class="head"><div class="ico">⚖️</div><div class="ht"><div class="tag">Frações equivalentes</div><h3>Frações equivalentes</h3><p>frações diferentes que mostram o mesmo pedaço</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <p>São frações que <b>valem a mesma coisa</b>: o pedaço pintado tem o mesmo tamanho.</p>
+    <div style="display:grid;gap:6px;margin:8px 0">
+      <div><svg viewBox="-1 -1 222 28" width="220" height="26" style="vertical-align:middle;max-width:70%"><rect x="0.0" y="0" width="110.0" height="26" fill="#ff6fa8" stroke="#7a5a8c" stroke-width="1.5"/><rect x="110.0" y="0" width="110.0" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/></svg> <b>1/2</b></div><div><svg viewBox="-1 -1 222 28" width="220" height="26" style="vertical-align:middle;max-width:70%"><rect x="0.0" y="0" width="55.0" height="26" fill="#ff6fa8" stroke="#7a5a8c" stroke-width="1.5"/><rect x="55.0" y="0" width="55.0" height="26" fill="#ff6fa8" stroke="#7a5a8c" stroke-width="1.5"/><rect x="110.0" y="0" width="55.0" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="165.0" y="0" width="55.0" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/></svg> <b>2/4</b></div><div><svg viewBox="-1 -1 222 28" width="220" height="26" style="vertical-align:middle;max-width:70%"><rect x="0.0" y="0" width="36.7" height="26" fill="#ff6fa8" stroke="#7a5a8c" stroke-width="1.5"/><rect x="36.7" y="0" width="36.7" height="26" fill="#ff6fa8" stroke="#7a5a8c" stroke-width="1.5"/><rect x="73.3" y="0" width="36.7" height="26" fill="#ff6fa8" stroke="#7a5a8c" stroke-width="1.5"/><rect x="110.0" y="0" width="36.7" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="146.7" y="0" width="36.7" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="183.3" y="0" width="36.7" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/></svg> <b>3/6</b></div><div><svg viewBox="-1 -1 222 28" width="220" height="26" style="vertical-align:middle;max-width:70%"><rect x="0.0" y="0" width="27.5" height="26" fill="#ff6fa8" stroke="#7a5a8c" stroke-width="1.5"/><rect x="27.5" y="0" width="27.5" height="26" fill="#ff6fa8" stroke="#7a5a8c" stroke-width="1.5"/><rect x="55.0" y="0" width="27.5" height="26" fill="#ff6fa8" stroke="#7a5a8c" stroke-width="1.5"/><rect x="82.5" y="0" width="27.5" height="26" fill="#ff6fa8" stroke="#7a5a8c" stroke-width="1.5"/><rect x="110.0" y="0" width="27.5" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="137.5" y="0" width="27.5" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="165.0" y="0" width="27.5" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="192.5" y="0" width="27.5" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/></svg> <b>4/8</b></div>
+    </div>
+    <div class="dica"><b>truque:</b> multiplique (ou divida) <b>em cima e embaixo pelo mesmo número</b>. 1/2 → ×3 → 3/6. 3/6 → ÷3 → 1/2.</div>
+    <div class="peg">3/6 é igual a <b>1/2</b>, e não a 2/8 (2/8 = 1/4, que é menor).</div>
+  </div>
+</div>
+
+<div class="card k" data-s="🍬">
+  <div class="head"><div class="ico">🍬</div><div class="ht"><div class="tag">Revisão · questão 8</div><h3>Fração de uma quantidade</h3><p>quanto é 1/5 de 30 bolinhas?</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <p><b>2/5 de 30 balas</b> em 2 passos:</p>
+    <div class="flow"><div class="s">1️⃣ divida pelo <b>denominador</b><br>30 ÷ 5 = 6<br>(cada quinto = 6 balas)</div><div class="a">→</div><div class="s">2️⃣ multiplique pelo <b>numerador</b><br>6 × 2 = <b>12</b></div></div>
+    <div class="peg">o numerador <b>não é o número de bolinhas</b>! 1/5 de 30 não é 1 bolinha: são <b>6</b>.</div>
+    <div class="ouro">Para achar a fração de uma quantidade: divido pelo número de baixo e multiplico pelo número de cima.</div>
+  </div>
+</div>
+
+<div class="card k" data-s="🎂">
+  <div class="head"><div class="ico">🎂</div><div class="ht"><div class="tag">Revisão · questão 9</div><h3>Qual fração é maior?</h3><p>comparar 1/8 com 1/16</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <p>Bolo cortado em <b>8</b> ou em <b>16</b> fatias: em qual a fatia é maior?</p>
+    <div class="grid2"><div class="mini"><b>1/8</b><svg viewBox="-1 -1 152 28" width="150" height="26" style="vertical-align:middle;max-width:70%"><rect x="0.0" y="0" width="18.8" height="26" fill="#ff6fa8" stroke="#7a5a8c" stroke-width="1.5"/><rect x="18.8" y="0" width="18.8" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="37.5" y="0" width="18.8" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="56.2" y="0" width="18.8" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="75.0" y="0" width="18.8" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="93.8" y="0" width="18.8" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="112.5" y="0" width="18.8" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="131.2" y="0" width="18.8" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/></svg></div><div class="mini"><b>1/16</b><svg viewBox="-1 -1 152 28" width="150" height="26" style="vertical-align:middle;max-width:70%"><rect x="0.0" y="0" width="9.4" height="26" fill="#ff6fa8" stroke="#7a5a8c" stroke-width="1.5"/><rect x="9.4" y="0" width="9.4" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="18.8" y="0" width="9.4" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="28.1" y="0" width="9.4" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="37.5" y="0" width="9.4" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="46.9" y="0" width="9.4" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="56.2" y="0" width="9.4" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="65.6" y="0" width="9.4" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="75.0" y="0" width="9.4" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="84.4" y="0" width="9.4" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="93.8" y="0" width="9.4" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="103.1" y="0" width="9.4" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="112.5" y="0" width="9.4" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="121.9" y="0" width="9.4" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="131.2" y="0" width="9.4" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/><rect x="140.6" y="0" width="9.4" height="26" fill="#fff" stroke="#7a5a8c" stroke-width="1.5"/></svg></div></div>
+    <div class="ouro">Quanto mais partes eu divido o inteiro, menor fica cada parte. Por isso 1/8 é maior que 1/16.</div>
+  </div>
+</div>
+<div class="final">
+  <h3>🎀 Diário completo!</h3>
+  <p>Agora é hora do <b>jogo</b> e da <b>lista de contas no caderno</b>: vamos ver quantos pontos você faz! 🎮✨</p>
+</div>
+
+<footer>
+  <h4>Para o papai · de onde veio o conteúdo</h4>
+  1. Base: tarjeta, revisão (ficha 57, corrigida), ficha 55 de frações, apoio 245÷5, apoio Algoritmo da divisão, Repartindo inteiros e as fichas de problemas.<br>
+  2. Não vieram: "Estratégias da divisão" (sem. 10) e talvez "Problemas Alberto" (sem. 12).<br>
+  3. Os cards de <b>fração de quantidade</b>, <b>equivalentes</b> e <b>comparar frações</b> foram reforçados porque ela errou esses pontos na revisão e na ficha 55. O card "O que fazer com o resto" e o "truque" de multiplicar em cima e embaixo são conteúdo padrão de 4º ano, não vieram das fichas.
+</footer>
+</div>
+<script>
+  const cards=[...document.querySelectorAll('.card')],opened=new Set(),stk=document.getElementById('stk');
+  cards.forEach((c,i)=>{const s=document.createElement('div');s.className='st';s.textContent=c.dataset.s;stk.appendChild(s);
+    c.querySelector('.head').addEventListener('click',()=>{c.classList.toggle('open');if(c.classList.contains('open'))opened.add(i);upd();});});
+  function upd(){const n=opened.size,t=cards.length;document.getElementById('count').textContent=n+' / '+t;document.getElementById('bar').style.width=(n/t*100)+'%';[...stk.children].forEach((s,i)=>s.classList.toggle('on',opened.has(i)));}
+  function toggleAll(o){cards.forEach((c,i)=>{c.classList.toggle('open',o);if(o)opened.add(i);});upd();}
+  upd();
+</script>
+</body>
+</html>

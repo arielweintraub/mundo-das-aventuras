@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Treino de Contas · Matemática P2</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#3a2850;--muted:#86739a;--ok:#17b67f;--no:#ff4d6d}
+*{box-sizing:border-box}
+body{margin:0;font-family:Nunito,system-ui,sans-serif;color:var(--ink);background:linear-gradient(160deg,#ffd9ec,#e9dcff 50%,#d4f5ee);background-attachment:fixed;min-height:100vh}
+.wrap{max-width:640px;margin:0 auto;padding:14px 14px 60px}
+header{border-radius:26px;padding:20px;color:#fff;background:linear-gradient(135deg,#ff6fa8,#b583ff 60%,#7fd8ff);box-shadow:0 10px 30px rgba(181,131,255,.35)}
+header h1{font:700 30px Fredoka;margin:0 0 4px;line-height:1.05}
+header p{margin:0;font-weight:700}
+.howto{background:rgba(255,255,255,.85);border-radius:18px;padding:12px 14px;margin:12px 0;border:2px dashed #d9b8ff;font-size:14.5px;font-weight:700}
+.score{position:sticky;top:0;z-index:5;margin:8px 0;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-radius:18px;padding:8px 14px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 14px rgba(139,108,240,.2);font:600 17px Fredoka}
+.score b{font-size:22px}
+.sec{font:700 22px Fredoka;margin:22px 0 4px;display:flex;align-items:center;gap:8px}
+.sec small{font:800 13px Nunito;color:var(--muted)}
+.item{background:rgba(255,255,255,.94);border-radius:22px;padding:14px;margin:10px 0;box-shadow:0 4px 0 var(--cl);border:2px solid var(--cl)}
+.m{--c:#ff5fa2;--cl:#ffd6e8}.s{--c:#18b7a0;--cl:#c9f2e8}.d{--c:#8b6cf0;--cl:#e3dafd}.p{--c:#f08c00;--cl:#ffe5bf}
+.top{display:flex;align-items:center;gap:10px}
+.num{width:34px;height:34px;border-radius:12px;background:var(--c);color:#fff;font:700 17px Fredoka;display:grid;place-items:center;flex:0 0 34px}
+.conta{font:700 28px Fredoka;flex:1}
+.btns{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.btns button{border:0;border-radius:12px;padding:8px 12px;font:800 13.5px Nunito;cursor:pointer;background:#f5effc;color:var(--ink)}
+.btns .ok{background:#dcf8ec;color:#0f8a5f}.btns .no{background:#ffe1e7;color:#c9264a}
+.btns button.sel{outline:3px solid currentColor}
+.tip,.steps{display:none;margin-top:10px;border-radius:14px;padding:10px 12px;font-size:14.5px}
+.tip{background:#fff6d6}
+.steps{background:#faf7fd;border-left:5px solid var(--c)}
+.steps ol{margin:4px 0;padding-left:20px}.steps li{margin:4px 0}
+.mono{font-family:"Courier New",monospace;font-weight:700;white-space:pre;font-size:16px;background:#fff;border-radius:10px;padding:8px 10px;display:inline-block;margin:6px 0;border:2px solid #eee3f7;line-height:1.35}
+table.rd{border-collapse:collapse;margin:6px 0;font-size:14px;width:100%}
+table.rd th,table.rd td{padding:5px 6px;text-align:center;border-bottom:1px solid #eee3f7}
+table.rd th{background:var(--cl)}
+.res{font:700 18px Fredoka;color:var(--c);margin-top:6px}
+.check{font-size:13.5px;color:#0f8a5f;font-weight:800}
+footer{margin-top:22px;font-size:13px;color:var(--muted);background:rgba(255,255,255,.85);border-radius:16px;padding:12px 14px;font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><h1>✏️ Treino de Contas<br>Matemática P2</h1><p>Faça no caderno e depois confira aqui</p></header>
+<div class="howto">📓 <b>Como usar:</b> copie a conta no caderno e resolva. Se travar, toque em <b>💡 Dica</b>. Terminou? Toque em <b>✅ Ver passo a passo</b>, compare com o que você fez e marque <b>Acertei</b> ou <b>Errei</b>.</div>
+<div class="score"><span>🎯 Placar do caderno</span><span>✔ <b id="okN">0</b> · ✘ <b id="noN">0</b> · de <b id="totN">0</b></span></div>
+<div id="list"></div>
+<footer>Para o papai: as contas têm números diferentes das fichas e do dever do Canvas (123×31, 84×18 e 174÷6 ficaram de fora de propósito, para não resolver o dever por ela). A divisão está no método por estimativa, como na ficha "Algoritmo da divisão". Ela errou divisão com divisor de 2 algarismos, o "vai um" e a subtração com empréstimo na revisão, então a lista reforça esses pontos.</footer>
+</div>
+<script>
+const fmt=n=>n.toLocaleString('pt-BR');
+function multSteps(a,b){const u=b%10,t=b-u,p1=a*u,p2=a*t,tot=p1+p2;
+  const w=String(fmt(tot)).length+2,pad=x=>String(x).padStart(w);
+  const box=[pad(a),('×'+String(b).padStart(w-1)),'─'.repeat(w),pad(fmt(p1)),'+'+String(fmt(p2)).padStart(w-1),'─'.repeat(w),pad(fmt(tot))].join('\n');
+  return {tip:`Primeiro faça ${a} × ${u}. Depois ${a} × ${t} (é ${a} × ${t/10} com um zero no final). Some as duas linhas.`,
+   html:`<div class="mono">${box}</div><ol><li>${a} × ${u} = <b>${fmt(p1)}</b> (cuidado com o "vai um"!)</li><li>${a} × ${t} = <b>${fmt(p2)}</b> (${a} × ${t/10} = ${fmt(a*t/10)}, acrescenta o zero)</li><li>${fmt(p1)} + ${fmt(p2)} = <b>${fmt(tot)}</b></li></ol><div class="res">Resultado: ${fmt(tot)}</div>`};}
+function subSteps(a,b){const r=a-b;const sa=String(a),sb=String(b).padStart(sa.length,'0');const col=['unidades','dezenas','centenas','unidades de milhar'];let lines=[],borrow=0;
+  for(let i=sa.length-1,k=-1;i>=0;i--){k++;const orig=+sa[i];let top=orig-borrow,bot=+sb[i];if(borrow&&orig===0){lines.push(`${col[k]}: o 0 não tinha, pediu ao vizinho, virou 10, emprestou 1 e ficou 9 → 9 − ${bot} = <b>${9-bot}</b>`);borrow=1;continue;}if(top<bot){lines.push(`${col[k]}: ${top} − ${bot} não dá → pede emprestado: ${top+10} − ${bot} = <b>${top+10-bot}</b>`);borrow=1;}else{lines.push(`${col[k]}: ${top} − ${bot} = <b>${top-bot}</b>`);borrow=0;}}
+  return {tip:'Comece pelas unidades. Se o de cima for menor, peça emprestado ao vizinho, e lembre que ele fica com 1 a menos!',
+   html:`<ol>${lines.map(l=>'<li>'+l+'</li>').join('')}</ol><div class="res">Resultado: ${fmt(r)}</div><div class="check">✔ Confira somando: ${fmt(r)} + ${fmt(b)} = ${fmt(a)}</div>`};}
+function divSteps(a,d){let rem=a,rows=[],q=0;while(rem>=d){let k=Math.floor(rem/d);if(k>=10)k=Math.floor(k/10)*10;const used=k*d;rows.push([k,used,rem-used]);q+=k;rem-=used;}
+  const cola=[1,2,5,10,20].map(x=>`${d} × ${x} = ${fmt(d*x)}`).join(' · ');
+  return {tip:`Faça a "colinha" do ${d}: ${cola}. Use a colinha para ver quanto cabe em cada rodada.`,
+   html:`<table class="rd"><tr><th>Rodada</th><th>Cada um recebe</th><th>Usei (${d} × …)</th><th>Sobrou</th></tr>${rows.map((r,i)=>`<tr><td>${i+1}ª</td><td>${r[0]}</td><td>${fmt(r[1])}</td><td>${fmt(r[2])}</td></tr>`).join('')}<tr><td><b>Total</b></td><td><b>${rows.map(r=>r[0]).join(' + ')} = ${q}</b></td><td></td><td>resto <b>${rem}</b></td></tr></table>
+   <div class="res">Resultado: ${q}${rem?`, resto ${rem}`:', resto 0'}</div><div class="check">✔ Confira: ${q} × ${d} = ${fmt(q*d)}${rem?` + ${rem} = ${fmt(q*d+rem)}`:''}</div>`};}
+const L=[
+ {sec:'✖️ Multiplicação',sub:'armada, com 2 algarismos',cls:'m',items:[[76,12],[58,24],[134,21],[87,19]].map(([a,b])=>({c:`${a} × ${b}`,...multSteps(a,b)}))},
+ {sec:'➖ Subtração',sub:'com empréstimo',cls:'s',items:[[1000,684],[2305,1478],[1500,1236]].map(([a,b])=>({c:`${fmt(a)} − ${fmt(b)}`,...subSteps(a,b)}))},
+ {sec:'➗ Divisão',sub:'método por estimativa (rodadas)',cls:'d',items:[[96,4],[185,5],[252,12],[368,16],[437,19],[513,21]].map(([a,d])=>({c:`${a} ÷ ${d}`,...divSteps(a,d)}))},
+ {sec:'🧩 Problemas de 2 passos',sub:'escreva as contas no caderno',cls:'p',items:[
+  {c:'Uma loja recebeu 24 caixas com 15 bonecas cada. Vendeu 128. Quantas sobraram?',tip:'Passo 1: quantas bonecas chegaram (×). Passo 2: tire as vendidas (−).',html:'<ol><li>24 × 15 = <b>360</b> bonecas</li><li>360 − 128 = <b>232</b></li></ol><div class="res">Resposta: sobraram 232 bonecas.</div>'},
+  {c:'Mia tem R$ 100. Gastou R$ 28 num livro e quer comprar canetas de R$ 9 com o resto. Quantas canetas consegue comprar? Sobra dinheiro?',tip:'Passo 1: quanto sobrou (−). Passo 2: quantas canetas cabem (÷). Olhe o resto!',html:'<ol><li>100 − 28 = <b>72</b> reais</li><li>72 ÷ 9 = <b>8</b> canetas, resto 0</li></ol><div class="res">Resposta: 8 canetas e não sobra dinheiro.</div>'},
+  {c:'Um ônibus leva 42 alunos. Quantos ônibus são necessários para 300 alunos?',tip:'Divida e veja o resto. Se sobrar aluno, precisa de mais um ônibus!',html:'<ol><li>300 ÷ 42 = <b>7</b>, resto <b>6</b> (42 × 7 = 294)</li><li>Os 6 que sobraram precisam de mais 1 ônibus</li></ol><div class="res">Resposta: 8 ônibus.</div>'},
+  {c:'🎨 Desafio: invente um problema que se resolva com a conta 156 ÷ 4. Depois resolva.',tip:'Pense numa situação de repartir (156 figurinhas para 4 amigas) ou de "quantas vezes cabe" (156 ovos em caixas de 4).',html:'<p>Exemplo: "A turma juntou 156 tampinhas para dividir igualmente entre 4 grupos. Quantas tampinhas cada grupo recebe?"</p><ol><li>4 × 30 = 120 → sobram 36</li><li>4 × 9 = 36 → sobram 0</li><li>30 + 9 = <b>39</b></li></ol><div class="res">Resposta: 39 tampinhas para cada grupo.</div>'}]}
+];
+let n=0;const st={};const list=document.getElementById('list');
+L.forEach(S=>{list.insertAdjacentHTML('beforeend',`<div class="sec">${S.sec} <small>${S.sub}</small></div>`);
+ S.items.forEach(it=>{n++;const id=n;list.insertAdjacentHTML('beforeend',`<div class="item ${S.cls}"><div class="top"><div class="num">${id}</div><div class="conta" style="${it.c.length>20?'font:700 17px Nunito':''}">${it.c}</div></div>
+  <div class="btns"><button onclick="tg(${id},'tip')">💡 Dica</button><button onclick="tg(${id},'steps')">✅ Ver passo a passo</button><button class="ok" id="o${id}" onclick="mk(${id},1)">✔ Acertei</button><button class="no" id="x${id}" onclick="mk(${id},0)">✘ Errei</button></div>
+  <div class="tip" id="tip${id}">💡 ${it.tip}</div><div class="steps" id="steps${id}">${it.html}</div></div>`);});});
+document.getElementById('totN').textContent=n;
+function tg(id,w){const e=document.getElementById(w+id);e.style.display=e.style.display==='block'?'none':'block';}
+function mk(id,v){st[id]=v;document.getElementById('o'+id).classList.toggle('sel',v===1);document.getElementById('x'+id).classList.toggle('sel',v===0);
+ const vals=Object.values(st);document.getElementById('okN').textContent=vals.filter(x=>x===1).length;document.getElementById('noN').textContent=vals.filter(x=>x===0).length;}
+</script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Roteiro · Hebraico P2 · Nossa rotina</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@600;800&family=Noto+Sans+Hebrew:wght@500;700&display=swap">
+<style>
+:root{--ink:#2b2238;--muted:#7a6b8e}
+*{box-sizing:border-box}
+body{margin:0;font:600 16px Nunito,sans-serif;color:var(--ink);background:linear-gradient(180deg,#ffe9c7 0,#ffd6e3 40%,#e3e6ff 100%);min-height:100vh}
+.wrap{max-width:760px;margin:0 auto;padding:16px 14px 60px}
+header{text-align:center;padding:10px 0 4px}
+header h1{font:700 30px Fredoka;margin:6px 0 2px}
+header p{margin:0;color:var(--muted);font-weight:800}
+.sun{font-size:52px;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-6px) rotate(6deg)}}
+.how{background:#fff;border-radius:18px;padding:12px 14px;margin:14px 0;box-shadow:0 4px 0 #f0d9c7;font-size:15px}
+.bar{position:sticky;top:0;z-index:5;background:#fffd;backdrop-filter:blur(6px);border-radius:16px;padding:10px 12px;margin-bottom:12px;display:flex;align-items:center;gap:10px;box-shadow:0 3px 10px #0001}
+.prog{flex:1;height:14px;background:#eee3f7;border-radius:10px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff8a3d,#ff5fa2,#8b6cf0);transition:.4s}
+.cnt{font:700 15px Fredoka;white-space:nowrap}
+.bar button{border:0;border-radius:12px;padding:8px 10px;font:800 13px Nunito;cursor:pointer;background:#f3ecfb;color:var(--ink)}
+.card{background:#fff;border-radius:22px;margin:12px 0;box-shadow:0 5px 0 var(--sh,#e6d9f5);border:3px solid var(--l,#efe6fb);overflow:hidden}
+.head{display:flex;gap:12px;align-items:center;padding:14px;cursor:pointer;user-select:none}
+.ic{font-size:34px;width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:var(--l);flex:none}
+.head h2{font:700 20px Fredoka;margin:0}
+.head p{margin:2px 0 0;color:var(--muted);font-size:14px;font-weight:800}
+.tag{font:800 11px Nunito;background:var(--c);color:#fff;border-radius:20px;padding:2px 8px;margin-left:auto;align-self:flex-start;white-space:nowrap}
+.arrow{font-size:18px;transition:.3s;color:var(--c)}
+.card.open .arrow{transform:rotate(90deg)}
+.card.seen .head h2::after{content:" ✅";font-size:16px}
+.body{display:none;padding:0 16px 16px}
+.card.open .body{display:block;animation:pop .3s}
+@keyframes pop{from{opacity:0;transform:translateY(-6px)}}
+.he{font-family:"Noto Sans Hebrew",Arial,sans-serif;direction:rtl;unicode-bidi:isolate}
+.txt{direction:rtl;font:500 22px/1.9 "Noto Sans Hebrew",Arial,sans-serif;background:#fff8ef;border-right:6px solid var(--c);border-radius:14px;padding:10px 14px;margin:8px 0}
+.txt small{display:block;direction:ltr;text-align:left;font:700 13px/1.4 Nunito;color:var(--muted);margin-bottom:4px}
+.tr{font:700 13px Nunito;color:var(--muted);direction:ltr;display:block;text-align:left;margin:-4px 0 6px}
+table{width:100%;border-collapse:collapse;margin:8px 0;font-size:15px}
+th,td{padding:7px 4px;text-align:center;border-bottom:2px solid #f3eefa}
+th{font:700 14px Fredoka;color:#fff}
+th.e{background:#2a6fb5}th.a{background:#e84a8a}th.m{background:#13a58b}th.f{background:#f08c00}th.v{background:#8b6cf0}
+td .he{font-size:21px;font-weight:700}
+td small{display:block;color:var(--muted);font-weight:700;font-size:11px}
+.dica,.peg,.ouro{border-radius:14px;padding:10px 12px;margin:10px 0;font-size:15px}
+.dica{background:#e7f7ff;border:2px dashed #4fb6e8}
+.peg{background:#fff0f0;border:2px dashed #ff6b6b}
+.ouro{background:#fff7d6;border:2px solid #ffbf2e}
+.dica b:first-child,.peg b:first-child,.ouro b:first-child{display:block;font:700 15px Fredoka;margin-bottom:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin:8px 0}
+.w{background:#faf6ff;border-radius:14px;padding:8px;text-align:center}
+.w .em{font-size:28px}
+.w .he{display:block;font-size:22px;font-weight:700}
+.w small{color:var(--muted);font-weight:800}
+.line{display:flex;flex-wrap:wrap;direction:rtl;align-items:center;gap:6px;margin:8px 0}
+.step{background:var(--l);border-radius:12px;padding:6px 10px;text-align:center}
+.step .he{font-size:18px;font-weight:700;display:block}
+.step small{font-weight:800;color:var(--muted);font-size:12px}
+.ar{color:var(--c);font-size:20px}
+.scenes{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:8px 0}
+.sc{background:#f6fbff;border-radius:14px;padding:8px;text-align:center}
+.sc .em{font-size:30px}
+.sc .he{display:block;font-size:18px;font-weight:700;margin-top:4px}
+.end{text-align:center;background:linear-gradient(135deg,#8b6cf0,#ff5fa2);color:#fff;border-radius:22px;padding:18px;margin-top:18px}
+.end h2{font:700 24px Fredoka;margin:0 0 4px}
+.foot{font-size:13px;color:var(--muted);margin-top:18px;background:#fff9;border-radius:14px;padding:10px 12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="sun">⏰</div>
+  <h1>Roteiro de Hebraico · P2</h1>
+  <p><span class="he">הַשִּׁגְרָה שֶׁלָּנוּ</span> · Nossa rotina · prova terça, 17/11</p>
+</header>
+
+<div class="how">👀 <b>Como usar:</b> leia o título do card e <b>fale em voz alta</b> tudo o que você lembra. Só depois toque para abrir e conferir. É revisão: tudo aqui é das fichas da professora.</div>
+
+<div class="bar"><div class="prog"><i id="pg"></i></div><span class="cnt" id="ct">0 / 0</span><button onclick="all_(1)">abrir todos</button><button onclick="all_(0)">fechar</button></div>
+
+<div id="cards">
+
+<!-- 1 -->
+<div class="card" style="--c:#8b6cf0;--l:#efe7ff;--sh:#dccdfb">
+ <div class="head"><div class="ic">👥</div><div><h2>A regra de ouro: quem faz?</h2><p>ele, ela, eles, elas e eu</p></div><span class="tag">todas as fichas</span><span class="arrow">▶</span></div>
+ <div class="body">
+  <p>O verbo <b>combina com quem faz a ação</b>. Olhe sempre o <b>finalzinho</b> do verbo:</p>
+  <table>
+   <tr><th class="e">ele <span class="he">הוּא</span></th><th class="a">ela <span class="he">הִיא</span></th><th class="m">eles <span class="he">הֵם</span></th><th class="f">elas <span class="he">הֵן</span></th></tr>
+   <tr><td>forma básica</td><td>termina em <span class="he">ה</span> ou <span class="he">ת</span></td><td>termina em <span class="he">ים</span></td><td>termina em <span class="he">וֹת</span></td></tr>
+   <tr><td><span class="he">קָם</span></td><td><span class="he">קָמָה</span></td><td><span class="he">קָמִים</span></td><td><span class="he">קָמוֹת</span></td></tr>
+   <tr><td><span class="he">אוֹכֵל</span></td><td><span class="he">אוֹכֶלֶת</span></td><td><span class="he">אוֹכְלִים</span></td><td><span class="he">אוֹכְלוֹת</span></td></tr>
+  </table>
+  <div class="dica"><b>💡 E quando sou eu? <span class="he">אֲנִי</span></b>Menina usa a forma de <b>ela</b>: <span class="he">אֲנִי קָמָה</span>. Menino usa a forma de <b>ele</b>: <span class="he">אֲנִי קָם</span>.</div>
+  <div class="dica"><b>💡 Grupo</b>Meninos ou grupo misto → <b>eles</b>: <span class="he">הַיְּלָדִים הוֹלְכִים</span>. Só meninas → <b>elas</b>: <span class="he">הַבָּנוֹת הוֹלְכוֹת</span>.</div>
+ </div>
+</div>
+
+<!-- 2 -->
+<div class="card" style="--c:#f08c00;--l:#fff0d6;--sh:#f7dcae">
+ <div class="head"><div class="ic">⏰</div><div><h2>Os verbos da manhã</h2><p>levantar, vestir, comer, beber, colocar, ir</p></div><span class="tag">semana 14</span><span class="arrow">▶</span></div>
+ <div class="body">
+  <table>
+   <tr><th class="v">verbo</th><th class="e">ele</th><th class="a">ela</th><th class="m">eles</th><th class="f">elas</th></tr>
+   <tr><td>levantar<small>ficha 17</small></td><td><span class="he">קָם</span></td><td><span class="he">קָמָה</span></td><td><span class="he">קָמִים</span></td><td><span class="he">קָמוֹת</span></td></tr>
+   <tr><td>vestir<small>ficha 12</small></td><td><span class="he">לוֹבֵשׁ</span></td><td><span class="he">לוֹבֶשֶׁת</span></td><td><span class="he">לוֹבְשִׁים</span></td><td><span class="he">לוֹבְשׁוֹת</span></td></tr>
+   <tr><td>comer<small>ficha 2</small></td><td><span class="he">אוֹכֵל</span></td><td><span class="he">אוֹכֶלֶת</span></td><td><span class="he">אוֹכְלִים</span></td><td><span class="he">אוֹכְלוֹת</span></td></tr>
+   <tr><td>beber<small>ficha 11</small></td><td><span class="he">שׁוֹתֶה</span></td><td><span class="he">שׁוֹתָה</span></td><td><span class="he">שׁוֹתִים</span></td><td><span class="he">שׁוֹתוֹת</span></td></tr>
+   <tr><td>colocar<small>ficha 9</small></td><td><span class="he">שָׂם</span></td><td><span class="he">שָׂמָה</span></td><td><span class="he">שָׂמִים</span></td><td><span class="he">שָׂמוֹת</span></td></tr>
+   <tr><td>ir<small>ficha 10</small></td><td><span class="he">הוֹלֵךְ</span></td><td><span class="he">הוֹלֶכֶת</span></td><td><span class="he">הוֹלְכִים</span></td><td><span class="he">הוֹלְכוֹת</span></td></tr>
+  </table>
+  <div class="peg"><b>⚠️ Pegadinha</b>"Ela bebe" é <span class="he">שׁוֹתָה</span> (termina em <span class="he">ה</span>, não em <span class="he">ת</span>).</div>
+  <div class="dica"><b>💡 Família ה ou família ת?</b>Verbo curtinho (<span class="he">קָם · שָׂם · שָׁר</span>) ou que termina em <span class="he">ה</span> → ela termina em <span class="he">ה</span>. Os outros → ela termina em <span class="he">ת</span>: <span class="he">לוֹבֶשֶׁת · אוֹכֶלֶת · הוֹלֶכֶת</span>.</div>
+ </div>
+</div>
+
+<!-- 3 -->
+<div class="card" style="--c:#ff5fa2;--l:#ffe3ef;--sh:#fbc8de">
+ <div class="head"><div class="ic">🎤</div><div><h2>Verbos para descrever uma imagem</h2><p>ver, fazer, ouvir, dançar, cantar</p></div><span class="tag">semana 14</span><span class="arrow">▶</span></div>
+ <div class="body">
+  <table>
+   <tr><th class="v">verbo</th><th class="e">ele</th><th class="a">ela</th><th class="m">eles</th><th class="f">elas</th></tr>
+   <tr><td>ver 📺<small>ficha 3</small></td><td><span class="he">רוֹאֶה</span></td><td><span class="he">רוֹאָה</span></td><td><span class="he">רוֹאִים</span></td><td><span class="he">רוֹאוֹת</span></td></tr>
+   <tr><td>fazer 🎂<small>ficha 3</small></td><td><span class="he">עוֹשֶׂה</span></td><td><span class="he">עוֹשָׂה</span></td><td><span class="he">עוֹשִׂים</span></td><td><span class="he">עוֹשׂוֹת</span></td></tr>
+   <tr><td>ouvir 🎧<small>ficha 4</small></td><td><span class="he">שׁוֹמֵעַ</span></td><td><span class="he">שׁוֹמַעַת</span></td><td><span class="he">שׁוֹמְעִים</span></td><td><span class="he">שׁוֹמְעוֹת</span></td></tr>
+   <tr><td>dançar 💃<small>ficha 14</small></td><td><span class="he">רוֹקֵד</span></td><td><span class="he">רוֹקֶדֶת</span></td><td><span class="he">רוֹקְדִים</span></td><td><span class="he">רוֹקְדוֹת</span></td></tr>
+   <tr><td>cantar 🎤<small>ficha 18</small></td><td><span class="he">שָׁר</span></td><td><span class="he">שָׁרָה</span></td><td><span class="he">שָׁרִים</span></td><td><span class="he">שָׁרוֹת</span></td></tr>
+  </table>
+  <p><b>3 passos para descrever:</b></p>
+  <div class="line"><div class="step"><span class="he">מִיכַל</span><small>1. quem?</small></div><span class="ar">←</span><div class="step"><span class="he">שׁוֹמַעַת</span><small>2. verbo de quem faz</small></div><span class="ar">←</span><div class="step"><span class="he">מוּזִיקָה</span><small>3. o quê?</small></div></div>
+  <div class="peg"><b>⚠️ Pegadinha do pontinho</b><span class="he">שָׁר</span> (canta) tem o pontinho à direita. <span class="he">שָׂם</span> (coloca) tem o pontinho à esquerda.</div>
+ </div>
+</div>
+
+<!-- 4 -->
+<div class="card" style="--c:#13a58b;--l:#d9f7f1;--sh:#b7ebe0">
+ <div class="head"><div class="ic">👕</div><div><h2><span class="he">מָה לוֹבְשִׁים?</span> O que vestimos?</h2><p>as 6 roupas da ficha de vocabulário</p></div><span class="tag">vocabulário</span><span class="arrow">▶</span></div>
+ <div class="body"><div class="grid">
+  <div class="w"><div class="em">🎽</div><span class="he">מַדִּים</span><small>uniforme</small></div>
+  <div class="w"><div class="em">👕</div><span class="he">חֻלְצָה</span><small>camiseta, blusa</small></div>
+  <div class="w"><div class="em">👖</div><span class="he">מִכְנָסַיִם</span><small>calça</small></div>
+  <div class="w"><div class="em">👗</div><span class="he">שִׂמְלָה</span><small>vestido</small></div>
+  <div class="w"><div class="em">🩳</div><span class="he">מִכְנָסַיִם קְצָרִים</span><small>bermuda</small></div>
+  <div class="w"><div class="em">🩰</div><span class="he">חֲצָאִית</span><small>saia</small></div>
+ </div>
+ <div class="dica"><b>💡 Do texto da Fernanda</b><span class="he">מִכְנָס אָרֹךְ</span> = calça comprida.</div></div>
+</div>
+
+<!-- 5 -->
+<div class="card" style="--c:#2a6fb5;--l:#e1efff;--sh:#c6dcf7">
+ <div class="head"><div class="ic">🎒</div><div><h2>Mochila e café da manhã</h2><p>o que colocamos e o que comemos</p></div><span class="tag">vocabulário</span><span class="arrow">▶</span></div>
+ <div class="body">
+  <p><b><span class="he">מָה שָׂמִים בַּתִּיק?</span></b> O que colocamos na mochila?</p>
+  <div class="grid">
+   <div class="w"><div class="em">✏️</div><span class="he">קַלְמָר</span><small>estojo</small></div>
+   <div class="w"><div class="em">📕</div><span class="he">סֵפֶר</span><small>livro</small></div>
+   <div class="w"><div class="em">📓</div><span class="he">מַחְבֶּרֶת</span><small>caderno</small></div>
+   <div class="w"><div class="em">💧</div><span class="he">בַּקְבּוּק מַיִם</span><small>garrafa de água</small></div>
+   <div class="w"><div class="em">✏️</div><span class="he">עִפָּרוֹן</span><small>lápis</small></div>
+   <div class="w"><div class="em">🍫</div><span class="he">חֲטִיף</span><small>salgadinho, barrinha</small></div>
+  </div>
+  <p><b><span class="he">מָה אוֹכְלִים בַּבֹּקֶר?</span></b> O que comemos de manhã?</p>
+  <div class="grid">
+   <div class="w"><div class="em">🥣</div><span class="he">דְּגָנִים</span><small>cereal</small></div>
+   <div class="w"><div class="em">🍞</div><span class="he">לֶחֶם</span><small>pão</small></div>
+   <div class="w"><div class="em">🍳</div><span class="he">חֲבִיתָה</span><small>omelete</small></div>
+   <div class="w"><div class="em">🧀</div><span class="he">גְּבִינָה</span><small>queijo</small></div>
+   <div class="w"><div class="em">🧇</div><span class="he">וָפֶל</span><small>waffle</small></div>
+  </div>
+  <div class="dica"><b>💡 Dos textos</b><span class="he">יוֹגוּרְט</span> iogurte · <span class="he">עוּגָה</span> bolo · <span class="he">קָפֶה</span> café · <span class="he">בָּנָנָה</span> banana</div>
+ </div>
+</div>
+
+<!-- 6 -->
+<div class="card" style="--c:#4fb6e8;--l:#e3f6ff;--sh:#c3e8f8">
+ <div class="head"><div class="ic">🚿</div><div><h2><span class="he">מָה עוֹשִׂים?</span> O que fazemos?</h2><p>tomar banho e escovar os dentes</p></div><span class="tag">vocabulário</span><span class="arrow">▶</span></div>
+ <div class="body">
+  <table>
+   <tr><th class="v"></th><th class="e">menino 👦</th><th class="a">menina 👧</th></tr>
+   <tr><td>🚿 toma banho</td><td><span class="he">מִתְקַלֵּחַ</span></td><td><span class="he">מִתְקַלַּחַת</span></td></tr>
+   <tr><td>🪥 escova os dentes</td><td><span class="he">מְצַחְצֵחַ שִׁנַּיִם</span></td><td><span class="he">מְצַחְצַחַת שִׁנַּיִם</span></td></tr>
+  </table>
+  <div class="dica"><b>💡 Mesma regra</b>A forma de menina termina em <span class="he">ת</span>.</div>
+ </div>
+</div>
+
+<!-- 7 -->
+<div class="card" style="--c:#c0254f;--l:#ffe0e8;--sh:#f8c3d1">
+ <div class="head"><div class="ic">🕖</div><div><h2>As horas</h2><p>a que horas? e meia, da manhã, da noite</p></div><span class="tag">todos os textos</span><span class="arrow">▶</span></div>
+ <div class="body">
+  <div class="grid">
+   <div class="w"><b>4</b><span class="he">אַרְבַּע</span></div>
+   <div class="w"><b>6</b><span class="he">שֵׁשׁ</span></div>
+   <div class="w"><b>7</b><span class="he">שֶׁבַע</span></div>
+   <div class="w"><b>10</b><span class="he">עֶשֶׂר</span></div>
+  </div>
+  <div class="txt"><small>Os jeitos que aparecem nas fichas:</small>
+   בְּשָׁעָה שֵׁשׁ <span class="tr">às seis</span>
+   בְּשֵׁשׁ בַּבֹּקֶר <span class="tr">às seis da manhã</span>
+   בְּשָׁעָה שֵׁשׁ וָחֵצִי <span class="tr">às seis e meia</span>
+   בְּעֶשֶׂר בַּלַּיְלָה <span class="tr">às dez da noite</span>
+  </div>
+  <div class="dica"><b>💡 Para responder</b>A pergunta é <span class="he">בְּאֵיזוֹ שָׁעָה?</span> (a que horas?). Escreva a hora <b>por extenso</b>, com a palavra, e não 6:30.</div>
+ </div>
+</div>
+
+<!-- 8 -->
+<div class="card" style="--c:#7a3fb5;--l:#efe3fb;--sh:#dcc6f3">
+ <div class="head"><div class="ic">👦</div><div><h2>A manhã do Yonatan</h2><p>Texto de Leitura 4 e as perguntas</p></div><span class="tag">semana 10</span><span class="arrow">▶</span></div>
+ <div class="body">
+  <div class="txt"><b>הַבֹּקֶר שֶׁל יוֹנָתָן</b><br>
+   בַּבֹּקֶר אֲנִי קָם בְּשָׁעָה שֵׁשׁ.<br>
+   אֲנִי לוֹבֵשׁ חֻלְצָה וּמִכְנָסַיִם.<br>
+   בַּאֲרוּחַת בֹּקֶר אֲנִי אוֹכֵל לֶחֶם עִם גְּבִינָה וְשׁוֹתֶה קָפֶה.<br>
+   אֲנִי שָׂם בְּתוֹךְ הַתִּיק בַּקְבּוּק מַיִם, חֲטִיף וּבָנָנָה.<br>
+   אֲנִי יוֹרֵד בַּמַּדְרֵגוֹת לְקוֹמָה אֶפֶס, וְהוֹלֵךְ לְבֵית הַסֵּפֶר בְּשָׁעָה שֶׁבַע.<br>
+   אֲנִי חוֹזֵר הַבַּיְתָה בְּשָׁעָה אַרְבַּע.</div>
+  <p><b>As perguntas da professora:</b></p>
+  <div class="txt" style="font-size:19px">
+   בְּאֵיזוֹ שָׁעָה יוֹנָתָן קָם בַּבֹּקֶר? ← יוֹנָתָן קָם בְּשֵׁשׁ בַּבֹּקֶר.<br>
+   מָה יֵשׁ בְּתוֹךְ הַתִּיק שֶׁל יוֹנָתָן? ← בְּתוֹךְ הַתִּיק שֶׁל יוֹנָתָן יֵשׁ בַּקְבּוּק מַיִם, חֲטִיף וּבָנָנָה.<br>
+   לָמָּה יוֹנָתָן לֹא הוֹלֵךְ לְבֵית הַסֵּפֶר עִם שִׁיר? ← כִּי שִׁיר הוֹלֶכֶת לְבֵית הַסֵּפֶר עִם גִּילִי.
+  </div>
+  <div class="ouro"><b>⭐ Frase de ouro</b>Na resposta, troque <span class="he">אֲנִי</span> pelo <b>nome</b>: <span class="he">אֲנִי קָם</span> vira <span class="he">יוֹנָתָן קָם</span>. Pergunta com <span class="he">לָמָּה?</span> (por quê?) → resposta começa com <span class="he">כִּי</span> (porque).</div>
+ </div>
+</div>
+
+<!-- 9 -->
+<div class="card" style="--c:#ff8a3d;--l:#ffeadb;--sh:#f9d2b6">
+ <div class="head"><div class="ic">👩‍🏫</div><div><h2>A rotina da Fernanda</h2><p>Texto de Leitura 6 (shinshinit)</p></div><span class="tag">semana 14</span><span class="arrow">▶</span></div>
+ <div class="body">
+  <div class="txt"><b>הַשִּׁגְרָה שֶׁל פֶרְנַנְדָּה</b><br>
+   בַּבֹּקֶר אֲנִי קָמָה בְּשָׁעָה שֵׁשׁ.<br>
+   אֲנִי לוֹבֶשֶׁת מִכְנָס אָרֹךְ וְחֻלְצָה.<br>
+   בַּאֲרוּחַת בֹּקֶר אֲנִי אוֹכֶלֶת יוֹגוּרְט.<br>
+   בַּתִּיק שֶׁלִּי יֵשׁ בַּקְבּוּק מַיִם וְעִפָּרוֹן.<br>
+   אֲנִי הוֹלֶכֶת לְלַמֵּד בְּבֵית סֵפֶר בְּשָׁעָה שֵׁשׁ וָחֵצִי.<br>
+   אֲנִי חוֹזֶרֶת הַבַּיְתָה אַחֲרֵי הַשִּׁעוּרִים שֶׁלִּי.</div>
+  <div class="grid">
+   <div class="w"><div class="em">✏️</div><span class="he">עִפָּרוֹן</span><small>lápis</small></div>
+   <div class="w"><div class="em">👩‍🏫</div><span class="he">לְלַמֵּד</span><small>ensinar</small></div>
+   <div class="w"><div class="em">🏠</div><span class="he">חוֹזֶרֶת</span><small>volto</small></div>
+  </div>
+  <div class="dica"><b>💡 Fernanda é menina</b>Todos os verbos dela estão na forma de <b>ela</b>: <span class="he">קָמָה · לוֹבֶשֶׁת · אוֹכֶלֶת · הוֹלֶכֶת · חוֹזֶרֶת</span>.</div>
+ </div>
+</div>
+
+<!-- 10 -->
+<div class="card" style="--c:#e84a8a;--l:#ffe1ee;--sh:#f8c2d9">
+ <div class="head"><div class="ic">🏋️‍♀️</div><div><h2>A rotina da Noa</h2><p>Texto de Leitura 7, a ordem do dia e as 4 perguntas</p></div><span class="tag">semana 13</span><span class="arrow">▶</span></div>
+ <div class="body">
+  <div class="txt"><b>הַשִּׁגְרָה שֶׁל נוֹעָה</b><br>
+   1. אֲנִי קָמָה בְּשֵׁשׁ בַּבֹּקֶר.<br>
+   2. אֲנִי שׁוֹתָה קָפֶה וְאוֹכֶלֶת עוּגָה.<br>
+   3. אֲנִי מְלַמֶּדֶת עִבְרִית בְּשִׁעוּר.<br>
+   4. וְאַחֲרֵי בֵּית הַסֵּפֶר אֲנִי הוֹלֶכֶת לַחֲדַר כֹּשֶׁר.<br>
+   5. אֲנִי מְכִינָה אֲרוּחַת עֶרֶב.<br>
+   6. אֲנִי הוֹלֶכֶת לִישֹׁן בְּעֶשֶׂר בַּלַּיְלָה.</div>
+  <div class="line"><div class="step"><span class="he">קָמָה</span><small>1 ☀️</small></div><span class="ar">←</span><div class="step"><span class="he">קָפֶה וְעוּגָה</span><small>2 🍰</small></div><span class="ar">←</span><div class="step"><span class="he">מְלַמֶּדֶת</span><small>3 👩‍🏫</small></div><span class="ar">←</span><div class="step"><span class="he">חֲדַר כֹּשֶׁר</span><small>4 🏋️‍♀️</small></div><span class="ar">←</span><div class="step"><span class="he">אֲרוּחַת עֶרֶב</span><small>5 🍲</small></div><span class="ar">←</span><div class="step"><span class="he">לִישֹׁן</span><small>6 🌙</small></div></div>
+  <div class="grid">
+   <div class="w"><div class="em">👩‍🏫</div><span class="he">מְלַמֶּדֶת</span><small>ensino</small></div>
+   <div class="w"><div class="em">➡️</div><span class="he">אַחֲרֵי</span><small>depois</small></div>
+   <div class="w"><div class="em">🍲</div><span class="he">מְכִינָה</span><small>preparo</small></div>
+   <div class="w"><div class="em">🏋️‍♀️</div><span class="he">חֲדַר כֹּשֶׁר</span><small>academia</small></div>
+  </div>
+  <p><b>As 4 perguntas da ficha:</b></p>
+  <div class="txt" style="font-size:19px">
+   מָה נוֹעָה מְלַמֶּדֶת בְּשִׁעוּר? ← נוֹעָה מְלַמֶּדֶת עִבְרִית.<br>
+   אֵיפֹה נוֹעָה מְלַמֶּדֶת? ← נוֹעָה מְלַמֶּדֶת בְּבֵית הַסֵּפֶר.<br>
+   מָה נוֹעָה אוֹכֶלֶת וְשׁוֹתָה בַּאֲרוּחַת בֹּקֶר? ← נוֹעָה אוֹכֶלֶת עוּגָה וְשׁוֹתָה קָפֶה.<br>
+   מָה נוֹעָה עוֹשָׂה אַחֲרֵי בֵּית הַסֵּפֶר? ← נוֹעָה הוֹלֶכֶת לַחֲדַר כֹּשֶׁר.
+  </div>
+  <div class="peg"><b>⚠️ Pegadinha que já caiu na ficha</b><span class="he">אֵיפֹה?</span> = <b>onde?</b> → responda com o <b>lugar</b>: <span class="he">בְּבֵית הַסֵּפֶר</span> (na escola). <span class="he">שִׁעוּר</span> é a <b>aula</b>, não é lugar!</div>
+ </div>
+</div>
+
+<!-- 11 -->
+<div class="card" style="--c:#1fa35b;--l:#ddf6e6;--sh:#bfe9cf">
+ <div class="head"><div class="ic">🖼️</div><div><h2>Descrever as cenas (LC 3)</h2><p><span class="he">מָה הַיֶּלֶד עוֹשֶׂה בַּבֹּקֶר?</span> as 4 cenas do menino</p></div><span class="tag">semana 12</span><span class="arrow">▶</span></div>
+ <div class="body">
+  <p>Escolha um nome (aqui: <span class="he">אִיתַי</span>) e escreva uma frase por cena:</p>
+  <div class="scenes">
+   <div class="sc"><div class="em">⏰🛏️</div>06:00<span class="he">אִיתַי קָם בְּשָׁעָה שֵׁשׁ.</span></div>
+   <div class="sc"><div class="em">👨‍👩‍👦🍞</div><span class="he">אִיתַי אוֹכֵל אֲרוּחַת בֹּקֶר עִם אַבָּא וְאִמָּא.</span></div>
+   <div class="sc"><div class="em">🎒📕</div><span class="he">אִיתַי שָׂם בַּתִּיק סֵפֶר וּבַקְבּוּק מַיִם.</span></div>
+   <div class="sc"><div class="em">🏫🚶</div>07:00<span class="he">אִיתַי הוֹלֵךְ לְבֵית הַסֵּפֶר בְּשָׁעָה שֶׁבַע.</span></div>
+  </div>
+  <div class="dica"><b>💡 Se a figura for de menina</b>Troque para a forma de <b>ela</b>: <span class="he">הִיא קָמָה · אוֹכֶלֶת · שָׂמָה · הוֹלֶכֶת</span>.</div>
+ </div>
+</div>
+
+<!-- 12 -->
+<div class="card" style="--c:#b5179e;--l:#fbe0f6;--sh:#f1c1e8">
+ <div class="head"><div class="ic">✍️</div><div><h2>A minha manhã</h2><p>escrever sobre você (Niflaot, ex. 14)</p></div><span class="tag">semana 10</span><span class="arrow">▶</span></div>
+ <div class="body">
+  <p>Você é menina, então usa a forma de <b>ela</b>. Um modelo (troque pela sua manhã):</p>
+  <div class="txt">
+   בַּבֹּקֶר אֲנִי קָמָה בְּשָׁעָה שֶׁבַע.<br>
+   אֲנִי לוֹבֶשֶׁת מַדִּים.<br>
+   אֲנִי אוֹכֶלֶת לֶחֶם עִם גְּבִינָה וְשׁוֹתָה מִיץ.<br>
+   אֲנִי שָׂמָה בַּתִּיק קַלְמָר וּמַחְבֶּרֶת.<br>
+   אֲנִי הוֹלֶכֶת לְבֵית הַסֵּפֶר עִם אִמָּא.<br>
+   אַחֲרֵי בֵּית הַסֵּפֶר אֲנִי חוֹזֶרֶת הַבַּיְתָה.</div>
+  <div class="ouro"><b>⭐ Confira em 3 voltas</b>1) Todo verbo está na forma de menina? 2) A hora está por extenso? 3) Cada frase termina com ponto?</div>
+ </div>
+</div>
+
+</div>
+
+<div class="end">
+ <h2>Pronta! 🎉</h2>
+ Agora vá para o portal e jogue a <b>Vila do Despertador</b> ⏰ para treinar tudo isso.
+</div>
+
+<div class="foot">📎 <b>Para o adulto:</b> tudo aqui saiu da tarjeta e das fichas da turma (Textos 4, 6 e 7, ficha da Noa, vocabulário, fichas de verbos e LC 3). Não vieram nos arquivos: a página 19 do Niflaot (exercício 14) e a ficha original de perguntas do Yonatan. As perguntas do Yonatan foram tiradas do guia de outro pai, que diz ter usado o gabarito da escola.</div>
+</div>
+<script>
+const cards=[...document.querySelectorAll('.card')];
+function upd(){const s=cards.filter(c=>c.classList.contains('seen')).length;document.getElementById('ct').textContent=s+' / '+cards.length+' abertos';document.getElementById('pg').style.width=(s/cards.length*100)+'%';}
+cards.forEach(c=>c.querySelector('.head').onclick=()=>{c.classList.toggle('open');c.classList.add('seen');upd();});
+function all_(o){cards.forEach(c=>{c.classList.toggle('open',!!o);if(o)c.classList.add('seen');});upd();}
+upd();
+</script>
+</body>
+</html>

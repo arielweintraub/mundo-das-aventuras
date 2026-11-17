@@ -695,9 +695,16 @@ const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const timeout=(p,ms)=>Promise.race([p,new Promise((_,rej)=>setTimeout(()=>rej({code:'timeout'}),ms))]);
 const Store={db:null,mode:'local',q:Promise.resolve(),mem:null,
   async init(){let db=null;
+    if(window.FB_CONFIG&&/github\.io$/.test(location.hostname)||window.__FB_FORCE){
+      try{db=await fbInit();}catch(e){console.warn('firebase',e);db=null;}
+      this.db=db;this.mode=db?'cloud':(window.fbSignOut?'erro':'local');if(db)await this.migrateLocal();return;}
     try{for(let i=0;i<30&&!(window.claude&&typeof window.claude.use==='function');i++)await sleep(100);
       if(window.claude&&typeof window.claude.use==='function')db=await window.claude.use('db');}catch(e){db=null;}
     this.db=db;this.mode=db?'cloud':'local';},
+  async migrateLocal(){try{const sn=await timeout(this.db.collection('perfis').get(),10000);if(sn.docs.length)return;
+    const o=this.lsGet(),ids=Object.keys(o);if(!ids.length)return;
+    for(const id of ids){this.save(Object.assign({id},o[id]));let rs=[];try{rs=JSON.parse(localStorage.getItem('mda_res_'+id)||'[]');}catch(e){}rs.forEach(r=>this.addResult(id,r));}
+    await this.q;let c=null;try{c=JSON.parse(localStorage.getItem('mda_cfg')||'null');}catch(e){}if(c)await this.cfgSet(c);}catch(e){console.warn('migra',e);}},
   lsGet(){if(this.mem)return this.mem;try{this.mem=JSON.parse(localStorage.getItem('mda_perfis')||'{}')||{};}catch(e){this.mem={};}return this.mem;},
   lsSet(){try{localStorage.setItem('mda_perfis',JSON.stringify(this.mem));}catch(e){}},
   async list(){
@@ -1461,7 +1468,7 @@ function paiMoveCard(){return `<div class="card pai"><h3>📦 Levar os dados</h3
   <button class="sm go" onclick="paiExport()">📋 Gerar e copiar código</button>
   <textarea id="mvTxt" class="name" style="width:100%;height:90px;margin-top:8px;font:12px monospace" placeholder="o código aparece aqui… ou cole aqui um código para trazer os dados"></textarea>
   <div class="row"><button class="sm" onclick="paiImport(false)" id="mvImp">📥 Trazer dados colados</button></div>
-  <p class="mut" id="mvMsg" style="font-size:13px"></p></div>`;}
+  <p class="mut" id="mvMsg" style="font-size:13px"></p>${window.fbSignOut?'<button class="sm undo" onclick="fbSignOut()">🔒 Sair do login da família neste aparelho</button>':''}</div>`;}
 async function paiExport(){const m=$('mvMsg');m.textContent='Gerando…';
   try{const perfis=await Store.list();const res={};for(const p of perfis){res[p.id]=await Store.results(p.id);}
     const code=await gz(JSON.stringify({v:1,quando:Date.now(),perfis,res}));$('mvTxt').value=code;
@@ -1477,6 +1484,43 @@ async function paiImport(){const m=$('mvMsg'),txt=$('mvTxt').value.trim();if(!tx
   for(const p of d.perfis){Store.save(p);const rs=(d.res&&d.res[p.id])||[];const old=await Store.results(p.id);const have=new Set(old.map(r=>r.quando+'|'+r.jogo));
     rs.sort((a,b)=>(a.quando||0)-(b.quando||0)).forEach(r=>{if(!have.has(r.quando+'|'+r.jogo))Store.addResult(p.id,r);});n++;}
   await Store.q;PERFIS=(await Store.list()).map(normalize);m.textContent=`✅ Pronto! ${n} perfis trazidos.`;$('mvImp').textContent='📥 Trazer dados colados';sfx.coin();renderWho();}
+
+/* ===== Firebase (versão do GitHub): login da família + banco sincronizado ===== */
+window.FB_CONFIG={"apiKey": "AIzaSyBBi3N-DFFZoL5Zy6I4WmiGeVNIvtSsrbE", "authDomain": "mundo-das-aventuras.firebaseapp.com", "projectId": "mundo-das-aventuras", "storageBucket": "mundo-das-aventuras.firebasestorage.app", "messagingSenderId": "545561120361", "appId": "1:545561120361:web:96dba026a6c0df31a55cf8"};
+async function fbInit(){
+  const B='https://www.gstatic.com/firebasejs/10.12.2/';
+  const [A,U,F]=await Promise.all([import(B+'firebase-app.js'),import(B+'firebase-auth.js'),import(B+'firebase-firestore.js')]);
+  const app=A.initializeApp(window.FB_CONFIG),auth=U.getAuth(app);
+  let user=await new Promise(r=>{const un=U.onAuthStateChanged(auth,x=>{un();r(x);});});
+  if(!user)user=await fbLoginUI(auth,U.signInWithEmailAndPassword);
+  if(!user)return null;
+  window.fbSignOut=()=>U.signOut(auth).then(()=>location.reload());
+  const fs=F.getFirestore(app);
+  // cada documento vai guardado como texto (campo j): evita limites do Firestore com listas dentro de listas
+  const enc=o=>({j:JSON.stringify(o)}),dec=d=>{const x=d||{};return typeof x.j==='string'?JSON.parse(x.j):x;};
+  const snap=d=>({id:d.id,exists:d.exists(),data:()=>d.exists()?dec(d.data()):null});
+  const col=path=>({get:async()=>{const q=await F.getDocs(F.collection(fs,path));return{docs:q.docs.map(snap)};},add:o=>F.addDoc(F.collection(fs,path),enc(o))});
+  const doc=path=>({get:async()=>snap(await F.getDoc(F.doc(fs,path))),set:o=>F.setDoc(F.doc(fs,path),enc(o)),collection:sub=>col(path+'/'+sub)});
+  await timeout(F.getDocs(F.collection(fs,'perfis')),12000);   // testa a permissão já no começo
+  return{collection:col,doc};}
+function fbLoginUI(auth,signIn){return new Promise(res=>{
+  const ov=document.createElement('div');ov.id='fbLogin';
+  ov.style.cssText='position:fixed;inset:0;z-index:9999;background:linear-gradient(180deg,#ffe9c7,#e3e6ff);display:flex;align-items:center;justify-content:center;padding:16px;font-family:Nunito,sans-serif';
+  ov.innerHTML=`<div style="background:#fff;border-radius:24px;padding:22px;max-width:380px;width:100%;box-shadow:0 8px 0 #0002;text-align:center">
+   <div style="font-size:44px">🔐</div><div style="font:700 24px Fredoka,sans-serif;margin:4px 0">Login da família</div>
+   <p style="margin:4px 0 14px;font-weight:700;color:#7a6b8e;font-size:14px">Só o adulto, uma vez neste aparelho. Depois fica lembrado e o progresso sincroniza em todos os aparelhos.</p>
+   <input id="fbE" type="email" placeholder="e-mail" autocomplete="username" style="width:100%;box-sizing:border-box;padding:12px;border-radius:14px;border:2px solid #e6dcf5;font:700 16px Nunito,sans-serif;margin-bottom:8px">
+   <input id="fbP" type="password" placeholder="senha da família" autocomplete="current-password" style="width:100%;box-sizing:border-box;padding:12px;border-radius:14px;border:2px solid #e6dcf5;font:700 16px Nunito,sans-serif">
+   <button id="fbGo" style="margin-top:12px;width:100%;border:0;border-radius:30px;padding:13px;font:700 18px Fredoka,sans-serif;color:#fff;background:linear-gradient(180deg,#8b6cf0,#ff5fa2);cursor:pointer">Entrar</button>
+   <p id="fbMsg" style="min-height:18px;font-weight:800;color:#e0244a;font-size:14px;margin:10px 0 4px"></p>
+   <button id="fbSkip" style="border:0;background:none;color:#7a6b8e;font:700 13px Nunito,sans-serif;text-decoration:underline;cursor:pointer">usar sem login (salva só neste aparelho)</button></div>`;
+  document.body.appendChild(ov);
+  const go=async()=>{const e=ov.querySelector('#fbE').value.trim(),p=ov.querySelector('#fbP').value,m=ov.querySelector('#fbMsg');
+    if(!e||!p){m.textContent='Preencha e-mail e senha.';return;}m.style.color='#7a6b8e';m.textContent='Entrando…';
+    try{const c=await signIn(auth,e,p);ov.remove();res(c.user);}
+    catch(err){m.style.color='#e0244a';m.textContent=/network/.test(err.code||'')?'Sem internet agora. Tente de novo.':'E-mail ou senha não conferem.';}};
+  ov.querySelector('#fbGo').onclick=go;ov.querySelector('#fbP').onkeydown=e=>{if(e.key==='Enter')go();};
+  ov.querySelector('#fbSkip').onclick=()=>{ov.remove();res(null);};});}
 
 boot();
 </script>

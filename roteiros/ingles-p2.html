@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diário de Estudos · Inglês P2</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#3b2a4a; --muted:#7d6b8c;
+    --k:#ff6fa8; --kl:#ffe3ef;   /* Kafka - rosa */
+    --n:#8b6cf0; --nl:#ece6ff;   /* Narrativa - lilás */
+    --e:#18b7a0; --el:#d9f7f1;   /* Escrita - menta */
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Nunito,system-ui,sans-serif;color:var(--ink);line-height:1.5;
+    background:linear-gradient(160deg,#fde7f3 0%,#efe7ff 45%,#e2f7f3 100%);background-attachment:fixed;min-height:100vh}
+  .wrap{max-width:760px;margin:0 auto;padding:16px 14px 60px}
+  header{border-radius:26px;padding:22px 20px;color:#fff;position:relative;overflow:hidden;
+    background:linear-gradient(135deg,#ff6fa8,#b583ff 60%,#7fd8ff);box-shadow:0 10px 30px rgba(181,131,255,.35)}
+  header h1{font-family:Fredoka;font-size:30px;line-height:1.05;margin:0 0 6px}
+  header p{margin:0;font-weight:600;opacity:.95}
+  header .spark{position:absolute;font-size:26px;opacity:.85;animation:tw 2.4s infinite}
+  @keyframes tw{50%{transform:scale(1.3) rotate(15deg);opacity:.4}}
+  .howto{background:rgba(255,255,255,.75);backdrop-filter:blur(6px);border-radius:18px;padding:12px 14px;margin:14px 0;border:2px dashed #d9b8ff;font-size:15px}
+  .bar-wrap{position:sticky;top:0;z-index:10;padding:8px 0 10px}
+  .pbox{background:rgba(255,255,255,.88);backdrop-filter:blur(8px);border-radius:20px;padding:10px 12px;box-shadow:0 4px 16px rgba(139,108,240,.18)}
+  .ptop{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+  .ptitle{font-family:Fredoka;font-weight:600;font-size:16px}
+  .count{color:#ff4f93}
+  .stickers{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+  .st{width:28px;height:28px;border-radius:9px;border:2px dashed #d7c8ef;display:grid;place-items:center;font-size:15px;filter:grayscale(1);opacity:.3;transition:.35s}
+  .st.on{filter:none;opacity:1;border:2px solid #ffb3d1;background:#fff;transform:rotate(-8deg) scale(1.1)}
+  .bar{height:9px;background:#efe6fb;border-radius:9px;margin-top:8px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff6fa8,#b583ff,#18b7a0);transition:width .4s}
+  .btns button{font:800 13px Nunito;border:0;border-radius:12px;padding:6px 10px;background:#f3e9ff;color:var(--ink);cursor:pointer}
+  .bloco{margin:24px 0 8px;display:flex;align-items:center;gap:10px}
+  .bloco .tape{font-family:Fredoka;font-weight:600;font-size:19px;padding:4px 14px;border-radius:6px;transform:rotate(-1.5deg);background:var(--cl);color:var(--c);border:2px solid var(--c)}
+  .bloco small{color:var(--muted);font-weight:700;font-size:13px}
+  .card{background:rgba(255,255,255,.92);border-radius:22px;margin:10px 0;box-shadow:0 4px 0 var(--cl);border:2px solid var(--cl);overflow:hidden}
+  .head{display:flex;gap:12px;align-items:center;padding:14px;cursor:pointer;user-select:none}
+  .ico{width:50px;height:50px;flex:0 0 50px;border-radius:16px;background:var(--cl);display:grid;place-items:center;font-size:26px}
+  .ht{flex:1}
+  .tag{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--c)}
+  .ht h3{margin:0;font-family:Fredoka;font-weight:600;font-size:19px;line-height:1.15}
+  .ht p{margin:2px 0 0;color:var(--muted);font-size:14px}
+  .arrow{font-size:20px;color:var(--c);transition:transform .25s}
+  .card.open .arrow{transform:rotate(180deg)}
+  .body{display:none;padding:0 16px 16px;border-top:2px dashed var(--cl)}
+  .card.open .body{display:block;animation:pop .25s}
+  @keyframes pop{from{opacity:0;transform:translateY(-6px)}to{opacity:1}}
+  .k{--c:var(--k);--cl:var(--kl)} .n{--c:var(--n);--cl:var(--nl)} .e{--c:var(--e);--cl:var(--el)}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+  .chip{background:var(--cl);border-radius:30px;padding:5px 11px;font-weight:700;font-size:14px}
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0}
+  .flow .s{background:var(--cl);border:2px solid var(--c);border-radius:14px;padding:6px 10px;font-weight:800;font-size:14px;text-align:center}
+  .flow .a{font-weight:800;color:var(--c);font-size:20px}
+  table{width:100%;border-collapse:collapse;margin:10px 0;font-size:14px}
+  th,td{padding:6px 8px;text-align:left;vertical-align:top}
+  th{background:var(--cl)}
+  tr:nth-child(even) td{background:#faf7fd}
+  .end{color:#ff4f93;font-weight:800}
+  .box{border-radius:14px;padding:10px 12px;margin:10px 0;font-size:14.5px}
+  .dica{background:#eef7ff;border:2px solid #9cc8f5}
+  .dica::before{content:"⭐ Vale ponto: ";font-weight:800;color:#2a6fb5}
+  .peg{background:#fff0f3;border:2px solid #ff9db5}
+  .peg::before{content:"⚠️ Pegadinha: ";font-weight:800;color:#d6336c}
+  .ouro{background:linear-gradient(135deg,#fff3c4,#ffd6ec);border-radius:14px;padding:10px 12px;font-weight:700;margin:10px 0}
+  .ouro::before{content:"💖 Frase de ouro: ";font-weight:800}
+  .ex{background:#faf7fd;border-left:4px solid var(--c);border-radius:8px;padding:8px 10px;font-size:14.5px;margin:8px 0;font-style:italic}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+  .mini{background:var(--cl);border-radius:14px;padding:8px 10px;font-size:14px}
+  .mini b{display:block;font-family:Fredoka;font-weight:600;font-size:16px}
+  .final{background:linear-gradient(135deg,#8b6cf0,#ff6fa8);color:#fff;border-radius:24px;padding:20px;text-align:center;margin-top:24px}
+  .final h3{font-family:Fredoka;font-size:24px;margin:0 0 6px}
+  footer{margin-top:24px;font-size:13px;color:var(--muted);background:rgba(255,255,255,.85);border-radius:16px;padding:12px 14px}
+  footer h4{margin:0 0 6px;color:var(--ink)}
+  @media(max-width:480px){.grid2{grid-template-columns:1fr}.ht h3{font-size:17px}}
+  .b{--c:#e0702b;--cl:#ffe8d6} .v{--c:#13a58b;--cl:#d9f7f1} .g{--c:#2a6fb5;--cl:#e1efff} .w{--c:#8b6cf0;--cl:#ece6ff}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header style="background:linear-gradient(135deg,#ff9a3c,#ff6fa8 55%,#7fd8ff)">
+  <span class="spark" style="right:18px;top:12px">🚌</span><span class="spark" style="right:60px;top:52px;animation-delay:.8s">☀️</span><span class="spark" style="right:24px;bottom:12px;animation-delay:1.4s">🧵</span>
+  <h1>Diário de Estudos 📓<br>English · P2</h1>
+  <p>Too Small Tola · Vocabulary · Grammar · Writing</p>
+</header>
+
+<div class="howto">💡 <b>Como usar:</b> leia o título, <b>fale em voz alta</b> (em inglês, se conseguir!) tudo o que lembra e só depois abra para conferir. Cada card aberto ganha um adesivo! 🩷</div>
+
+<div class="bar-wrap"><div class="pbox">
+  <div class="ptop"><div class="ptitle">🎀 Minha coleção · <span class="count" id="count">0 / 13</span></div>
+  <div class="btns"><button onclick="toggleAll(true)">abrir todos</button> <button onclick="toggleAll(false)">fechar todos</button></div></div>
+  <div class="stickers" id="stk"></div>
+  <div class="bar"><i id="bar"></i></div>
+</div></div>
+
+<!-- LIVRO -->
+<div class="bloco b"><span class="tape">📚 The book</span><small>Too Small Tola · Atinuke</small></div>
+
+<div class="card b" data-s="🏠">
+  <div class="head"><div class="ico">🏠</div><div class="ht"><div class="tag">Small but Mighty · p. 31–35</div><h3>A casa de Tola em Lagos</h3><p>o prédio, o cômodo, a cama e o banheiro</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <p>Tola mora num <b>run-down block of apartments</b> (prédio velho e malcuidado) na <b>megacity of Lagos</b>, na <b>Nigeria</b>.</p>
+    <div class="chips"><span class="chip">💡 electricity: às vezes tem, às vezes não</span><span class="chip">🚰 water: às vezes tem, às vezes não</span><span class="chip">🛗 elevator: não funciona</span></div>
+    <div class="grid2">
+      <div class="mini"><b>🛏️ Room and parlor</b>um cômodo só, dividido por uma <b>curtain</b>: um lado para dormir, o outro para cozinhar, sentar e estudar</div>
+      <div class="mini"><b>🛌 One bed</b>Tola, Moji e Grandmommy dividem a cama. Dapo dorme num <b>mat on the floor</b> because he is a boy</div>
+      <div class="mini"><b>🚿 Bathroom</b>dividido com os vizinhos: um vaso e duas torneiras (taps/faucets). Banho: balde <b>under the taps</b> + jarra (jug)</div>
+      <div class="mini"><b>😓 Naquela manhã</b>calor, sem luz, o ventilador parado, e depois… sem água. Tola suspira 3 vezes (sighs)</div>
+    </div>
+    <div class="dica">vocabulário da ficha: <b>run-down</b> (velho, em mau estado) · <b>electricity</b> · <b>snoring</b> (roncando) · <b>faucet/tap</b> · <b>curtain</b> · <b>blessings</b> (coisas boas pelas quais agradecemos).</div>
+  </div>
+</div>
+
+<div class="card b" data-s="👵">
+  <div class="head"><div class="ico">👵</div><div class="ht"><div class="tag">Personagens</div><h3>A família de Tola</h3><p>quem é quem e o que cada um faz</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <table>
+      <tr><th>Who?</th><th>O que sabemos</th></tr>
+      <tr><td>👧 <b>Tola</b></td><td>a menor; matemática é a matéria favorita; odeia chegar atrasada; uniforme marrom simples e chinelos velhos; não tem relógio nem celular</td></tr>
+      <tr><td>👵 <b>Grandmommy</b></td><td>vende <b>groundnuts</b> (amendoim) na rua <b>6 dias</b> por semana; no <b>domingo</b> folga para agradecer a Deus; manda contar as <b>blessings</b>; tem brincos de ouro que eram da mãe da mãe da mãe da mãe dela</td></tr>
+      <tr><td>👧🏽 <b>Moji</b></td><td>irmã; tem <b>scholarship</b> (bolsa) numa escola chique; uniforme listrado branco e azul, gravata, sapatos brilhando</td></tr>
+      <tr><td>👦🏾 <b>Dapo</b></td><td>irmão; dorme no chão; difícil de acordar; carrega os <b>jerry cans</b> (galões) de água; não liga de perder aula; adora bola e motor de carro</td></tr>
+      <tr><td>👨🏿 <b>Pai</b></td><td>tem um emprego seguro no <b>UK</b> e paga o aluguel. Dapo queria que ele trabalhasse na Nigeria</td></tr>
+    </table>
+    <div class="peg">quem reclama "We could be living in a big house on Victoria Island" é o <b>Dapo</b>. A Grandmommy responde que eles poderiam estar morando embaixo de uma caixa de papelão: é para agradecer o que têm.</div>
+  </div>
+</div>
+
+<div class="card b" data-s="🚌">
+  <div class="head"><div class="ico">🚌</div><div class="ht"><div class="tag">p. 54–57</div><h3>A manhã de Tola até a escola</h3><p>a sequência dos acontecimentos</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <div class="flow"><div class="s">🚿 banho de<br>jarra (jug)</div><div class="a">→</div><div class="s">👧🏽 Moji sai:<br>bread and sardines!</div><div class="a">→</div><div class="s">🐟 come com fome<br>e sai correndo</div><div class="a">→</div><div class="s">🪜 Dapo na escada<br>com 3 galões</div><div class="a">→</div><div class="s">🚌 entra no danfo<br>lotado</div><div class="a">→</div><div class="s">🏫 chamada:<br>"Yes, sa!"</div></div>
+    <p>Na escada, Tola aponta para um galão e para a cabeça: quer <b>ajudar</b>. Dapo diz <b>"Jus’ go!"</b> (vai logo!), porque sabe que ela liga para a escola.</p>
+    <p>O <b>danfo</b> é um micro-ônibus <b>amarelo e enferrujado</b>, sempre lotado. Na sala, o professor chama "Tola Adebayo!" e ela acha que está encrencada… mas era só a <b>chamada (attendance)</b>. Ela não perdeu nada de matemática!</p>
+    <div class="peg">ela <b>não sabe</b> se está atrasada porque não tem celular nem relógio.</div>
+  </div>
+</div>
+
+<div class="card b" data-s="💗">
+  <div class="head"><div class="ico">💗</div><div class="ht"><div class="tag">Interpretação</div><h3>Sentimentos e características</h3><p>como as personagens se sentem e como são, com prova do livro</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <table>
+      <tr><th>Personagem</th><th>Feeling / trait</th><th>Prova no livro</th></tr>
+      <tr><td>Tola</td><td>worried → relieved</td><td>acha que está atrasada quando o professor chama o nome; depois suspira de alívio</td></tr>
+      <tr><td>Tola</td><td>brave, strong</td><td>corre sozinha, entra no danfo lotado, quer carregar um galão</td></tr>
+      <tr><td>Dapo</td><td>responsible, strong</td><td>carrega 3 galões de água escada acima, suando</td></tr>
+      <tr><td>Grandmommy</td><td>hard-working, thankful</td><td>trabalha 6 dias; conta as blessings</td></tr>
+    </table>
+    <div class="dica">resposta boa = <b>sentimento + because + o que aconteceu</b>. Ex.: "Tola feels worried because she thinks she is late."</div>
+  </div>
+</div>
+
+<div class="card b" data-s="🌍">
+  <div class="head"><div class="ico">🌍</div><div class="ht"><div class="tag">Lagos</div><h3>Lagos e o perigo de uma história só</h3><p>como a cidade aparece no livro · single story</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <div class="grid2">
+      <div class="mini"><b>😓 Dificuldades</b>falta luz e água, prédio velho, ônibus lotado</div>
+      <div class="mini"><b>😊 Muito mais</b>família unida, escola, amigos, mercado, casas grandes em Victoria Island, gente trabalhando muito</div>
+    </div>
+    <p><b>Single story</b> (história única) é conhecer só <b>uma</b> história de um lugar ou de um povo e achar que tudo lá é assim.</p>
+    <div class="ex">❌ "Lagos is only a poor place." → história única<br>✅ "Lagos is a big city. Some people have problems with water, but there are families, schools and friends."</div>
+    <div class="peg">palavras como <b>only</b>, <b>all</b>, <b>everybody</b> costumam mostrar uma história única.</div>
+  </div>
+</div>
+
+<!-- BORDADO -->
+<div class="bloco v"><span class="tape">🧵 Embroidery Project</span><small>o seu bordado</small></div>
+
+<div class="card v" data-s="🧵">
+  <div class="head"><div class="ico">🧵</div><div class="ht"><div class="tag">Projeto</div><h3>Meu bordado</h3><p>elementos, cores, formas, símbolos e o que significam para você</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <div class="chips"><span class="chip">🪡 needle</span><span class="chip">🧶 thread</span><span class="chip">🟫 fabric</span><span class="chip">➰ stitch</span><span class="chip">⭕ circle</span><span class="chip">⭐ star</span><span class="chip">❤️ heart</span><span class="chip">🌸 flower</span><span class="chip">🔺 triangle</span></div>
+    <p>Descreva: <b>o que tem</b> (There is a… / There are…), <b>onde</b> (in the middle, next to, under…), <b>cores</b> e <b>o que significa</b> (memória, família, identidade).</p>
+    <div class="ex">"In my embroidery there is a big yellow sun in the middle. There are three red hearts next to it. The hearts are my family. I chose yellow because it makes me happy."</div>
+    <div class="ouro">My embroidery shows who I am because…</div>
+  </div>
+</div>
+
+<!-- VOCABULARY -->
+<div class="bloco v"><span class="tape">🔤 Vocabulary</span><small>lugares, rotina, ações e sentimentos</small></div>
+
+<div class="card v" data-s="🏙️">
+  <div class="head"><div class="ico">🏙️</div><div class="ht"><div class="tag">Vocabulary</div><h3>Lugares da cidade e rotina</h3><p>places, routine, responsibilities e como descrever um lugar</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <div class="chips"><span class="chip">🥖 bakery</span><span class="chip">🛒 market</span><span class="chip">🏫 school</span><span class="chip">🏥 hospital</span><span class="chip">📚 library</span><span class="chip">🚏 bus stop</span><span class="chip">🏦 bank</span><span class="chip">🌳 park</span></div>
+    <p><b>Routine:</b> wake up · take a shower · get dressed · have breakfast · go to school.<br><b>Responsibilities:</b> make my bed · help at home · carry water · take care of my sister.</p>
+    <table>
+      <tr><th>Para descrever um lugar</th><th>Exemplo</th></tr>
+      <tr><td>👂 sounds</td><td>I can hear horns and people talking.</td></tr>
+      <tr><td>👃 smells</td><td>It smells of fresh bread.</td></tr>
+      <tr><td>🎨 colors</td><td>The buses are yellow.</td></tr>
+      <tr><td>👥 people</td><td>There are many people selling food.</td></tr>
+      <tr><td>💗 feelings</td><td>I feel happy and safe there.</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="card v" data-s="🏃">
+  <div class="head"><div class="ico">🏃</div><div class="ht"><div class="tag">Vocabulary Box</div><h3>Ações e sentimentos</h3><p>actions · feelings and characteristics</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <div class="grid2">
+      <div class="mini"><b>🏃 Actions</b>carry (carregar) · help (ajudar) · tease (zoar, provocar) · spill (derramar) · protect (proteger) · struggle (fazer muito esforço)</div>
+      <div class="mini"><b>💗 Feelings / traits</b>worried (preocupado) · brave (corajoso) · strong (forte) · afraid (com medo) · responsible (responsável) · small (pequeno)</div>
+    </div>
+    <div class="dica"><b>mighty</b> = muito forte, poderoso. "Small but Mighty": pequena, mas poderosa!</div>
+  </div>
+</div>
+
+<!-- GRAMMAR -->
+<div class="bloco g"><span class="tape">✏️ Grammar</span><small>can · there is/are · preposições · because, but, so</small></div>
+
+<div class="card g" data-s="💪">
+  <div class="head"><div class="ico">💪</div><div class="ht"><div class="tag">Grammar</div><h3>Can / can’t</h3><p>habilidades e possibilidades, afirmar e perguntar</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <div class="grid2">
+      <div class="mini"><b>✅ can</b>consegue / pode<br>Tola can run fast.</div>
+      <div class="mini"><b>🚫 can’t = cannot</b>não consegue / não pode<br>Dapo can’t share the bed.</div>
+    </div>
+    <div class="flow"><div class="s">Can</div><div class="a">+</div><div class="s">person</div><div class="a">+</div><div class="s">action</div><div class="a">+</div><div class="s">?</div></div>
+    <div class="ex">Can Tola count money? — Yes, she can. / No, she can’t.</div>
+    <div class="peg">depois de can o verbo fica <b>sem -s</b>: She can swim ✅ · She can swims ❌.</div>
+  </div>
+</div>
+
+<div class="card g" data-s="🏘️">
+  <div class="head"><div class="ico">🏘️</div><div class="ht"><div class="tag">Grammar</div><h3>There is / there are</h3><p>dizer o que existe num lugar</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <table>
+      <tr><th>1 coisa</th><th>2 ou mais</th></tr>
+      <tr><td><b>There is</b> a curtain in the room.</td><td><b>There are</b> many danfos on the road.</td></tr>
+      <tr><td><b>There is</b> only one bed.</td><td><b>There are</b> two faucets.</td></tr>
+    </table>
+    <div class="peg">olhe a palavra que vem depois: <b>a / an / one</b> → there is · <b>two, many, some</b> + plural → there are.</div>
+  </div>
+</div>
+
+<div class="card g" data-s="📍">
+  <div class="head"><div class="ico">📍</div><div class="ht"><div class="tag">Grammar</div><h3>Preposições de lugar e tempo</h3><p>onde está e quando acontece</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <div class="grid2">
+      <div class="mini"><b>📦 in</b>dentro: in the room</div>
+      <div class="mini"><b>🔝 on</b>em cima: on the table, on the floor</div>
+      <div class="mini"><b>⬇️ under</b>embaixo: under the taps</div>
+      <div class="mini"><b>↔️ next to / beside</b>ao lado: the friend next to her</div>
+      <div class="mini"><b>🥪 between</b>entre duas coisas: the bakery is between the bank and the school</div>
+      <div class="mini"><b>👀 in front of</b>na frente de: in front of the teacher</div>
+    </div>
+    <table>
+      <tr><th>Tempo</th><th>Quando usar</th><th>Exemplo</th></tr>
+      <tr><td><b>in</b></td><td>parte do dia, mês, ano</td><td>in the morning</td></tr>
+      <tr><td><b>on</b></td><td>dia da semana, data</td><td>on Sunday</td></tr>
+      <tr><td><b>at</b></td><td>hora exata</td><td>at 7 o’clock</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="card g" data-s="🔗">
+  <div class="head"><div class="ico">🔗</div><div class="ht"><div class="tag">Connecting ideas</div><h3>Because, but, so</h3><p>explicar, contrastar e mostrar consequência (+ even though)</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <table>
+      <tr><th>Palavra</th><th>Para quê</th><th>Exemplo</th></tr>
+      <tr><td><b>because</b></td><td>motivo (porque)</td><td>Tola runs because she hates to be late.</td></tr>
+      <tr><td><b>but</b></td><td>contraste (mas)</td><td>Tola is small, but she is strong.</td></tr>
+      <tr><td><b>so</b></td><td>consequência (então)</td><td>She is hungry, so she eats.</td></tr>
+      <tr><td><b>even though</b></td><td>mesmo que</td><td>Even though he is tired, Dapo carries the cans.</td></tr>
+    </table>
+    <div class="peg"><b>because</b> responde "por quê?"; <b>so</b> responde "e aí, o que aconteceu?".</div>
+  </div>
+</div>
+
+<!-- ESCRITA -->
+<div class="bloco w"><span class="tape">✍️ Writing</span><small>respostas completas e justificadas</small></div>
+
+<div class="card w" data-s="✍️">
+  <div class="head"><div class="ico">✍️</div><div class="ht"><div class="tag">LC · Reading and writing</div><h3>Respostas completas e justificadas</h3><p>True or false + explicar com exemplos do livro</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <div class="flow"><div class="s">1️⃣ TRUE ou FALSE</div><div class="a">→</div><div class="s">2️⃣ 2 exemplos<br>do livro</div><div class="a">→</div><div class="s">3️⃣ 3 palavras da<br>Vocabulary Box</div><div class="a">→</div><div class="s">4️⃣ 4–5 frases<br>completas</div></div>
+    <div class="ex">"Tola is brave because she is never afraid of anything." → <b>FALSE.</b> Tola is brave, but she sometimes feels worried. When the teacher calls her name, she is afraid she is late. Even though she is small, she runs to school and squeezes into a crowded danfo. She also wants to help Dapo carry a jerry can, so she is strong and responsible. Being brave means doing things even when you are afraid.</div>
+    <div class="ouro">Being brave is not "never afraid": it is doing it even when you are afraid.</div>
+    <div class="dica">use <b>because, but, so</b> para ligar as frases e sempre comece com a pessoa: "Tola is…", "She can…".</div>
+  </div>
+</div>
+
+<div class="final">
+  <h3>🎀 Diário completo!</h3>
+  <p>Agora é hora do <b>jogo Aventura em Lagos</b>! 🚌✨</p>
+</div>
+
+<footer>
+  <h4>Para o papai · o que não veio nos anexos</h4>
+  1. Handouts 6, 7, 8, 10 e 11, LC4, LC5 e o material "Is Tola Really Too Small?". Do livro, vieram só as páginas 31–35 e 54–57; a primeira história (mercado, mouse do computador) ficou de fora.<br>
+  2. O Embroidery Project não veio: o card do bordado tem vocabulário e um modelo genérico. Vale trocar pelos elementos do bordado dela.<br>
+  3. "Single story" foi explicado pelo conceito geral, sem o texto da escola.
+</footer>
+</div>
+<script>
+  const cards=[...document.querySelectorAll('.card')],opened=new Set(),stk=document.getElementById('stk');
+  cards.forEach((c,i)=>{const s=document.createElement('div');s.className='st';s.textContent=c.dataset.s;stk.appendChild(s);
+    c.querySelector('.head').addEventListener('click',()=>{c.classList.toggle('open');if(c.classList.contains('open'))opened.add(i);upd();});});
+  function upd(){const n=opened.size,t=cards.length;document.getElementById('count').textContent=n+' / '+t;document.getElementById('bar').style.width=(n/t*100)+'%';[...stk.children].forEach((s,i)=>s.classList.toggle('on',opened.has(i)));}
+  function toggleAll(o){cards.forEach((c,i)=>{c.classList.toggle('open',o);if(o)opened.add(i);});upd();}
+  upd();
+</script>
+</body>
+</html>

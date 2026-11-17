@@ -178,8 +178,15 @@ input.name:focus{border-color:var(--lil)}
 .toast h4{margin:0;font:700 19px Fredoka}
 .toast p{margin:4px 0 8px;font-size:14px;font-weight:700}
 .toast button{width:100%;border:0;border-radius:14px;padding:10px;font:700 17px Fredoka;color:#fff;background:linear-gradient(90deg,#ff5fa2,#8b6cf0);cursor:pointer}
-.say{pointer-events:none;background:#fff;border-radius:16px;padding:8px 12px;font-weight:800;font-size:13.5px;box-shadow:0 6px 16px rgba(0,0,0,.12);margin-bottom:40px;position:relative;max-width:240px}
-.say::after{content:"";position:absolute;left:-8px;bottom:12px;border:8px solid transparent;border-right-color:#fff;border-left:0}
+.dockin{position:relative}
+.say{pointer-events:none;background:#fff;border-radius:18px;padding:9px 14px;font-weight:800;font-size:15px;box-shadow:0 6px 16px rgba(0,0,0,.15);position:absolute;left:10px;bottom:98px;max-width:min(300px,82vw);border:3px solid #e6dcff;z-index:3;animation:sayIn .25s}
+.say.ok{border-color:var(--ok)}.say.no{border-color:var(--no)}
+.say.wow{border-color:#ffbf2e;background:#fff8dc;font-size:17px;animation:sayWow .5s}
+@keyframes sayIn{from{transform:translateY(10px) scale(.9);opacity:0}}
+@keyframes sayWow{0%{transform:scale(.6)}60%{transform:scale(1.12)}100%{transform:scale(1)}}
+.pena.wow{animation:spinj .8s}
+@keyframes spinj{40%{transform:translateY(-30px) rotate(200deg)}80%{transform:translateY(0) rotate(360deg)}}
+.say::after{content:"";position:absolute;left:30px;bottom:-11px;border:9px solid transparent;border-top-color:#fff;border-bottom:0}
 .banner{position:fixed;left:50%;top:42%;transform:translate(-50%,-50%);font:700 44px Fredoka;color:#fff;z-index:60;pointer-events:none;white-space:nowrap;
   text-shadow:0 4px 0 #ff5fa2,0 8px 0 #8b6cf0;animation:ban 1.2s forwards}
 @keyframes ban{0%{transform:translate(-50%,-50%) scale(0) rotate(-10deg)}25%{transform:translate(-50%,-50%) scale(1.15) rotate(3deg)}80%{opacity:1}100%{transform:translate(-50%,-90%) scale(1);opacity:0}}
@@ -797,7 +804,7 @@ function shopBuy(){const it=ITEM[sel];if(owns(sel)||P.coins<it.p)return;P.coins-
 
 /* ---------- começar jogo ---------- */
 function addWallet(g){if(P)P.coins+=g;}
-function resetState(){coins=0;shownC=0;combo=0;hits=0;tot=0;starsT=0;stIdx=0;queue=[];qi=0;cur=null;locked=false;log=[];stRes={};doneSt=[];retryMode=false;boss={hp:6,max:6,hearts:3};hideToast();clearFx();}
+function resetState(){okRun=0;noRun=0;coins=0;shownC=0;combo=0;hits=0;tot=0;starsT=0;stIdx=0;queue=[];qi=0;cur=null;locked=false;log=[];stRes={};doneSt=[];retryMode=false;boss={hp:6,max:6,hearts:3};hideToast();clearFx();}
 function startGame(i,resume){
   G=JOGOS[i];ST=G.ST;TOP=G.TOP;T=G.T;T.forEach((t,k)=>t.id=k);resetState();
   const a=P.and[G.id];
@@ -1122,9 +1129,10 @@ function runMini(def){
 function miniDone(){stopMini();sfx.click();if(teste){teste=false;show('sPai');return;}backToMap();}
 
 function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',s.id===id));window.scrollTo({top:0,behavior:'smooth'});}
-function say(t,ms=3200){const s=$('say');s.textContent=t;s.style.display='block';clearTimeout(say.tm);say.tm=setTimeout(()=>s.style.display='none',ms);}
-function pena(m){const p=$('pena');p.classList.remove('happy','sad');void p.getBoundingClientRect();p.classList.add(m);
-  $('penaMouth').setAttribute('d',m==='happy'?'M32 62q8 10 16 0':'M34 68q6 -5 12 0');}
+function placeSay(){const s=$('say'),t=$('toast');s.style.bottom=(t&&t.offsetHeight?t.offsetHeight+28:98)+'px';}
+function say(t,ms=3200,m){const s=$('say');s.textContent=t;s.className='say'+(m?' '+m:'');s.style.display='block';placeSay();clearTimeout(say.tm);say.tm=setTimeout(()=>s.style.display='none',ms);}
+function pena(m){const p=$('pena');p.classList.remove('happy','sad','wow');void p.getBoundingClientRect();p.classList.add(m);
+  $('penaMouth').setAttribute('d',m!=='sad'?'M32 62q8 10 16 0':'M34 68q6 -5 12 0');}
 
 /* ===================== MAPA ===================== */
 function drawMap(){
@@ -1182,7 +1190,7 @@ function hearts(){return [0,1,2].map(i=>`<span class="${i<boss.hearts?'':'lost'}
 function dragonSVG(){return G.boss.svg;}
 
 function renderQ(){
-  cur=queue[qi];locked=false;qT0=performance.now();hideToast();const S=ST[cur.s];
+  cur=queue[qi];locked=false;qT0=performance.now();hideToast();idleTalk(cur);const S=ST[cur.s];
   document.documentElement.style.setProperty('--c',S.c);document.documentElement.style.setProperty('--l',S.l);
   const st=$('stage');st.className='stage '+S.cls;st.style.background=S.bg||'';document.onkeydown=null;st.innerHTML=stageHTML(cur.s,retryMode?`treino ${qi+1}/${queue.length}`:`${qi+1}/${queue.length}`);
   const B=$('qbox');B.innerHTML=`${G.ler?'<button class="lerB" onclick="falar(cur.q)">🔈 Ler para mim</button>':''}<div class="qtext">${cur.q}</div><div id="ans"></div>`;const A=$('ans');
@@ -1266,6 +1274,30 @@ function falar(h){try{const ss=window.speechSynthesis;if(!ss)return;ss.cancel();
   const u=new SpeechSynthesisUtterance(t);u.lang='pt-BR';u.rate=.92;const v=(ss.getVoices()||[]).find(v=>/pt[-_]BR/i.test(v.lang));if(v)u.voice=v;ss.speak(u);}catch(e){}}
 function plain(h){return h.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();}
 
+/* ===== o bichinho fala (acertos/erros seguidos, chefão, chute rápido, demora) ===== */
+let okRun=0,noRun=0,lastLine='',idleT=null;
+function pickL(a){let x;for(let i=0;i<6;i++){x=a[Math.floor(Math.random()*a.length)];if(x!==lastLine)break;}lastLine=x;return x;}
+function talk(ok,ms){const N=(P&&P.nome)||'você',boss=cur&&cur.s===5&&!retryMode,fast=ms<2500&&cur&&['mc','tf','spot'].includes(cur.ty);let t,m='ok';
+  if(ok){const back=noRun>=2;okRun++;noRun=0;
+    if(back)t=pickL([`Voltou! Eu sabia, ${N}! 💪`,'Acordou! Agora sim! ☀️','Ufa! Achei que tinha dormido 😅',`Essa é a ${N} que eu conheço!`]);
+    else if(okRun>=8){m='wow';t=pickL([`${N}-MÁQUINA! 🤖`,'Isso não é estudo, é show! 🎤','Chama a escola, temos uma gênia! 🏫',`Professora ${N}, me ensina? 🤓`,'Tô até tonto de tanto pular! 😵‍💫']);}
+    else if(okRun>=5){m='wow';t=pickL(['Imparável! 🚀','Ninguém segura essa menina! 🔥',`${okRun} seguidas! Tá de brincadeira?! 😱`,'Isso aí é nível chefão! 👑']);}
+    else if(okRun>=3){m='wow';t=pickL(['Vamos lá! Combo ligado! 🔥','Mandou bem demais! 💥',`Tá voando, ${N}! ✈️`,boss?`Destrói ele, ${N}! 💪`:'Não para, não para! 🏃‍♀️']);}
+    else if(boss)t=pickL(['Bate nele! 💥',`Destrói ele, ${N}! 💪`,'O chefão tá tremendo! 😰','Mais uma e ele cai! 🥊']);
+    else if(okRun===2)t=pickL(['Duas seguidas! Tá pegando fogo! 🔥','Olha ela! 😎','De novo! Uhul! 🎉']);
+    else t=pickL([`Boa, ${N}!`,'Isso aí! ✨','Na mosca! 🎯','Eu sabia que você sabia! 😉','Fácil demais pra você! 😎','Acertou! Toca aqui ✋']);}
+  else{const lost=okRun>=3;noRun++;okRun=0;m='no';
+    if(fast&&noRun<3)t=pickL(['Calma! Leu a pergunta inteira? 🐢','Respondeu antes de ler, né? 😏','Ei, devagar! Não é corrida 🏎️']);
+    else if(noRun>=3)t=pickL([`ACORDA, ${N}! ⏰`,`Alô, alô! Terra chamando ${N}! 📡`,'Vou buscar um balde de água! 💦','Bebe uma água e volta com tudo! 🥤',`Cadê a ${N} que eu conheço?! 🔍`,`${N}, o cérebro saiu de férias? 🏖️`]);
+    else if(noRun===2)t=pickL([`${N}, presta atenção! 👀`,'Duas? Respira fundo… 🌬️','Tá sonhando com sorvete? 🍦','Hmm… lê a explicação com carinho 📖']);
+    else if(lost)t=pickL(['Ahhh, perdeu o combo! 😱','Logo agora que tava voando! 🙈']);
+    else if(boss)t=pickL(['O chefão tá rindo da sua cara! Revanche! 😤',`Não deixa ele ganhar, ${N}!`]);
+    else t=pickL(['Opa! Acontece 🙃','Quase! Lê a explicação 💭','Ih, escorregou! 🍌','Essa foi por pouco! 🤏']);}
+  say(t,4500,m);if(m==='wow')setTimeout(()=>pena('wow'),60);}
+function idleTalk(q){clearTimeout(idleT);idleT=setTimeout(()=>{if(locked||cur!==q)return;const N=(P&&P.nome)||'você';
+  say(pickL(['Tá difícil? Lê de novo com calma 😉','Pensa com calma, eu espero 🧘',`${N}, tô aqui! Relê a pergunta devagar 🔎`]),5000);
+  idleT=setTimeout(()=>{if(locked||cur!==q)return;say(pickL(['Zzz… ops, cochilei esperando 😴','Tô aqui torcendo por você! 📣']),4500);},40000);},40000);}
+
 /* ===================== PONTUAÇÃO ===================== */
 function itemScore(ok,label,el,dada,dk){
   const nw=performance.now(),ms=Math.round(nw-qT0);qT0=nw;
@@ -1275,14 +1307,15 @@ function itemScore(ok,label,el,dada,dk){
   else{combo=0;sfx.no();}
   updHud();
   if(cur.s===5&&!retryMode)bossHit(ok);
+  talk(ok,ms);
   return ok;
 }
 function logOnly(ok,txt){tot++;stRes[cur.s].t++;log.push({id:cur.id,tp:cur.tp,ty:cur.ty,ok,q:plain(cur.q),a:txt,item:null,d:txt,ms:Math.round(performance.now()-qT0),w:Date.now()});combo=0;updHud();}
 function score(ok,el,dada,dk){itemScore(ok,ansText(cur),el,dada,dk);locked=true;
   const yes=['Arrasou! 💖','Isso aí! ✨','Mandou bem! 🌟','Perfeito! 💫','Que craque! 🦄','Uau! 🎉'],no=['Quase! 💭','Opa, essa não! 🙈','Não foi dessa vez 💜'];
   toast(ok,(!ok&&cur.ty!=='film'&&cur.ty!=='build'?`Certo: <b>${ansText(cur)}</b>. `:'')+cur.ex,ok?yes[Math.floor(Math.random()*yes.length)]:no[Math.floor(Math.random()*no.length)]);}
-function toast(ok,txt,title){pena(ok?'happy':'sad');$('toast').className='toast '+(ok?'ok':'no');$('tH').innerHTML=title||(ok?'Perfeito! 🎉':'Vamos revisar 💜');$('tP').innerHTML=txt+(cur.ty==='rapid'?' '+cur.ex:'')+(G&&G.ler?' <button class="lerB" style="margin:6px 0 0" onclick="falar($(\'tP\').innerHTML)">🔈</button>':'');$('tB').textContent=qi+1>=queue.length?(retryMode?'Ver resultado 🏁':'Concluir lugar ⭐'):'Continuar ➜';$('say').style.display='none';}
-function hideToast(){$('toast').className='toast';}
+function toast(ok,txt,title){pena(ok?'happy':'sad');$('toast').className='toast '+(ok?'ok':'no');$('tH').innerHTML=title||(ok?'Perfeito! 🎉':'Vamos revisar 💜');$('tP').innerHTML=txt+(cur.ty==='rapid'?' '+cur.ex:'')+(G&&G.ler?' <button class="lerB" style="margin:6px 0 0" onclick="falar($(\'tP\').innerHTML)">🔈</button>':'');$('tB').textContent=qi+1>=queue.length?(retryMode?'Ver resultado 🏁':'Concluir lugar ⭐'):'Continuar ➜';placeSay();}
+function hideToast(){$('toast').className='toast';placeSay();}
 function afterToast(){hideToast();sfx.click();qi++;if(qi<queue.length)return renderQ();if(retryMode)return endGame();stationDone();}
 function updHud(){$('hitN').textContent=hits+'/'+tot;$('starN').textContent=starsT;$('comboI').style.width=Math.min(combo,3)/3*100+'%';$('comboBar').classList.toggle('max',combo>=3);
   $('comboL').textContent=combo>=3?`🔥 COMBO x2 ativo! (${combo} seguidas)`:`COMBO: ${combo}/3 · acerte 3 seguidas para moedas em dobro!`;}

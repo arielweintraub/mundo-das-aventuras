@@ -412,6 +412,7 @@ small.lbl{display:block;font-weight:800;color:var(--muted);font-size:12px;margin
   <div class="logo" style="font-size:32px">Novo perfil</div>
   <div class="card">
     <div class="newtop"><div id="newAv"></div><div style="flex:1"><b class="h">1. Monte seu visual</b>
+      <small class="lbl">Sou</small><div class="pick" id="pkGen"></div>
       <small class="lbl">Pele</small><div class="pick" id="pkPele"></div>
       <small class="lbl">Penteado</small><div class="pick" id="pkCab"></div>
       <small class="lbl">Cor do cabelo</small><div class="pick" id="pkCor"></div>
@@ -574,31 +575,34 @@ const LOJA=[
  ...PELES.map((c,i)=>({id:'pele'+i,slot:'pele',n:'Tom '+(i+1),p:0,sw:c})),
  {id:'liso',slot:'cabelo',n:'Liso longo',p:0,ic:'💇‍♀️'},{id:'rabo',slot:'cabelo',n:'Rabo de cavalo',p:0,ic:'🎀'},{id:'curto',slot:'cabelo',n:'Chanel',p:0,ic:'✂️'},
  {id:'coque',slot:'cabelo',n:'Coque',p:3000,ic:'🍩'},{id:'cacheado',slot:'cabelo',n:'Cacheado',p:4000,ic:'🌀'},{id:'trancas',slot:'cabelo',n:'Tranças',p:5000,ic:'🪢'},
+ {id:'menino',slot:'cabelo',n:'Curtinho',p:0,ic:'💇‍♂️'},{id:'espetado',slot:'cabelo',n:'Espetado',p:0,ic:'⚡'},{id:'raspado',slot:'cabelo',n:'Raspadinho',p:2000,ic:'🪒'},{id:'topete',slot:'cabelo',n:'Topete',p:3500,ic:'🌊'},
  {id:'castanho',slot:'cor',n:'Castanho',p:0},{id:'preto',slot:'cor',n:'Preto',p:0},{id:'loiro',slot:'cor',n:'Loiro',p:0},
  {id:'ruivo',slot:'cor',n:'Ruivo',p:2500},{id:'rosa',slot:'cor',n:'Rosa',p:7000},{id:'lilas',slot:'cor',n:'Lilás',p:7000},{id:'azul',slot:'cor',n:'Azul',p:7000},
  {id:'camiseta',slot:'top',n:'Camiseta',p:0,ic:'👕',c:'#ffffff'},{id:'regata',slot:'top',n:'Regata',p:2000,ic:'🎽',c:'#7fe0c7'},{id:'blusaestrela',slot:'top',n:'Blusa estrela',p:4000,ic:'⭐',c:'#ffd84d'},
  {id:'moletom',slot:'top',n:'Moletom',p:5000,ic:'🧥',c:'#b39cff'},{id:'jaqueta',slot:'top',n:'Jaqueta jeans',p:7000,ic:'🧥',c:'#5b8fd6'},
+ {id:'listrada',slot:'top',n:'Camisa listrada preta e branca',p:6000,ic:'🦓',c:'#ffffff'},{id:'futamarela',slot:'top',n:'Camisa de futebol amarela',p:5000,ic:'⚽',c:'#ffd400'},{id:'camisa10',slot:'top',n:'Camisa 10',p:7000,ic:'🔟',c:'#2a6fd6'},
  {id:'short',slot:'baixo',n:'Short jeans',p:0,ic:'🩳',c:'#6f9be0'},{id:'saia',slot:'baixo',n:'Saia rosa',p:2500,ic:'👗',c:'#ff8ec2'},{id:'legging',slot:'baixo',n:'Legging',p:3000,ic:'🖤',c:'#3a2850'},
- {id:'calca',slot:'baixo',n:'Calça jeans',p:3500,ic:'👖',c:'#3f6fbf'},{id:'tule',slot:'baixo',n:'Saia de tule',p:6000,ic:'🩰',c:'#d9b8ff'},
+ {id:'calca',slot:'baixo',n:'Calça jeans',p:3500,ic:'👖',c:'#3f6fbf'},{id:'tule',slot:'baixo',n:'Saia de tule',p:6000,ic:'🩰',c:'#d9b8ff'},{id:'bermuda',slot:'baixo',n:'Bermuda',p:2000,ic:'🩳',c:'#4a5a6c'},{id:'calcao',slot:'baixo',n:'Calção de futebol',p:2500,ic:'⚽',c:'#1c1c1c'},
  {id:'florido',slot:'vestido',n:'Vestido florido',p:8000,ic:'🌼',c:'#ffb3d1'},{id:'festa',slot:'vestido',n:'Vestido de festa',p:12000,ic:'✨',c:'#9b7bf0'},{id:'princesa',slot:'vestido',n:'Vestido de princesa',p:22000,ic:'👑',c:'#8fd8ff'},
  {id:'tenis',slot:'sapato',n:'Tênis',p:0,ic:'👟'},{id:'sapatilha',slot:'sapato',n:'Sapatilha',p:2000,ic:'🩰'},{id:'sandalia',slot:'sapato',n:'Sandália',p:2500,ic:'👡'},
- {id:'bota',slot:'sapato',n:'Bota',p:5000,ic:'👢'},{id:'tenisluz',slot:'sapato',n:'Tênis de luz',p:9000,ic:'💡'},
+ {id:'bota',slot:'sapato',n:'Bota',p:5000,ic:'👢'},{id:'tenisluz',slot:'sapato',n:'Tênis de luz',p:9000,ic:'💡'},{id:'chuteira',slot:'sapato',n:'Chuteira',p:4500,ic:'⚽'},
  {id:'laco',slot:'cabeca',n:'Laço',p:2000,ic:'🎀'},{id:'flor',slot:'cabeca',n:'Flor',p:3000,ic:'🌸'},{id:'bone',slot:'cabeca',n:'Boné',p:3500,ic:'🧢'},
- {id:'tiara',slot:'cabeca',n:'Tiara',p:5000,ic:'💫'},{id:'gatinha',slot:'cabeca',n:'Orelhas de gato',p:7000,ic:'🐱'},{id:'coroa',slot:'cabeca',n:'Coroa',p:18000,ic:'👑'},
+ {id:'tiara',slot:'cabeca',n:'Tiara',p:5000,ic:'💫'},{id:'gatinha',slot:'cabeca',n:'Orelhas de gato',p:7000,ic:'🐱'},{id:'coroa',slot:'cabeca',n:'Coroa',p:18000,ic:'👑'},{id:'boneazul',slot:'cabeca',n:'Boné azul pra trás',p:3500,ic:'🧢'},{id:'faixa',slot:'cabeca',n:'Faixa de atleta',p:2000,ic:'🎽'},
  {id:'brbolinha',slot:'brinco',n:'Brinco bolinha',p:1500,ic:'⚪'},{id:'brcoracao',slot:'brinco',n:'Brinco coração',p:3000,ic:'💗'},{id:'brargola',slot:'brinco',n:'Argola',p:3500,ic:'⭕'},
  {id:'brestrela',slot:'brinco',n:'Brinco estrela',p:4000,ic:'⭐'},{id:'brdiamante',slot:'brinco',n:'Brinco diamante',p:14000,ic:'💎'},
  {id:'colarcoracao',slot:'colar',n:'Colar coração',p:4000,ic:'💝'},{id:'perolas',slot:'colar',n:'Colar de pérolas',p:6000,ic:'📿'},
- {id:'oculos',slot:'oculos',n:'Óculos redondo',p:3000,ic:'👓'},{id:'oculoscor',slot:'oculos',n:'Óculos coração',p:6000,ic:'😍'},
+ {id:'oculos',slot:'oculos',n:'Óculos redondo',p:3000,ic:'👓'},{id:'oculoscor',slot:'oculos',n:'Óculos coração',p:6000,ic:'😍'},{id:'oculossol',slot:'oculos',n:'Óculos escuros',p:4000,ic:'🕶️'},
+ {id:'bola',slot:'mao',n:'Bola de futebol',p:4000,e:'⚽'},{id:'basquete',slot:'mao',n:'Bola de basquete',p:4000,e:'🏀'},{id:'skate',slot:'mao',n:'Skate',p:8000,e:'🛹'},{id:'violao',slot:'mao',n:'Violão',p:9000,e:'🎸'},{id:'videogame',slot:'mao',n:'Videogame',p:10000,e:'🎮'},{id:'trofeu',slot:'mao',n:'Troféu',p:20000,e:'🏆'},
  {id:'bolsa',slot:'bolsa',n:'Bolsinha',p:4500,ic:'👛'},
  {id:'blush',slot:'rosto',n:'Blush',p:1500,ic:'🌸'},{id:'glitter',slot:'rosto',n:'Glitter',p:5000,ic:'✨'},
  {id:'batomrosa',slot:'boca',n:'Batom rosa',p:2500,ic:'💄'},{id:'batomverm',slot:'boca',n:'Batom vermelho',p:3000,ic:'💋'},
  {id:'cilios',slot:'olhos',n:'Cílios',p:2000,ic:'👁️'},{id:'sombra',slot:'olhos',n:'Sombra lilás',p:3500,ic:'🎨'},
  {id:'cachorro',slot:'amigo',n:'Cachorrinho',p:9000,e:'🐶'},{id:'gato',slot:'amigo',n:'Gatinho',p:9000,e:'🐱'},{id:'coelho',slot:'amigo',n:'Coelhinho',p:9000,e:'🐰'},
- {id:'dino',slot:'amigo',n:'Dino',p:16000,e:'🦕'},{id:'unicornio',slot:'amigo',n:'Unicórnio',p:25000,e:'🦄'},
- {id:'doce',slot:'fundo',n:'Doce',p:3000},{id:'praia',slot:'fundo',n:'Praia',p:4000},{id:'arco',slot:'fundo',n:'Arco-íris',p:6000},{id:'galaxia',slot:'fundo',n:'Galáxia',p:10000},{id:'ouro',slot:'fundo',n:'Ouro',p:30000},
+ {id:'dino',slot:'amigo',n:'Dino',p:16000,e:'🦕'},{id:'unicornio',slot:'amigo',n:'Unicórnio',p:25000,e:'🦄'},{id:'tartaruga',slot:'amigo',n:'Tartaruga',p:9000,e:'🐢'},{id:'leao',slot:'amigo',n:'Leãozinho',p:16000,e:'🦁'},
+ {id:'doce',slot:'fundo',n:'Doce',p:3000},{id:'praia',slot:'fundo',n:'Praia',p:4000},{id:'arco',slot:'fundo',n:'Arco-íris',p:6000},{id:'galaxia',slot:'fundo',n:'Galáxia',p:10000},{id:'ouro',slot:'fundo',n:'Ouro',p:30000},{id:'campo',slot:'fundo',n:'Campo de futebol',p:6000},
  {id:'tetris',slot:'jogo',n:'Blocos Mágicos',p:18000,e:'🧱'},{id:'carrinho',slot:'jogo',n:'Rali Turbo',p:25000,e:'🏎️'},{id:'queimada',slot:'jogo',n:'6-7 contra 42',p:20000,e:'🔥'}];
 const ITEM={};LOJA.forEach(i=>ITEM[i.id]=i);
-const FUNDOS={doce:'repeating-linear-gradient(45deg,#ffd1e6 0 8px,#fff 8px 16px)',praia:'linear-gradient(180deg,#8fe3ff 55%,#ffe7a8 55%)',arco:'linear-gradient(135deg,#ff8ec2,#ffd36b,#8fe3a0,#7fd8ff,#b39cff)',galaxia:'radial-gradient(circle at 30% 30%,#8f74ff,#2a1a5e)',ouro:'linear-gradient(135deg,#fff3b0,#ffbf2e,#ff9f2e)'};
+const FUNDOS={doce:'repeating-linear-gradient(45deg,#ffd1e6 0 8px,#fff 8px 16px)',praia:'linear-gradient(180deg,#8fe3ff 55%,#ffe7a8 55%)',arco:'linear-gradient(135deg,#ff8ec2,#ffd36b,#8fe3a0,#7fd8ff,#b39cff)',galaxia:'radial-gradient(circle at 30% 30%,#8f74ff,#2a1a5e)',ouro:'linear-gradient(135deg,#fff3b0,#ffbf2e,#ff9f2e)',campo:'repeating-linear-gradient(90deg,#4caf50 0 16px,#43a047 16px 32px)'};
 const BG0='linear-gradient(135deg,#ffd1e6,#e2d6ff)';
 const EQ0={pele:'pele1',cabelo:'liso',cor:'castanho',top:'camiseta',baixo:'short',sapato:'tenis'};
 const FIXOS=['pele','cabelo','cor','sapato','top','baixo'];
@@ -611,7 +615,10 @@ function withItem(e,id){e=Object.assign({},e);const it=ITEM[id];if(it.slot==='jo
   else e[it.slot]=id;return fixEquip(e);}
 function withoutItem(e,id){e=Object.assign({},e);const it=ITEM[id];if(e[it.slot]===id)delete e[it.slot];return fixEquip(e);}
 
-function hairBack(hs,H){const cap=`<path d="M55 84 C52 34 78 30 100 30 C122 30 148 34 145 84 Z" fill="${H}"/>`;
+function hairBack(hs,H){
+  if(hs==='menino'||hs==='espetado'||hs==='topete')return `<path d="M56 82 C52 36 78 30 100 30 C122 30 148 36 144 82 Z" fill="${H}"/>`;
+  if(hs==='raspado')return `<path d="M57 80 C55 40 78 36 100 36 C122 36 145 40 143 80 Z" fill="${H}" opacity=".55"/>`;
+  const cap=`<path d="M55 84 C52 34 78 30 100 30 C122 30 148 34 145 84 Z" fill="${H}"/>`;
   if(hs==='curto')return `<path d="M53 84 C50 34 78 30 100 30 C122 30 150 34 147 84 L150 128 Q100 136 50 128 Z" fill="${H}"/>`;
   if(hs==='rabo')return cap+`<path d="M136 46 C184 52 184 126 162 160 C160 126 152 98 130 72 Z" fill="${H}"/>`;
   if(hs==='coque')return cap+`<circle cx="100" cy="28" r="22" fill="${H}"/>`;
@@ -619,6 +626,10 @@ function hairBack(hs,H){const cap=`<path d="M55 84 C52 34 78 30 100 30 C122 30 1
   if(hs==='trancas'){let s=cap;[58,142].forEach(x=>{[104,120,136,152,168].forEach(y=>{s+=`<ellipse cx="${x}" cy="${y}" rx="9.5" ry="10" fill="${H}" stroke="rgba(0,0,0,.18)" stroke-width="1.5"/>`;});s+=`<circle cx="${x}" cy="181" r="5" fill="#ff5fa2"/>`;});return s;}
   return `<path d="M53 84 C50 34 78 30 100 30 C122 30 150 34 147 84 L152 182 Q100 194 48 182 Z" fill="${H}"/>`;}
 function hairFront(hs,H){
+  if(hs==='menino')return `<path d="M56 80 C56 44 76 34 100 34 C124 34 144 44 144 80 C140 64 128 58 112 60 C104 54 90 56 82 60 C72 62 62 68 56 80 Z" fill="${H}"/>`;
+  if(hs==='espetado')return `<path d="M56 80 C56 52 66 44 70 42 L66 22 L82 36 L88 14 L98 32 L108 12 L114 32 L128 18 L128 40 C138 46 144 58 144 80 C136 66 122 60 100 60 C80 60 64 66 56 80 Z" fill="${H}"/>`;
+  if(hs==='topete')return `<path d="M56 80 C56 46 74 36 92 34 C96 18 118 12 136 26 C124 26 118 30 120 36 C136 42 144 58 144 80 C136 64 122 58 104 60 C84 60 64 66 56 80 Z" fill="${H}"/>`;
+  if(hs==='raspado')return '';
   if(hs==='rabo')return `<path d="M56 84 C58 46 80 34 104 36 C130 38 146 54 144 80 C128 62 108 56 88 60 C74 64 62 72 56 84 Z" fill="${H}"/><circle cx="139" cy="52" r="5.5" fill="#ff5fa2"/>`;
   if(hs==='cacheado')return [[66,58,15],[82,46,15],[100,42,15],[118,46,15],[134,58,15]].map(([x,y,r])=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${H}"/>`).join('');
   return `<path d="M56 84 C56 46 76 36 100 36 C124 36 144 46 144 84 C136 66 122 60 108 62 C104 70 96 72 90 64 C78 62 64 68 56 84 Z" fill="${H}"/>`;}
@@ -626,6 +637,7 @@ function shoesSVG(id){const L=86,R=114;const pair=f=>f(L)+f(R);
   if(id==='bota')return pair(x=>`<rect x="${x-11}" y="236" width="22" height="34" rx="7" fill="#8a5a3c"/><ellipse cx="${x}" cy="272" rx="14" ry="7" fill="#6e4429"/>`);
   if(id==='sapatilha')return pair(x=>`<ellipse cx="${x}" cy="272" rx="13" ry="7" fill="#ff8ec2"/><circle cx="${x}" cy="268" r="3" fill="#fff"/>`);
   if(id==='sandalia')return pair(x=>`<ellipse cx="${x}" cy="273" rx="13" ry="5" fill="#c98b5a"/><path d="M${x-8} 268 L${x+8} 268 M${x} 262 L${x} 270" stroke="#c98b5a" stroke-width="3" stroke-linecap="round"/>`);
+  if(id==='chuteira')return pair(x=>`<ellipse cx="${x}" cy="270" rx="15" ry="8" fill="#1c1c1c"/><path d="M${x-9} 266 l14 -3" stroke="#ffd400" stroke-width="3" stroke-linecap="round"/>`+[-9,-3,3,9].map(d=>`<rect x="${x+d-1.5}" y="276" width="3" height="4" fill="#888"/>`).join(''));
   if(id==='tenisluz')return pair(x=>`<ellipse cx="${x}" cy="271" rx="15" ry="8" fill="#fff" stroke="#c9bfe0" stroke-width="2"/><circle cx="${x-8}" cy="276" r="2.3" fill="#ffbf2e"/><circle cx="${x}" cy="277" r="2.3" fill="#1fc7a8"/><circle cx="${x+8}" cy="276" r="2.3" fill="#ff5fa2"/>`);
   return pair(x=>`<ellipse cx="${x}" cy="271" rx="15" ry="8" fill="#fff" stroke="#c9bfe0" stroke-width="2"/><path d="M${x-7} 269 h11" stroke="#ff5fa2" stroke-width="3" stroke-linecap="round"/>`);}
 const TOPP='M72 140 Q100 130 128 140 L144 160 L134 168 L131 204 L69 204 L66 168 L56 160 Z';
@@ -633,9 +645,14 @@ function topSVG(id){const c=(ITEM[id]||{}).c||'#fff';
   if(id==='regata')return `<path d="M80 139 Q100 147 120 139 L129 204 L71 204 Z" fill="${c}"/>`;
   if(id==='moletom')return `<path d="M77 146 Q63 172 61 198" stroke="${c}" stroke-width="16" stroke-linecap="round" fill="none"/><path d="M123 146 Q137 172 139 198" stroke="${c}" stroke-width="16" stroke-linecap="round" fill="none"/><path d="M70 140 Q100 130 130 140 L131 206 L69 206 Z" fill="${c}"/><path d="M84 182 h32 v13 h-32 z" fill="rgba(0,0,0,.08)"/><path d="M82 140 Q100 154 118 140" stroke="rgba(0,0,0,.15)" stroke-width="4" fill="none"/>`;
   if(id==='jaqueta')return `<path d="${TOPP}" fill="${c}"/><path d="M95 137 L105 137 L104 204 L96 204 Z" fill="#fff"/><path d="M95 138 L86 152 M105 138 L114 152" stroke="#3f6fbf" stroke-width="3"/><circle cx="91" cy="170" r="2" fill="#ffd84d"/><circle cx="91" cy="186" r="2" fill="#ffd84d"/>`;
+  if(id==='listrada')return `<path d="${TOPP}" fill="#fff" stroke="#ddd" stroke-width="1.5"/><g clip-path="url(#clipTop)">${[64,80,96,112,128].map(x=>`<rect x="${x}" y="130" width="8" height="80" fill="#1c1c1c"/>`).join('')}</g><defs><clipPath id="clipTop"><path d="${TOPP}"/></clipPath></defs><path d="M90 137 Q100 146 110 137" stroke="#1c1c1c" stroke-width="3" fill="none"/>`;
+  if(id==='futamarela')return `<path d="${TOPP}" fill="${c}"/><path d="M90 137 L100 150 L110 137" stroke="#1f9a4a" stroke-width="4" fill="none"/><path d="M56 160 L66 168 M144 160 L134 168" stroke="#1f9a4a" stroke-width="4"/>`;
+  if(id==='camisa10')return `<path d="${TOPP}" fill="${c}"/><path d="M90 137 Q100 146 110 137" stroke="#fff" stroke-width="3" fill="none"/><text x="100" y="186" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="26" fill="#fff">10</text>`;
   if(id==='blusaestrela')return `<path d="${TOPP}" fill="${c}"/><text x="100" y="182" text-anchor="middle" font-size="24" fill="#ff8a3d">★</text>`;
   return `<path d="${TOPP}" fill="${c}" stroke="#e3d9f0" stroke-width="2"/><path d="M90 137 Q100 146 110 137" stroke="#e3d9f0" stroke-width="2" fill="none"/>`;}
 function bottomSVG(id){const c=(ITEM[id]||{}).c||'#6f9be0';
+  if(id==='bermuda')return `<path d="M70 196 L130 196 L128 240 L104 240 L100 214 L96 240 L72 240 Z" fill="${c}"/><path d="M100 198 v14" stroke="rgba(255,255,255,.3)" stroke-width="2"/>`;
+  if(id==='calcao')return `<path d="M70 196 L130 196 L131 230 L103 230 L100 214 L97 230 L69 230 Z" fill="${c}"/><path d="M72 222 v8 M128 222 v8" stroke="#fff" stroke-width="3"/>`;
   if(id==='saia')return `<path d="M70 196 L130 196 L146 238 Q100 246 54 238 Z" fill="${c}"/>`;
   if(id==='tule')return `<path d="M70 196 L130 196 L152 238 Q100 250 48 238 Z" fill="${c}" opacity=".85"/><path d="M72 196 L128 196 L140 230 Q100 238 60 230 Z" fill="#f0e4ff"/>`;
   if(id==='legging')return `<path d="M72 196 L128 196 L121 266 L105 266 L100 216 L95 266 L79 266 Z" fill="${c}"/>`;
@@ -650,6 +667,8 @@ function headAccSVG(id,H){
   if(id==='laco')return `<path d="M128 46 L110 34 L112 58 Z M128 46 L146 34 L144 58 Z" fill="#ff5fa2"/><circle cx="128" cy="46" r="5" fill="#ff8ec2"/>`;
   if(id==='flor')return [[0,-8],[8,0],[0,8],[-8,0]].map(([dx,dy])=>`<circle cx="${132+dx}" cy="${50+dy}" r="6.5" fill="#ff9fc6"/>`).join('')+`<circle cx="132" cy="50" r="4.5" fill="#ffd84d"/>`;
   if(id==='bone')return `<path d="M55 72 C55 28 145 28 145 72 Z" fill="#ff5fa2"/><path d="M118 68 Q160 64 168 76 Q140 79 118 74 Z" fill="#e0447a"/><circle cx="100" cy="32" r="4" fill="#e0447a"/>`;
+  if(id==='boneazul')return `<path d="M55 72 C55 28 145 28 145 72 Z" fill="#2a6fd6"/><path d="M82 68 Q40 64 32 76 Q60 79 82 74 Z" fill="#1d55ad"/><circle cx="100" cy="32" r="4" fill="#1d55ad"/>`;
+  if(id==='faixa')return `<path d="M56 66 Q100 50 144 66 L144 76 Q100 60 56 76 Z" fill="#ff3b3b"/><path d="M60 70 Q100 56 140 70" stroke="#fff" stroke-width="2" fill="none"/>`;
   if(id==='tiara')return `<path d="M62 58 Q100 28 138 58" stroke="#ffd84d" stroke-width="5" fill="none" stroke-linecap="round"/><circle cx="100" cy="40" r="4.5" fill="#ff5fa2"/><circle cx="82" cy="46" r="3.2" fill="#8fd8ff"/><circle cx="118" cy="46" r="3.2" fill="#8fd8ff"/>`;
   if(id==='gatinha')return `<path d="M58 54 L64 16 L88 40 Z M142 54 L136 16 L112 40 Z" fill="${H}"/><path d="M66 44 L68 28 L80 40 Z M134 44 L132 28 L120 40 Z" fill="#ff9fc6"/>`;
   if(id==='coroa')return `<path d="M70 46 L78 16 L90 34 L100 10 L110 34 L122 16 L130 46 Z" fill="#ffd84d" stroke="#e0a400" stroke-width="2"/><circle cx="100" cy="36" r="4" fill="#ff5fa2"/><circle cx="84" cy="40" r="3" fill="#8fd8ff"/><circle cx="116" cy="40" r="3" fill="#8fd8ff"/>`;
@@ -665,6 +684,7 @@ function neckSVG(id){
   return '';}
 function glassSVG(id){
   if(id==='oculos')return `<circle cx="84" cy="92" r="12" stroke="#3a2850" stroke-width="2.5" fill="rgba(255,255,255,.15)"/><circle cx="116" cy="92" r="12" stroke="#3a2850" stroke-width="2.5" fill="rgba(255,255,255,.15)"/><path d="M96 92 h8" stroke="#3a2850" stroke-width="2.5"/>`;
+  if(id==='oculossol')return `<path d="M70 86 h28 v8 q0 10 -14 10 q-14 0 -14 -10 z M102 86 h28 v8 q0 10 -14 10 q-14 0 -14 -10 z" fill="#1c1c1c"/><path d="M98 89 h4" stroke="#1c1c1c" stroke-width="3"/><path d="M76 90 l6 -2" stroke="#fff" stroke-width="2" opacity=".6"/>`;
   if(id==='oculoscor'){const h=(x)=>`<path d="M${x} 102 C${x-16} 92 ${x-14} 78 ${x-5} 80 C${x-2} 81 ${x} 84 ${x} 86 C${x} 84 ${x+2} 81 ${x+5} 80 C${x+14} 78 ${x+16} 92 ${x} 102 Z" fill="#ff5fa2" opacity=".72" stroke="#e0447a" stroke-width="1.5"/>`;return h(84)+h(116)+`<path d="M95 88 h10" stroke="#e0447a" stroke-width="2"/>`;}
   return '';}
 function faceSVG(e,H){let s='';
@@ -686,6 +706,7 @@ function dollSVG(eq,mode){const e=fixEquip(eq);const S=PELES[+String(e.pele).sli
   g+=shoesSVG(e.sapato);
   if(!e.vestido)g+=topSVG(e.top);
   g+=`<circle cx="61" cy="206" r="7.5" fill="${S}"/><circle cx="139" cy="206" r="7.5" fill="${S}"/>`;
+  if(e.mao&&ITEM[e.mao])g+=`<text x="52" y="238" font-size="34" text-anchor="middle">${ITEM[e.mao].e}</text>`;
   if(e.bolsa)g+=`<path d="M124 146 L146 202" stroke="#e0447a" stroke-width="2.5"/><rect x="136" y="200" width="22" height="17" rx="5" fill="#ff8ec2"/><circle cx="147" cy="208" r="2.5" fill="#ffd84d"/>`;
   g+=neckSVG(e.colar);
   g+=`<circle cx="100" cy="84" r="45" fill="${S}"/>`+faceSVG(e,H)+hairFront(e.cabelo,H)+earSVG(e.brinco)+glassSVG(e.oculos)+headAccSVG(e.cabeca,H);
@@ -753,15 +774,15 @@ function renderWho(){
 }
 function pickProfile(i){P=PERFIS[i];sfx.star();goHome();say(`Oi, ${P.nome}! Que bom te ver 💖`);}
 function switchProfile(){P=null;renderWho();show('sWho');}
-let newAno=4;
-function newProfile(){newEq=fixEquip({});newAno=4;$('nameI').value='';renderNew();show('sNew');}
+let newAno=4,newGen='f';
+function newProfile(){newEq=fixEquip({});newAno=4;newGen='f';$('nameI').value='';renderNew();show('sNew');}
 function renderNew(){$('newAv').innerHTML=avHTML({},150,'full',newEq);
   const row=slot=>LOJA.filter(i=>i.slot===slot&&i.p===0).map(i=>`<button class="pk${newEq[slot]===i.id?' on':''}" onclick="newEq=withItem(newEq,'${i.id}');sfx.click();renderNew()">${slot==='cabelo'?i.n:`<span class="sw" style="background:${i.sw||CORES[i.id]}"></span>`}</button>`).join('');
-  $('pkAno').innerHTML=[2,4].map(a=>`<button class="pk${newAno===a?' on':''}" style="width:auto;padding:0 14px;font-weight:800" onclick="newAno=${a};sfx.click();renderNew()">${a}º ano</button>`).join('');$('pkPele').innerHTML=row('pele');$('pkCab').innerHTML=row('cabelo');$('pkCor').innerHTML=row('cor');}
+  $('pkAno').innerHTML=[2,4].map(a=>`<button class="pk${newAno===a?' on':''}" style="width:auto;padding:0 14px;font-weight:800" onclick="newAno=${a};sfx.click();renderNew()">${a}º ano</button>`).join('');$('pkGen').innerHTML=[['f','👧 Menina','liso'],['m','👦 Menino','menino']].map(([g,t,h])=>`<button class="pk${newGen===g?' on':''}" style="width:auto;padding:0 14px;font-weight:800" onclick="newGen='${g}';newEq=withItem(newEq,'${h}');sfx.click();renderNew()">${t}</button>`).join('');$('pkPele').innerHTML=row('pele');$('pkCab').innerHTML=row('cabelo');$('pkCor').innerHTML=row('cor');}
 function createProfile(){const nome=$('nameI').value.trim();if(!nome){say('Escreva seu nome primeiro 😊');return;}
   let base=nome.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')||'jogadora',id=base,k=2;
   while(PERFIS.some(p=>p.id===id))id=base+'-'+(k++);
-  P=normalize({id,nome,ano:newAno,equip:newEq,criado:Date.now()});PERFIS.push(P);Store.save(P);sfx.star();goHome();say(`Bem-vinda, ${P.nome}! ✨`);}
+  P=normalize({id,nome,ano:newAno,gen:newGen,equip:newEq,criado:Date.now()});PERFIS.push(P);Store.save(P);sfx.star();goHome();say(`Bem-vind${P.gen==='m'?'o':'a'}, ${P.nome}! ✨`);}
 
 /* ---------- casa ---------- */
 function clearFx(){document.querySelectorAll('.banner,.confetti,.flycoin').forEach(e=>e.remove());}
@@ -776,9 +797,9 @@ function renderHome(){
 }
 
 /* ---------- loja ---------- */
-const ABAS=[['visual','💇‍♀️ Visual',['pele','cabelo','cor']],['roupas','👗 Roupas',['top','baixo','vestido']],['sapatos','👟 Sapatos',['sapato']],
- ['acess','💍 Acessórios',['cabeca','brinco','colar','oculos','bolsa']],['make','💄 Maquiagem',['rosto','boca','olhos']],['amigos','🐶 Amiguinhos',['amigo']],['fundos','🎨 Fundos',['fundo']],['jogos','🕹️ Jogos',['jogo']]];
-const SLOTN={pele:'Tom de pele',cabelo:'Penteado',cor:'Cor do cabelo',top:'Blusas',baixo:'Saias, shorts e calças',vestido:'Vestidos',sapato:'Sapatos',cabeca:'Na cabeça',brinco:'Brincos',colar:'Colares',oculos:'Óculos',bolsa:'Bolsas',rosto:'Bochechas',boca:'Boca',olhos:'Olhos',amigo:'Amiguinhos',fundo:'Fundos',jogo:'Jogos do fliperama'};
+const ABAS=[['visual','💇‍♀️ Visual',['pele','cabelo','cor']],['roupas','👕 Roupas',['top','baixo','vestido']],['sapatos','👟 Sapatos',['sapato']],
+ ['acess','🧢 Acessórios',['cabeca','mao','oculos','brinco','colar','bolsa']],['make','💄 Maquiagem',['rosto','boca','olhos']],['amigos','🐶 Amiguinhos',['amigo']],['fundos','🎨 Fundos',['fundo']],['jogos','🕹️ Jogos',['jogo']]];
+const SLOTN={pele:'Tom de pele',cabelo:'Penteado',cor:'Cor do cabelo',top:'Blusas e camisetas',baixo:'Saias, shorts, bermudas e calças',mao:'Na mão',vestido:'Vestidos',sapato:'Sapatos',cabeca:'Na cabeça',brinco:'Brincos',colar:'Colares',oculos:'Óculos',bolsa:'Bolsas',rosto:'Bochechas',boca:'Boca',olhos:'Olhos',amigo:'Amiguinhos',fundo:'Fundos',jogo:'Jogos do fliperama'};
 let aba='visual',sel=null;
 const owns=id=>ITEM[id].p===0||P.itens.includes(id);
 function itemIcon(i){if(i.slot==='pele')return `<span class="sw r" style="background:${i.sw}"></span>`;if(i.slot==='cor')return `<span class="sw r" style="background:${CORES[i.id]}"></span>`;

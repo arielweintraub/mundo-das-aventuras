@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diário de Estudos · História e Geografia P2</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#3b2a4a; --muted:#7d6b8c;
+    --k:#ff6fa8; --kl:#ffe3ef;   /* Kafka - rosa */
+    --n:#8b6cf0; --nl:#ece6ff;   /* Narrativa - lilás */
+    --e:#18b7a0; --el:#d9f7f1;   /* Escrita - menta */
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Nunito,system-ui,sans-serif;color:var(--ink);line-height:1.5;
+    background:linear-gradient(160deg,#fde7f3 0%,#efe7ff 45%,#e2f7f3 100%);background-attachment:fixed;min-height:100vh}
+  .wrap{max-width:760px;margin:0 auto;padding:16px 14px 60px}
+  header{border-radius:26px;padding:22px 20px;color:#fff;position:relative;overflow:hidden;
+    background:linear-gradient(135deg,#ff6fa8,#b583ff 60%,#7fd8ff);box-shadow:0 10px 30px rgba(181,131,255,.35)}
+  header h1{font-family:Fredoka;font-size:30px;line-height:1.05;margin:0 0 6px}
+  header p{margin:0;font-weight:600;opacity:.95}
+  header .spark{position:absolute;font-size:26px;opacity:.85;animation:tw 2.4s infinite}
+  @keyframes tw{50%{transform:scale(1.3) rotate(15deg);opacity:.4}}
+  .howto{background:rgba(255,255,255,.75);backdrop-filter:blur(6px);border-radius:18px;padding:12px 14px;margin:14px 0;border:2px dashed #d9b8ff;font-size:15px}
+  .bar-wrap{position:sticky;top:0;z-index:10;padding:8px 0 10px}
+  .pbox{background:rgba(255,255,255,.88);backdrop-filter:blur(8px);border-radius:20px;padding:10px 12px;box-shadow:0 4px 16px rgba(139,108,240,.18)}
+  .ptop{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+  .ptitle{font-family:Fredoka;font-weight:600;font-size:16px}
+  .count{color:#ff4f93}
+  .stickers{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+  .st{width:28px;height:28px;border-radius:9px;border:2px dashed #d7c8ef;display:grid;place-items:center;font-size:15px;filter:grayscale(1);opacity:.3;transition:.35s}
+  .st.on{filter:none;opacity:1;border:2px solid #ffb3d1;background:#fff;transform:rotate(-8deg) scale(1.1)}
+  .bar{height:9px;background:#efe6fb;border-radius:9px;margin-top:8px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff6fa8,#b583ff,#18b7a0);transition:width .4s}
+  .btns button{font:800 13px Nunito;border:0;border-radius:12px;padding:6px 10px;background:#f3e9ff;color:var(--ink);cursor:pointer}
+  .bloco{margin:24px 0 8px;display:flex;align-items:center;gap:10px}
+  .bloco .tape{font-family:Fredoka;font-weight:600;font-size:19px;padding:4px 14px;border-radius:6px;transform:rotate(-1.5deg);background:var(--cl);color:var(--c);border:2px solid var(--c)}
+  .bloco small{color:var(--muted);font-weight:700;font-size:13px}
+  .card{background:rgba(255,255,255,.92);border-radius:22px;margin:10px 0;box-shadow:0 4px 0 var(--cl);border:2px solid var(--cl);overflow:hidden}
+  .head{display:flex;gap:12px;align-items:center;padding:14px;cursor:pointer;user-select:none}
+  .ico{width:50px;height:50px;flex:0 0 50px;border-radius:16px;background:var(--cl);display:grid;place-items:center;font-size:26px}
+  .ht{flex:1}
+  .tag{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--c)}
+  .ht h3{margin:0;font-family:Fredoka;font-weight:600;font-size:19px;line-height:1.15}
+  .ht p{margin:2px 0 0;color:var(--muted);font-size:14px}
+  .arrow{font-size:20px;color:var(--c);transition:transform .25s}
+  .card.open .arrow{transform:rotate(180deg)}
+  .body{display:none;padding:0 16px 16px;border-top:2px dashed var(--cl)}
+  .card.open .body{display:block;animation:pop .25s}
+  @keyframes pop{from{opacity:0;transform:translateY(-6px)}to{opacity:1}}
+  .k{--c:var(--k);--cl:var(--kl)} .n{--c:var(--n);--cl:var(--nl)} .e{--c:var(--e);--cl:var(--el)}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+  .chip{background:var(--cl);border-radius:30px;padding:5px 11px;font-weight:700;font-size:14px}
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0}
+  .flow .s{background:var(--cl);border:2px solid var(--c);border-radius:14px;padding:6px 10px;font-weight:800;font-size:14px;text-align:center}
+  .flow .a{font-weight:800;color:var(--c);font-size:20px}
+  table{width:100%;border-collapse:collapse;margin:10px 0;font-size:14px}
+  th,td{padding:6px 8px;text-align:left;vertical-align:top}
+  th{background:var(--cl)}
+  tr:nth-child(even) td{background:#faf7fd}
+  .end{color:#ff4f93;font-weight:800}
+  .box{border-radius:14px;padding:10px 12px;margin:10px 0;font-size:14.5px}
+  .dica{background:#eef7ff;border:2px solid #9cc8f5}
+  .dica::before{content:"⭐ Vale ponto: ";font-weight:800;color:#2a6fb5}
+  .peg{background:#fff0f3;border:2px solid #ff9db5}
+  .peg::before{content:"⚠️ Pegadinha: ";font-weight:800;color:#d6336c}
+  .ouro{background:linear-gradient(135deg,#fff3c4,#ffd6ec);border-radius:14px;padding:10px 12px;font-weight:700;margin:10px 0}
+  .ouro::before{content:"💖 Frase de ouro: ";font-weight:800}
+  .ex{background:#faf7fd;border-left:4px solid var(--c);border-radius:8px;padding:8px 10px;font-size:14.5px;margin:8px 0;font-style:italic}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+  .mini{background:var(--cl);border-radius:14px;padding:8px 10px;font-size:14px}
+  .mini b{display:block;font-family:Fredoka;font-weight:600;font-size:16px}
+  .final{background:linear-gradient(135deg,#8b6cf0,#ff6fa8);color:#fff;border-radius:24px;padding:20px;text-align:center;margin-top:24px}
+  .final h3{font-family:Fredoka;font-size:24px;margin:0 0 6px}
+  footer{margin-top:24px;font-size:13px;color:var(--muted);background:rgba(255,255,255,.85);border-radius:16px;padding:12px 14px}
+  footer h4{margin:0 0 6px;color:var(--ink)}
+  @media(max-width:480px){.grid2{grid-template-columns:1fr}.ht h3{font-size:17px}}
+  .b{--c:#e0702b;--cl:#ffe8d6} .v{--c:#13a58b;--cl:#d9f7f1} .g{--c:#2a6fb5;--cl:#e1efff} .w{--c:#8b6cf0;--cl:#ece6ff}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header style="background:linear-gradient(135deg,#5fb84a,#f2b632 55%,#7fd8ff)">
+  <span class="spark" style="right:18px;top:12px">🌾</span><span class="spark" style="right:60px;top:52px;animation-delay:.8s">🧉</span><span class="spark" style="right:24px;bottom:12px;animation-delay:1.4s">🐄</span>
+  <h1>Diário de Estudos 📓<br>História e Geografia · P2</h1>
+  <p>Região Sul · Bioma Pampa · Lá no meu quintal · Problemas ambientais</p>
+</header>
+
+<div class="howto">💡 <b>Como usar:</b> leia o título, <b>fale em voz alta</b> tudo o que lembra e só depois abra para conferir. Cada card aberto ganha um adesivo! 🩷</div>
+
+<div class="bar-wrap"><div class="pbox">
+  <div class="ptop"><div class="ptitle">🎀 Minha coleção · <span class="count" id="count">0 / 13</span></div>
+  <div class="btns"><button onclick="toggleAll(true)">abrir todos</button> <button onclick="toggleAll(false)">fechar todos</button></div></div>
+  <div class="stickers" id="stk"></div>
+  <div class="bar"><i id="bar"></i></div>
+</div></div>
+
+<!-- LÁ NO MEU QUINTAL -->
+<div class="bloco w"><span class="tape">🪀 Lá no meu quintal</span><small>costumes, paisagem e brincadeiras</small></div>
+
+<div class="card w" data-s="🪀">
+  <div class="head"><div class="ico">🪀</div><div class="ht"><div class="tag">Ficha · brincadeiras e ambiente</div><h3>Cada Rua É Cheia de Imaginação</h3><p>as 5 coisas que mudam o jeito de brincar</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <table>
+      <tr><th></th><th>Influência</th><th>Exemplo</th></tr>
+      <tr><td><b>C</b></td><td>🎭 Cultura</td><td>tradições, cantigas e festas do lugar</td></tr>
+      <tr><td><b>R</b></td><td>🪵 Recursos e materiais</td><td>no campo: pedras, galhos e barro · na cidade: brinquedos de loja</td></tr>
+      <tr><td><b>E</b></td><td>🏞️ Espaço físico</td><td>quintal, praça, rua segura → brincar lá fora</td></tr>
+      <tr><td><b>C</b></td><td>🌦️ Clima e geografia</td><td>calor → ar livre e água · frio ou chuva → dentro de casa</td></tr>
+      <tr><td><b>I</b></td><td>👫 Interação social</td><td>muitas crianças → brincadeiras em grupo</td></tr>
+    </table>
+    <div class="dica">as brincadeiras <b>não são universais</b>: elas se adaptam ao ambiente e ao jeito de viver das pessoas.</div>
+    <div class="ouro">Apesar das diferenças, todas as brincadeiras estimulam a criatividade e a convivência e preservam a cultura popular.</div>
+  </div>
+</div>
+
+<div class="card w" data-s="🎪">
+  <div class="head"><div class="ico">🎪</div><div class="ht"><div class="tag">Ficha · semana 11</div><h3>A diversidade no Brasil</h3><p>uma brincadeira de cada região e o que ela mostra</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <table>
+      <tr><th>Região</th><th>Brincadeiras</th><th>Mostra</th></tr>
+      <tr><td>🌳 Norte</td><td>peteca de palha, cabo de guerra</td><td>tradições indígenas</td></tr>
+      <tr><td>🌵 Nordeste</td><td>cabra-cega, corrida de saco, ciranda</td><td>músicas e cantigas</td></tr>
+      <tr><td>🐎 Centro-Oeste</td><td>pular corda, pique-esconde, corrida a cavalo</td><td>espaço amplo, vida rural</td></tr>
+      <tr><td>🏙️ Sudeste</td><td>bolinha de gude, queimada, pião, skate</td><td>adaptações das cidades</td></tr>
+      <tr><td>🧉 <b>Sul</b></td><td><b>corrida do saco, jogo do anel, danças típicas</b></td><td><b>influência europeia + tradições brasileiras</b></td></tr>
+    </table>
+    <div class="peg">a peteca de palha é do <b>Norte</b>, não do Sul!</div>
+  </div>
+</div>
+
+<div class="card w" data-s="🧉">
+  <div class="head"><div class="ico">🧉</div><div class="ht"><div class="tag">Livro · Região Sul</div><h3>O Sul no livro</h3><p>lugar, paisagem, brincadeira e costumes</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <div class="grid2">
+      <div class="mini"><b>📍 Lugar</b>Rodeio Bonito (RS)</div>
+      <div class="mini"><b>🪀 Brincadeira</b>"A bordo do carretão"</div>
+      <div class="mini"><b>🐄 Costumes</b>criação de gado, festas com danças típicas, tradições dos imigrantes europeus</div>
+      <div class="mini"><b>❄️ Clima</b>inverno frio → mais brincadeiras dentro de casa</div>
+    </div>
+    <div class="chips"><span class="chip">🍖 churrasco</span><span class="chip">🍲 barreado</span><span class="chip">🌰 pinhão cozido</span></div>
+    <p><b>Além do meu quintal:</b> nem todas as crianças da região brincam igual. Tem campo, cidade, praia e serra. Na cidade, brinca-se em praças, prédios e escolas.</p>
+    <div class="dica">lembre o que <b>o seu grupo</b> leu no livro: a paisagem do lugar e como é a brincadeira.</div>
+  </div>
+</div>
+
+<!-- REGIÕES -->
+<div class="bloco g"><span class="tape">🗺️ Regiões brasileiras</span><small>região Sul · bioma Pampa</small></div>
+
+<div class="card g" data-s="🗺️">
+  <div class="head"><div class="ico">🗺️</div><div class="ht"><div class="tag">Ficha de apoio</div><h3>Regionalizar e o IBGE</h3><p>o que é, quem fez, quando e para quê</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <p><b>Regionalizar</b> = dividir o país em partes com características parecidas, usando um <b>critério</b> (natural, como clima e vegetação, ou cultural, como economia e ocupação).</p>
+    <div class="flow"><div class="s">🏛️ IBGE<br>órgão do governo</div><div class="a">→</div><div class="s">📅 1970</div><div class="a">→</div><div class="s">5 Grandes<br>Regiões</div><div class="a">→</div><div class="s">governo cria ações<br>para cada região</div></div>
+    <div class="chips"><span class="chip">Norte</span><span class="chip">Nordeste</span><span class="chip">Centro-Oeste</span><span class="chip">Sudeste</span><span class="chip">Sul: PR · SC · RS</span></div>
+    <div class="peg">não existe "Sudoeste" nem "Noroeste". E Mato Grosso <b>do Sul</b> é do Centro-Oeste!</div>
+  </div>
+</div>
+
+<div class="card g" data-s="🌎">
+  <div class="head"><div class="ico">🌎</div><div class="ht"><div class="tag">Biomas · semana 14</div><h3>Os biomas do Brasil</h3><p>o que é bioma, os 6 biomas e as legendas das fotos</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <p><b>Bioma</b> = grande conjunto de plantas e animais com clima, solo, vegetação e biodiversidade próprios.</p>
+    <table>
+      <tr><th>Bioma</th><th>Legenda da foto</th></tr>
+      <tr><td>🌳 Amazônia</td><td>floresta densa, rios extensos</td></tr>
+      <tr><td>🌾 Cerrado</td><td>árvores de troncos retorcidos</td></tr>
+      <tr><td>🌵 Caatinga</td><td>plantas adaptadas ao calor e à falta de chuva</td></tr>
+      <tr><td>🌿 Mata Atlântica</td><td>florestas úmidas</td></tr>
+      <tr><td>💧 Pantanal</td><td>planícies com cheia e seca</td></tr>
+      <tr><td>🌱 <b>Pampa</b></td><td><b>campos naturais com vegetação rasteira</b></td></tr>
+    </table>
+    <div class="dica">truque: de Norte a Sul, os biomas predominantes estão em <b>ordem alfabética</b>: Amazônia, Caatinga, Cerrado, Mata Atlântica, Pampa.</div>
+    <div class="peg">os biomas <b>não</b> seguem as fronteiras das regiões. Por isso falamos em bioma <b>predominante</b>.</div>
+  </div>
+</div>
+
+<div class="card g" data-s="📍">
+  <div class="head"><div class="ico">📍</div><div class="ht"><div class="tag">Pampa</div><h3>Onde fica o Pampa e como é o clima</h3><p>estado, tamanho, países vizinhos e clima</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <div class="grid2">
+      <div class="mini"><b>📍 Onde</b>só no <b>Rio Grande do Sul</b>: o único bioma brasileiro em um só estado</div>
+      <div class="mini"><b>📏 Tamanho</b>cerca de <b>2%</b> do Brasil</div>
+      <div class="mini"><b>🌎 Continua</b>na Argentina e no Uruguai (Pampas Sul-Americanos)</div>
+      <div class="mini"><b>🌦️ Clima</b><b>subtropical úmido</b>: chove o ano todo, inverno frio</div>
+    </div>
+    <div class="peg">no Paraná e em Santa Catarina o bioma é a <b>Mata Atlântica</b> (e tem um pouquinho de Cerrado no Paraná).</div>
+  </div>
+</div>
+
+<div class="card v" data-s="🌾">
+  <div class="head"><div class="ico">🌾</div><div class="ht"><div class="tag">Pampa · flora</div><h3>As plantas do Pampa</h3><p>gramíneas, frutos, chás e árvores</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <p>Também chamado de <b>Campos Sulinos</b>: campos abertos com gramíneas, ervas e arbustos baixos.</p>
+    <div class="grid2">
+      <div class="mini"><b>🌾 Gramíneas</b>capim-forquilha, barba-de-bode, grama-tapete</div>
+      <div class="mini"><b>🍊 Frutos</b>butiá (do butiazeiro: suco, geleia, doce), pitanga, guabiroba</div>
+      <div class="mini"><b>🍵 Chás</b>marcela e carqueja</div>
+      <div class="mini"><b>🌳 Árvores</b>capões (grupinhos de árvores perto de rios) e espinilho</div>
+    </div>
+    <div class="dica">as gramíneas <b>protegem o solo</b> e dão <b>alimento e abrigo</b> aos animais.</div>
+    <div class="peg">mandacaru é da Caatinga e açaí é da Amazônia. Não caia nessa ao "circular as plantas"!</div>
+  </div>
+</div>
+
+<div class="card v" data-s="🐸">
+  <div class="head"><div class="ico">🐸</div><div class="ht"><div class="tag">Pampa · fauna</div><h3>Os animais do Pampa</h3><p>mamíferos, aves, répteis, anfíbio e peixes</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <table>
+      <tr><th>Grupo</th><th>Animais</th></tr>
+      <tr><td>🦴 Mamíferos</td><td>veado-campeiro, graxaim-do-campo, tuco-tuco</td></tr>
+      <tr><td>🪶 Aves</td><td>ema, quero-quero, joão-de-barro, beija-flor-de-barba-azul</td></tr>
+      <tr><td>🦎 Répteis</td><td>lagartos e cobras</td></tr>
+      <tr><td>🐸 Anfíbio</td><td>sapinho-de-barriga-vermelha</td></tr>
+      <tr><td>🐟 Peixes</td><td>lambari, jundiá, traíra, cascudo</td></tr>
+    </table>
+    <p><b>Banhado</b> = área úmida, alagada. Os bichos dependem dos campos e dos banhados para ter alimento, abrigo e filhotes.</p>
+    <div class="peg">a <b>ema</b> é uma ave grande que <b>não voa</b>, mas corre muito.</div>
+  </div>
+</div>
+
+<div class="card b" data-s="👥">
+  <div class="head"><div class="ico">👥</div><div class="ht"><div class="tag">Pampa · população</div><h3>Quem vive no Pampa</h3><p>povos indígenas, imigrantes e outros grupos</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <div class="grid2">
+      <div class="mini"><b>🪶 Indígenas</b>Guarani, Kaingang, Charrua, Xokleng</div>
+      <div class="mini"><b>🚢 Vieram de fora</b>portugueses, espanhóis, italianos, alemães, poloneses</div>
+    </div>
+    <p>Vivem também <b>quilombolas</b>, <b>pescadores artesanais</b> e <b>pecuaristas familiares</b> (criam gado).</p>
+    <div class="flow"><div class="s">📅 1808<br>chega a família real</div><div class="a">→</div><div class="s">🚢 portugueses, alemães,<br>italianos, poloneses, ucranianos</div><div class="a">→</div><div class="s">depois: japoneses<br>e holandeses</div></div>
+    <div class="dica">o Sul é a <b>menor</b> região do Brasil, com só 3 estados (livro <i>Viajando pelo folclore</i>).</div>
+  </div>
+</div>
+
+<div class="card b" data-s="🏘️">
+  <div class="head"><div class="ico">🏘️</div><div class="ht"><div class="tag">Pampa · cidades</div><h3>As cidades do Pampa</h3><p>6 cidades e o que cada uma tem de especial</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <table>
+      <tr><th>Cidade</th><th>Destaque</th></tr>
+      <tr><td>🐄 Bagé</td><td>gado, vinhos, azeites e prédios históricos</td></tr>
+      <tr><td>🇺🇾 Santana do Livramento</td><td>fronteira com o Uruguai, comércio, vinícolas</td></tr>
+      <tr><td>🚛 Uruguaiana</td><td>perto da Argentina, transporte de mercadorias</td></tr>
+      <tr><td>🪨 Caçapava do Sul</td><td>formações rochosas que atraem visitantes</td></tr>
+      <tr><td>🍇 Dom Pedrito</td><td>pecuária e vinhos</td></tr>
+      <tr><td>🏛️ Pelotas</td><td>patrimônio histórico e produção de alimentos</td></tr>
+    </table>
+    <div class="peg">Curitiba e Florianópolis são do Sul, mas <b>não</b> ficam no Pampa. Porto Alegre fica numa área de <b>transição</b> entre biomas.</div>
+  </div>
+</div>
+
+<!-- PROBLEMAS -->
+<div class="bloco b"><span class="tape">🚜 Problemas ambientais</span><small>semanas 14 e 15</small></div>
+
+<div class="card b" data-s="🚜">
+  <div class="head"><div class="ico">🚜</div><div class="ht"><div class="tag">Ficha · semana 15</div><h3>Problemas ambientais e soluções</h3><p>os problemas do Pampa, de onde vêm e o que fazer</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <table>
+      <tr><th>Problema</th><th>Causa</th><th>Solução</th></tr>
+      <tr><td>🌾 Desmatamento</td><td>campos trocados por soja, arroz, gado, eucalipto e pinus</td><td>proteger os campos nativos</td></tr>
+      <tr><td>🟫 Degradação do solo</td><td>mau uso do solo, sem a vegetação</td><td>usar a terra com responsabilidade</td></tr>
+      <tr><td>🏚️ Perda dos ambientes naturais</td><td>menos campos, menos casa para os bichos</td><td>proteger e recuperar áreas</td></tr>
+    </table>
+    <div class="dica">a <b>perda dos ambientes naturais</b> acontece nos <b>cinco</b> biomas.</div>
+    <div class="peg">plantar eucalipto e pinus no lugar do campo <b>não</b> ajuda: são <b>árvores exóticas</b> (vieram de fora) e também tiram a vegetação nativa.</div>
+    <p><b>Quem cuida?</b> Governos, empresas, comunidades e cidadãos.</p>
+  </div>
+</div>
+
+<div class="card b" data-s="📰">
+  <div class="head"><div class="ico">📰</div><div class="ht"><div class="tag">Exercitação · semana 14</div><h3>As notícias do Pampa</h3><p>como ler e o que dizia cada notícia</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <div class="chips"><span class="chip" style="background:#d9f7d9">🟢 verde = data</span><span class="chip" style="background:#ffe0e0">🔴 vermelho = problema</span><span class="chip" style="background:#e1efff">🔵 azul = causa</span></div>
+    <table>
+      <tr><th>Notícia</th><th>Problema</th><th>Causa</th><th>Solução</th></tr>
+      <tr><td>⛈️ Temporais no Sul (28/09/2026)</td><td>4,8 mil casas atingidas, feridos, sem luz</td><td>chuva forte, ventos, granizo</td><td>local seguro, Defesa Civil</td></tr>
+      <tr><td>🌾 Pampa perdeu 21% da vegetação (04/09/2026)</td><td>campos nativos diminuindo (1985–2024)</td><td>soja, arroz, eucalipto, pinus</td><td>proteger os campos, uso sustentável</td></tr>
+      <tr><td>🌾 Já cortaram 30% (19/02/2024)</td><td>30% da vegetação trocada</td><td>agricultura, árvores exóticas, estradas</td><td>proteger os campos</td></tr>
+      <tr><td>🐄 Pampa perde 21% das pastagens (04/09/2026)</td><td>pastagens naturais diminuindo</td><td>agricultura, árvores exóticas, estradas, cidades</td><td>valorizar e respeitar o Pampa</td></tr>
+    </table>
+    <div class="dica">perder os campos é ruim porque tira a casa dos animais, prejudica a água, diminui as plantas nativas e mexe com o clima.</div>
+  </div>
+</div>
+
+<div class="card b" data-s="✍️">
+  <div class="head"><div class="ico">✍️</div><div class="ht"><div class="tag">Resposta escrita</div><h3>A receita da resposta completa</h3><p>"Que problemas o bioma e as pessoas podem enfrentar?"</p></div><div class="arrow">▾</div></div>
+  <div class="body">
+    <div class="flow"><div class="s">🔴 problema</div><div class="a">→</div><div class="s">🔵 causa</div><div class="a">→</div><div class="s">😢 consequência</div><div class="a">→</div><div class="s">🟢 solução</div></div>
+    <div class="ex">O Pampa está perdendo os campos nativos porque eles viram lavouras de soja e plantações de pinus. Assim, animais como a ema perdem alimento e abrigo, e as pessoas que criam gado perdem o pasto. Para ajudar, é preciso proteger os campos e usar a terra de forma sustentável.</div>
+    <div class="dica">diga também como o problema atinge <b>as pessoas</b> (água, alimento, trabalho, saúde).</div>
+    <div class="ouro">Para proteger o Pampa, é preciso valorizar os campos nativos e usar a terra de forma sustentável.</div>
+    <p style="font-size:13.5px">✏️ Revise: acentos (região, população, vegetação, poluição, indígenas), T cortado, ponto final e letra maiúscula.</p>
+  </div>
+</div>
+
+<div class="final">
+  <h3>🎀 Diário completo!</h3>
+  <p>Agora é hora do <b>jogo Viagem pelo Pampa</b>! 🌾🚜</p>
+</div>
+
+<footer>
+  <h4>Para o papai · o que não veio nos anexos</h4>
+  1. As páginas do livro <i>Lá no meu quintal</i> sobre a Região Sul não vieram. O card do livro usa o resumo do material do outro pai ("A bordo do carretão", em Rodeio Bonito). Vale ela contar o que o grupo dela leu.<br>
+  2. As fichas da semana 11 (diversidade), as notícias do Pampa (semana 14) e os problemas ambientais (semana 15) vieram do resumo do outro pai, não dos originais da escola.<br>
+  3. Os pratos (churrasco, barreado, pinhão) são da ficha da P1, segundo o outro pai.
+</footer>
+</div>
+<script>
+  const cards=[...document.querySelectorAll('.card')],opened=new Set(),stk=document.getElementById('stk');
+  cards.forEach((c,i)=>{const s=document.createElement('div');s.className='st';s.textContent=c.dataset.s;stk.appendChild(s);
+    c.querySelector('.head').addEventListener('click',()=>{c.classList.toggle('open');if(c.classList.contains('open'))opened.add(i);upd();});});
+  function upd(){const n=opened.size,t=cards.length;document.getElementById('count').textContent=n+' / '+t;document.getElementById('bar').style.width=(n/t*100)+'%';[...stk.children].forEach((s,i)=>s.classList.toggle('on',opened.has(i)));}
+  function toggleAll(o){cards.forEach((c,i)=>{c.classList.toggle('open',o);if(o)opened.add(i);});upd();}
+  upd();
+</script>
+</body>
+</html>

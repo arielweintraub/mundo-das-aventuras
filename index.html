@@ -576,6 +576,7 @@ const LOJA=[
  {id:'liso',slot:'cabelo',n:'Liso longo',p:0,ic:'💇‍♀️'},{id:'rabo',slot:'cabelo',n:'Rabo de cavalo',p:0,ic:'🎀'},{id:'curto',slot:'cabelo',n:'Chanel',p:0,ic:'✂️'},
  {id:'coque',slot:'cabelo',n:'Coque',p:3000,ic:'🍩'},{id:'cacheado',slot:'cabelo',n:'Cacheado',p:4000,ic:'🌀'},{id:'trancas',slot:'cabelo',n:'Tranças',p:5000,ic:'🪢'},
  {id:'menino',nm:'Curto',slot:'cabelo',n:'Curtinho',p:0,ic:'💇‍♂️'},{id:'espetado',slot:'cabelo',n:'Espetado',p:0,ic:'⚡'},{id:'raspado',nm:'Raspado',slot:'cabelo',n:'Raspadinho',p:2000,ic:'🪒'},{id:'topete',slot:'cabelo',n:'Topete',p:3500,ic:'🌊'},{id:'samurai',slot:'cabelo',n:'Coque samurai',p:0,ic:'🥷'},{id:'moicano',slot:'cabelo',n:'Moicano',p:0,ic:'🦔'},
+ {id:'barbacheia',slot:'barba',n:'Barba completa',p:5000,ic:'🧔'},{id:'cavanhaque',slot:'barba',n:'Cavanhaque',p:3500,ic:'🐐'},{id:'bigode',slot:'barba',n:'Bigode',p:3000,ic:'👨'},{id:'bigodefr',slot:'barba',n:'Bigode francês',p:6000,ic:'🥖'},
  {id:'castanho',slot:'cor',n:'Castanho',p:0},{id:'preto',slot:'cor',n:'Preto',p:0},{id:'loiro',slot:'cor',n:'Loiro',p:0},
  {id:'ruivo',slot:'cor',n:'Ruivo',p:2500},{id:'rosa',slot:'cor',n:'Rosa',p:7000},{id:'lilas',slot:'cor',n:'Lilás',p:7000},{id:'azul',slot:'cor',n:'Azul',p:7000},
  {id:'camiseta',slot:'top',n:'Camiseta',p:0,ic:'👕',c:'#ffffff'},{id:'campreta',slot:'top',n:'Camiseta preta',p:2000,ic:'👕',c:'#1c1c1c'},{id:'regata',slot:'top',n:'Regata',p:2000,ic:'🎽',c:'#7fe0c7'},{id:'blusaestrela',slot:'top',n:'Blusa estrela',p:4000,ic:'⭐',c:'#ffd84d'},
@@ -602,7 +603,7 @@ const LOJA=[
  {id:'doce',slot:'fundo',n:'Doce',p:3000},{id:'praia',slot:'fundo',n:'Praia',p:4000},{id:'arco',slot:'fundo',n:'Arco-íris',p:6000},{id:'galaxia',slot:'fundo',n:'Galáxia',p:10000},{id:'ouro',slot:'fundo',n:'Ouro',p:30000},{id:'campo',slot:'fundo',n:'Campo de futebol',p:6000},
  {id:'tetris',slot:'jogo',n:'Blocos Mágicos',p:18000,e:'🧱'},{id:'carrinho',slot:'jogo',n:'Rali Turbo',p:25000,e:'🏎️'},{id:'queimada',slot:'jogo',n:'6-7 contra 42',p:20000,e:'🔥'}];
 /* duas lojas: SO_MENINA = loja das meninas (como nas primeiras versões); SO_MENINO = loja dos meninos; o resto aparece nas duas */
-const SO_MENINA=['liso','rabo','curto','coque','cacheado','trancas','rosa','lilas','blusaestrela','moletom','saia','legging','tule','florido','festa','princesa','sapatilha','sandalia','bota','tenisluz','laco','flor','bone','tiara','gatinha','coroa','brbolinha','brcoracao','brargola','brestrela','brdiamante','colarcoracao','perolas','oculoscor','bolsa','blush','glitter','batomrosa','batomverm','cilios','sombra','unicornio','doce','arco'],SO_MENINO=['menino','espetado','raspado','topete','samurai','moicano','listrada','futamarela','camisa10','timeverm','timerubro','timeverde','timeazul','bermuda','calcao','bermudao','comando','judeu','sefardi','monge','chuteira','botamil','chinelo','descalco','boneazul','faixa','faixaluta','boneaba','cowboy','kipa','chapeupreto','correntinha','correntao','rapper','mochila','robo','campo','campreta'];
+const SO_MENINA=['liso','rabo','curto','coque','cacheado','trancas','rosa','lilas','blusaestrela','moletom','saia','legging','tule','florido','festa','princesa','sapatilha','sandalia','bota','tenisluz','laco','flor','bone','tiara','gatinha','coroa','brbolinha','brcoracao','brargola','brestrela','brdiamante','colarcoracao','perolas','oculoscor','bolsa','blush','glitter','batomrosa','batomverm','cilios','sombra','unicornio','doce','arco'],SO_MENINO=['menino','espetado','raspado','topete','samurai','moicano','listrada','futamarela','camisa10','timeverm','timerubro','timeverde','timeazul','bermuda','calcao','bermudao','comando','judeu','sefardi','monge','chuteira','botamil','chinelo','descalco','boneazul','faixa','faixaluta','boneaba','cowboy','kipa','chapeupreto','correntinha','correntao','rapper','mochila','robo','campo','campreta','barbacheia','cavanhaque','bigode','bigodefr'];
 SO_MENINA.forEach(id=>LOJA.find(i=>i.id===id).g='f');SO_MENINO.forEach(id=>LOJA.find(i=>i.id===id).g='m');
 const ITEM={};LOJA.forEach(i=>ITEM[i.id]=i);
 const genOf=p=>p&&p.gen==='m'?'m':'f';const vis=(i,g,p)=>!i.g||i.g===g||(g==='f'&&!!p&&(p.itens||[]).includes(i.id));const nmOf=(i,g)=>g==='m'&&i.nm?i.nm:i.n;
@@ -747,6 +748,12 @@ function vHand(S){const d='rgba(0,0,0,.13)';
    +`<path d="M1 -4 q6 -1 6 3 M1 1 q5 0 5 3" stroke="${d}" stroke-width="1.6" fill="none" stroke-linecap="round"/>`
    +`<path d="M-8 2 q6 -5 11 -1" stroke="${d}" stroke-width="1.8" fill="none" stroke-linecap="round"/>`
    +`</g>`;}
+function beardSVG(id,H){const mu=`<path d="M86 104 Q93 97 100 101 Q107 97 114 104 Q107 106 100 104 Q93 106 86 104 Z" fill="${H}"/>`;
+  if(id==='barbacheia')return `<path d="M56 90 Q58 136 100 136 Q142 136 144 90 Q138 112 126 120 Q116 125 100 125 Q84 125 74 120 Q62 112 56 90 Z" fill="${H}"/>`+mu;
+  if(id==='cavanhaque')return `<path d="M88 120 Q100 140 112 120 Q100 125 88 120 Z" fill="${H}"/><path d="M87 104 Q84 113 89 121 M113 104 Q116 113 111 121" stroke="${H}" stroke-width="4" fill="none" stroke-linecap="round"/>`+mu;
+  if(id==='bigode')return `<path d="M82 106 Q89 95 100 100 Q111 95 118 106 Q112 109 106 106 Q100 105 94 106 Q88 109 82 106 Z" fill="${H}"/>`;
+  if(id==='bigodefr')return `<path d="M92 103 Q100 98 108 103 Q100 105 92 103 Z" fill="${H}"/><path d="M93 103 Q80 107 73 100 Q69 95 71 91 Q73 89 74 92 M107 103 Q120 107 127 100 Q131 95 129 91 Q127 89 126 92" stroke="${H}" stroke-width="2.6" fill="none" stroke-linecap="round"/>`;
+  return '';}
 function dollSVG(eq,mode,gen){gen=gen==='m'?'m':'f';const e=gen==='m'?fixGen(eq,'m'):fixEquip(eq);const S=PELES[+String(e.pele).slice(4)]||PELES[1],H=CORES[e.cor]||CORES.castanho;
   let g=hairBack(e.cabelo,H);
   if(e.bolsa==='mochila')g+=`<rect x="62" y="146" width="76" height="56" rx="13" fill="#2a6fd6"/>`;
@@ -761,7 +768,7 @@ function dollSVG(eq,mode,gen){gen=gen==='m'?'m':'f';const e=gen==='m'?fixGen(eq,
   if(e.bolsa==='mochila')g+=`<path d="M84 140 L80 202 M116 140 L120 202" stroke="#1d55ad" stroke-width="6" stroke-linecap="round"/>`;
   else if(e.bolsa)g+=`<path d="M124 146 L146 202" stroke="#e0447a" stroke-width="2.5"/><rect x="136" y="200" width="22" height="17" rx="5" fill="#ff8ec2"/><circle cx="147" cy="208" r="2.5" fill="#ffd84d"/>`;
   g+=neckSVG(e.colar);
-  g+=`<circle cx="100" cy="84" r="45" fill="${S}"/>`+faceSVG(e,H,gen)+(e.cabeca||e.vestido!=='sefardi'?hairFront(e.cabelo,H):'')+earSVG(e.brinco)+glassSVG(e.oculos)+headAccSVG(e.cabeca||(e.vestido==='judeu'?'chapeupreto':e.vestido==='sefardi'?'turbante':''),H);
+  g+=`<circle cx="100" cy="84" r="45" fill="${S}"/>`+faceSVG(e,H,gen)+beardSVG(e.barba,H)+(e.cabeca||e.vestido!=='sefardi'?hairFront(e.cabelo,H):'')+earSVG(e.brinco)+glassSVG(e.oculos)+headAccSVG(e.cabeca||(e.vestido==='judeu'?'chapeupreto':e.vestido==='sefardi'?'turbante':''),H);
   if(e.mao==='vsinal')g+=vHand(S);
   const pet=mode==='full'&&e.amigo&&ITEM[e.amigo]?`<g><animateTransform attributeName="transform" type="translate" values="0 0;0 -4;0 0" dur="1.6s" repeatCount="indefinite"/><text x="100" y="244" font-size="66" text-anchor="middle">${ITEM[e.amigo].e}</text><circle cx="70" cy="222" r="8" fill="${S}"/><circle cx="130" cy="222" r="8" fill="${S}"/></g>`:'';
   const vb=mode==='head'?'40 4 120 120':'16 0 168 290';
@@ -850,9 +857,9 @@ function renderHome(){
 }
 
 /* ---------- loja ---------- */
-const ABAS=[['visual','💇‍♀️ Visual',['pele','cabelo','cor']],['roupas','👕 Roupas',['top','baixo','vestido']],['sapatos','👟 Sapatos',['sapato']],
+const ABAS=[['visual','💇‍♀️ Visual',['pele','cabelo','cor','barba']],['roupas','👕 Roupas',['top','baixo','vestido']],['sapatos','👟 Sapatos',['sapato']],
  ['acess','🧢 Acessórios',['cabeca','mao','oculos','brinco','colar','bolsa']],['make','💄 Maquiagem',['rosto','boca','olhos']],['amigos','🐶 Amiguinhos',['amigo']],['fundos','🎨 Fundos',['fundo']],['jogos','🕹️ Jogos',['jogo']]];
-const SLOTN={pele:'Tom de pele',cabelo:'Penteado',cor:'Cor do cabelo',top:'Blusas e camisetas',baixo:'Saias, shorts, bermudas e calças',mao:'Na mão',vestido:'Vestidos',sapato:'Sapatos',cabeca:'Na cabeça',brinco:'Brincos',colar:'Colares',oculos:'Óculos',bolsa:'Bolsas',rosto:'Bochechas',boca:'Boca',olhos:'Olhos',amigo:'Amiguinhos',fundo:'Fundos',jogo:'Jogos do fliperama'};
+const SLOTN={pele:'Tom de pele',cabelo:'Penteado',cor:'Cor do cabelo',barba:'Barba e bigode',top:'Blusas e camisetas',baixo:'Saias, shorts, bermudas e calças',mao:'Na mão',vestido:'Vestidos',sapato:'Sapatos',cabeca:'Na cabeça',brinco:'Brincos',colar:'Colares',oculos:'Óculos',bolsa:'Bolsas',rosto:'Bochechas',boca:'Boca',olhos:'Olhos',amigo:'Amiguinhos',fundo:'Fundos',jogo:'Jogos do fliperama'};
 const TABM={visual:'💇‍♂️ Visual',amigos:'🤖 Companheiros'};
 const SLOTM={top:'Camisetas e camisas de time',baixo:'Shorts, bermudas e calças',vestido:'Roupas completas',bolsa:'Mochilas',amigo:'Companheiros',colar:'Correntes'};
 let aba='visual',sel=null;

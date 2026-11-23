@@ -573,37 +573,40 @@ const PELES=['#ffe3cc','#f6c9a3','#dda27c','#a8714f','#71472e'];
 const CORES={castanho:'#6b4226',preto:'#2b2024',loiro:'#e3b94f',ruivo:'#c4552b',rosa:'#ff8ec2',lilas:'#a98cf5',azul:'#5fb8f5'};
 const LOJA=[
  ...PELES.map((c,i)=>({id:'pele'+i,slot:'pele',n:'Tom '+(i+1),p:0,sw:c})),
- {id:'liso',g:'f',slot:'cabelo',n:'Liso longo',p:0,ic:'💇‍♀️'},{id:'rabo',g:'f',slot:'cabelo',n:'Rabo de cavalo',p:0,ic:'🎀'},{id:'curto',g:'f',slot:'cabelo',n:'Chanel',p:0,ic:'✂️'},
- {id:'coque',g:'f',slot:'cabelo',n:'Coque',p:3000,ic:'🍩'},{id:'cacheado',slot:'cabelo',n:'Cacheado',p:4000,ic:'🌀'},{id:'trancas',g:'f',slot:'cabelo',n:'Tranças',p:5000,ic:'🪢'},
- {id:'menino',nm:'Curto',slot:'cabelo',n:'Curtinho',p:0,ic:'💇‍♂️'},{id:'espetado',slot:'cabelo',n:'Espetado',p:0,ic:'⚡'},{id:'raspado',nm:'Raspado',slot:'cabelo',n:'Raspadinho',p:2000,ic:'🪒'},{id:'topete',slot:'cabelo',n:'Topete',p:3500,ic:'🌊'},{id:'samurai',g:'m',slot:'cabelo',n:'Coque samurai',p:0,ic:'🥷'},{id:'moicano',g:'m',slot:'cabelo',n:'Moicano',p:0,ic:'🦔'},
+ {id:'liso',slot:'cabelo',n:'Liso longo',p:0,ic:'💇‍♀️'},{id:'rabo',slot:'cabelo',n:'Rabo de cavalo',p:0,ic:'🎀'},{id:'curto',slot:'cabelo',n:'Chanel',p:0,ic:'✂️'},
+ {id:'coque',slot:'cabelo',n:'Coque',p:3000,ic:'🍩'},{id:'cacheado',slot:'cabelo',n:'Cacheado',p:4000,ic:'🌀'},{id:'trancas',slot:'cabelo',n:'Tranças',p:5000,ic:'🪢'},
+ {id:'menino',nm:'Curto',slot:'cabelo',n:'Curtinho',p:0,ic:'💇‍♂️'},{id:'espetado',slot:'cabelo',n:'Espetado',p:0,ic:'⚡'},{id:'raspado',nm:'Raspado',slot:'cabelo',n:'Raspadinho',p:2000,ic:'🪒'},{id:'topete',slot:'cabelo',n:'Topete',p:3500,ic:'🌊'},{id:'samurai',slot:'cabelo',n:'Coque samurai',p:0,ic:'🥷'},{id:'moicano',slot:'cabelo',n:'Moicano',p:0,ic:'🦔'},
  {id:'castanho',slot:'cor',n:'Castanho',p:0},{id:'preto',slot:'cor',n:'Preto',p:0},{id:'loiro',slot:'cor',n:'Loiro',p:0},
  {id:'ruivo',slot:'cor',n:'Ruivo',p:2500},{id:'rosa',slot:'cor',n:'Rosa',p:7000},{id:'lilas',slot:'cor',n:'Lilás',p:7000},{id:'azul',slot:'cor',n:'Azul',p:7000},
- {id:'camiseta',slot:'top',n:'Camiseta',p:0,ic:'👕',c:'#ffffff'},{id:'regata',slot:'top',n:'Regata',p:2000,ic:'🎽',c:'#7fe0c7'},{id:'blusaestrela',g:'f',slot:'top',n:'Blusa estrela',p:4000,ic:'⭐',c:'#ffd84d'},
+ {id:'camiseta',slot:'top',n:'Camiseta',p:0,ic:'👕',c:'#ffffff'},{id:'regata',slot:'top',n:'Regata',p:2000,ic:'🎽',c:'#7fe0c7'},{id:'blusaestrela',slot:'top',n:'Blusa estrela',p:4000,ic:'⭐',c:'#ffd84d'},
  {id:'moletom',slot:'top',n:'Moletom',p:5000,ic:'🧥',c:'#b39cff'},{id:'jaqueta',slot:'top',n:'Jaqueta jeans',p:7000,ic:'🧥',c:'#5b8fd6'},
- {id:'listrada',slot:'top',n:'Camisa listrada preta e branca',p:6000,ic:'🦓',c:'#ffffff'},{id:'futamarela',slot:'top',n:'Camisa de futebol amarela',p:5000,ic:'⚽',c:'#ffd400'},{id:'camisa10',slot:'top',n:'Camisa 10',p:7000,ic:'🔟',c:'#2a6fd6'},{id:'timeverm',g:'m',slot:'top',n:'Camisa de time vermelha',p:5000,ic:'⚽',c:'#e3262f'},{id:'timerubro',g:'m',slot:'top',n:'Camisa de time vermelha e preta',p:6000,ic:'⚽',c:'#c4161c'},{id:'timeverde',g:'m',slot:'top',n:'Camisa de time verde',p:5000,ic:'⚽',c:'#1f9a4a'},{id:'timeazul',g:'m',slot:'top',n:'Camisa de time azul e branca',p:6000,ic:'⚽',c:'#2a6fd6'},
- {id:'short',slot:'baixo',n:'Short jeans',p:0,ic:'🩳',c:'#6f9be0'},{id:'saia',g:'f',slot:'baixo',n:'Saia rosa',p:2500,ic:'👗',c:'#ff8ec2'},{id:'legging',g:'f',slot:'baixo',n:'Legging',p:3000,ic:'🖤',c:'#3a2850'},
- {id:'calca',slot:'baixo',n:'Calça jeans',p:3500,ic:'👖',c:'#3f6fbf'},{id:'tule',g:'f',slot:'baixo',n:'Saia de tule',p:6000,ic:'🩰',c:'#d9b8ff'},{id:'bermuda',slot:'baixo',n:'Bermuda',p:2000,ic:'🩳',c:'#4a5a6c'},{id:'calcao',slot:'baixo',n:'Calção de futebol',p:2500,ic:'⚽',c:'#1c1c1c'},{id:'bermudao',g:'m',slot:'baixo',n:'Bermudão',p:3000,ic:'🩳',c:'#8a7a55'},
- {id:'florido',g:'f',slot:'vestido',n:'Vestido florido',p:8000,ic:'🌼',c:'#ffb3d1'},{id:'festa',g:'f',slot:'vestido',n:'Vestido de festa',p:12000,ic:'✨',c:'#9b7bf0'},{id:'princesa',g:'f',slot:'vestido',n:'Vestido de princesa',p:22000,ic:'👑',c:'#8fd8ff'},{id:'comando',g:'m',slot:'vestido',n:'Roupa de comando',p:12000,ic:'💪'},{id:'judeu',g:'m',slot:'vestido',n:'Roupa de judeu religioso',p:10000,ic:'✡️'},{id:'monge',g:'m',slot:'vestido',n:'Roupa de monge budista',p:10000,ic:'🧘'},
- {id:'tenis',slot:'sapato',n:'Tênis',p:0,ic:'👟'},{id:'sapatilha',g:'f',slot:'sapato',n:'Sapatilha',p:2000,ic:'🩰'},{id:'sandalia',g:'f',slot:'sapato',n:'Sandália',p:2500,ic:'👡'},
- {id:'bota',g:'f',slot:'sapato',n:'Bota',p:5000,ic:'👢'},{id:'tenisluz',g:'f',slot:'sapato',n:'Tênis de luz',p:9000,ic:'💡'},{id:'chuteira',slot:'sapato',n:'Chuteira',p:4500,ic:'⚽'},{id:'botamil',g:'m',slot:'sapato',n:'Bota militar',p:5000,ic:'🥾'},{id:'chinelo',g:'m',slot:'sapato',n:'Chinelo',p:1500,ic:'🩴'},{id:'descalco',g:'m',slot:'sapato',n:'Pé descalço',p:0,ic:'🦶'},
- {id:'laco',g:'f',slot:'cabeca',n:'Laço',p:2000,ic:'🎀'},{id:'flor',g:'f',slot:'cabeca',n:'Flor',p:3000,ic:'🌸'},{id:'bone',g:'f',slot:'cabeca',n:'Boné',p:3500,ic:'🧢'},
- {id:'tiara',g:'f',slot:'cabeca',n:'Tiara',p:5000,ic:'💫'},{id:'gatinha',g:'f',slot:'cabeca',n:'Orelhas de gato',p:7000,ic:'🐱'},{id:'coroa',slot:'cabeca',n:'Coroa',p:18000,ic:'👑'},{id:'boneazul',slot:'cabeca',n:'Boné azul pra trás',p:3500,ic:'🧢'},{id:'faixa',slot:'cabeca',n:'Faixa de atleta',p:2000,ic:'🎽'},{id:'faixaluta',g:'m',slot:'cabeca',n:'Faixa de lutador',p:3000,ic:'🥋'},{id:'boneaba',g:'m',slot:'cabeca',n:'Boné aba reta',p:4000,ic:'🧢'},{id:'cowboy',g:'m',slot:'cabeca',n:'Chapéu de cowboy',p:6000,ic:'🤠'},{id:'kipa',g:'m',slot:'cabeca',n:'Kipá',p:1500,ic:'🔵'},{id:'chapeupreto',g:'m',slot:'cabeca',n:'Chapéu preto',p:4000,ic:'🎩'},
- {id:'brbolinha',g:'f',slot:'brinco',n:'Brinco bolinha',p:1500,ic:'⚪'},{id:'brcoracao',g:'f',slot:'brinco',n:'Brinco coração',p:3000,ic:'💗'},{id:'brargola',slot:'brinco',n:'Argola',p:3500,ic:'⭕'},
- {id:'brestrela',g:'f',slot:'brinco',n:'Brinco estrela',p:4000,ic:'⭐'},{id:'brdiamante',slot:'brinco',n:'Brinco diamante',p:14000,ic:'💎'},
- {id:'colarcoracao',g:'f',slot:'colar',n:'Colar coração',p:4000,ic:'💝'},{id:'perolas',g:'f',slot:'colar',n:'Colar de pérolas',p:6000,ic:'📿'},{id:'correntinha',g:'m',slot:'colar',n:'Correntinha de ouro',p:4000,ic:'🔗'},{id:'correntao',g:'m',slot:'colar',n:'Correntão grosso',p:8000,ic:'⛓️'},{id:'rapper',g:'m',slot:'colar',n:'Corrente de rapper',p:15000,ic:'💲'},
- {id:'oculos',slot:'oculos',n:'Óculos redondo',p:3000,ic:'👓'},{id:'oculoscor',g:'f',slot:'oculos',n:'Óculos coração',p:6000,ic:'😍'},{id:'oculossol',slot:'oculos',n:'Óculos escuros',p:4000,ic:'🕶️'},
+ {id:'listrada',slot:'top',n:'Camisa listrada preta e branca',p:6000,ic:'🦓',c:'#ffffff'},{id:'futamarela',slot:'top',n:'Camisa de futebol amarela',p:5000,ic:'⚽',c:'#ffd400'},{id:'camisa10',slot:'top',n:'Camisa 10',p:7000,ic:'🔟',c:'#2a6fd6'},{id:'timeverm',slot:'top',n:'Camisa de time vermelha',p:5000,ic:'⚽',c:'#e3262f'},{id:'timerubro',slot:'top',n:'Camisa de time vermelha e preta',p:6000,ic:'⚽',c:'#c4161c'},{id:'timeverde',slot:'top',n:'Camisa de time verde',p:5000,ic:'⚽',c:'#1f9a4a'},{id:'timeazul',slot:'top',n:'Camisa de time azul e branca',p:6000,ic:'⚽',c:'#2a6fd6'},
+ {id:'short',slot:'baixo',n:'Short jeans',p:0,ic:'🩳',c:'#6f9be0'},{id:'saia',slot:'baixo',n:'Saia rosa',p:2500,ic:'👗',c:'#ff8ec2'},{id:'legging',slot:'baixo',n:'Legging',p:3000,ic:'🖤',c:'#3a2850'},
+ {id:'calca',slot:'baixo',n:'Calça jeans',p:3500,ic:'👖',c:'#3f6fbf'},{id:'tule',slot:'baixo',n:'Saia de tule',p:6000,ic:'🩰',c:'#d9b8ff'},{id:'bermuda',slot:'baixo',n:'Bermuda',p:2000,ic:'🩳',c:'#4a5a6c'},{id:'calcao',slot:'baixo',n:'Calção de futebol',p:2500,ic:'⚽',c:'#1c1c1c'},{id:'bermudao',slot:'baixo',n:'Bermudão',p:3000,ic:'🩳',c:'#8a7a55'},
+ {id:'florido',slot:'vestido',n:'Vestido florido',p:8000,ic:'🌼',c:'#ffb3d1'},{id:'festa',slot:'vestido',n:'Vestido de festa',p:12000,ic:'✨',c:'#9b7bf0'},{id:'princesa',slot:'vestido',n:'Vestido de princesa',p:22000,ic:'👑',c:'#8fd8ff'},{id:'comando',slot:'vestido',n:'Roupa de comando',p:12000,ic:'💪'},{id:'judeu',slot:'vestido',n:'Roupa de judeu religioso',p:10000,ic:'✡️'},{id:'monge',slot:'vestido',n:'Roupa de monge budista',p:10000,ic:'🧘'},
+ {id:'tenis',slot:'sapato',n:'Tênis',p:0,ic:'👟'},{id:'sapatilha',slot:'sapato',n:'Sapatilha',p:2000,ic:'🩰'},{id:'sandalia',slot:'sapato',n:'Sandália',p:2500,ic:'👡'},
+ {id:'bota',slot:'sapato',n:'Bota',p:5000,ic:'👢'},{id:'tenisluz',slot:'sapato',n:'Tênis de luz',p:9000,ic:'💡'},{id:'chuteira',slot:'sapato',n:'Chuteira',p:4500,ic:'⚽'},{id:'botamil',slot:'sapato',n:'Bota militar',p:5000,ic:'🥾'},{id:'chinelo',slot:'sapato',n:'Chinelo',p:1500,ic:'🩴'},{id:'descalco',slot:'sapato',n:'Pé descalço',p:0,ic:'🦶'},
+ {id:'laco',slot:'cabeca',n:'Laço',p:2000,ic:'🎀'},{id:'flor',slot:'cabeca',n:'Flor',p:3000,ic:'🌸'},{id:'bone',slot:'cabeca',n:'Boné',p:3500,ic:'🧢'},
+ {id:'tiara',slot:'cabeca',n:'Tiara',p:5000,ic:'💫'},{id:'gatinha',slot:'cabeca',n:'Orelhas de gato',p:7000,ic:'🐱'},{id:'coroa',slot:'cabeca',n:'Coroa',p:18000,ic:'👑'},{id:'boneazul',slot:'cabeca',n:'Boné azul pra trás',p:3500,ic:'🧢'},{id:'faixa',slot:'cabeca',n:'Faixa de atleta',p:2000,ic:'🎽'},{id:'faixaluta',slot:'cabeca',n:'Faixa de lutador',p:3000,ic:'🥋'},{id:'boneaba',slot:'cabeca',n:'Boné aba reta',p:4000,ic:'🧢'},{id:'cowboy',slot:'cabeca',n:'Chapéu de cowboy',p:6000,ic:'🤠'},{id:'kipa',slot:'cabeca',n:'Kipá',p:1500,ic:'🔵'},{id:'chapeupreto',slot:'cabeca',n:'Chapéu preto',p:4000,ic:'🎩'},
+ {id:'brbolinha',slot:'brinco',n:'Brinco bolinha',p:1500,ic:'⚪'},{id:'brcoracao',slot:'brinco',n:'Brinco coração',p:3000,ic:'💗'},{id:'brargola',slot:'brinco',n:'Argola',p:3500,ic:'⭕'},
+ {id:'brestrela',slot:'brinco',n:'Brinco estrela',p:4000,ic:'⭐'},{id:'brdiamante',slot:'brinco',n:'Brinco diamante',p:14000,ic:'💎'},
+ {id:'colarcoracao',slot:'colar',n:'Colar coração',p:4000,ic:'💝'},{id:'perolas',slot:'colar',n:'Colar de pérolas',p:6000,ic:'📿'},{id:'correntinha',slot:'colar',n:'Correntinha de ouro',p:4000,ic:'🔗'},{id:'correntao',slot:'colar',n:'Correntão grosso',p:8000,ic:'⛓️'},{id:'rapper',slot:'colar',n:'Corrente de rapper',p:15000,ic:'💲'},
+ {id:'oculos',slot:'oculos',n:'Óculos redondo',p:3000,ic:'👓'},{id:'oculoscor',slot:'oculos',n:'Óculos coração',p:6000,ic:'😍'},{id:'oculossol',slot:'oculos',n:'Óculos escuros',p:4000,ic:'🕶️'},
  {id:'bola',slot:'mao',n:'Bola de futebol',p:4000,e:'⚽'},{id:'basquete',slot:'mao',n:'Bola de basquete',p:4000,e:'🏀'},{id:'skate',slot:'mao',n:'Skate',p:8000,e:'🛹'},{id:'violao',slot:'mao',n:'Violão',p:9000,e:'🎸'},{id:'videogame',slot:'mao',n:'Videogame',p:10000,e:'🎮'},{id:'trofeu',slot:'mao',n:'Troféu',p:20000,e:'🏆'},
- {id:'bolsa',g:'f',slot:'bolsa',n:'Bolsinha',p:4500,ic:'👛'},{id:'mochila',g:'m',slot:'bolsa',n:'Mochila',p:4500,ic:'🎒'},
- {id:'blush',g:'f',slot:'rosto',n:'Blush',p:1500,ic:'🌸'},{id:'glitter',g:'f',slot:'rosto',n:'Glitter',p:5000,ic:'✨'},
- {id:'batomrosa',g:'f',slot:'boca',n:'Batom rosa',p:2500,ic:'💄'},{id:'batomverm',g:'f',slot:'boca',n:'Batom vermelho',p:3000,ic:'💋'},
- {id:'cilios',g:'f',slot:'olhos',n:'Cílios',p:2000,ic:'👁️'},{id:'sombra',g:'f',slot:'olhos',n:'Sombra lilás',p:3500,ic:'🎨'},
+ {id:'bolsa',slot:'bolsa',n:'Bolsinha',p:4500,ic:'👛'},{id:'mochila',slot:'bolsa',n:'Mochila',p:4500,ic:'🎒'},
+ {id:'blush',slot:'rosto',n:'Blush',p:1500,ic:'🌸'},{id:'glitter',slot:'rosto',n:'Glitter',p:5000,ic:'✨'},
+ {id:'batomrosa',slot:'boca',n:'Batom rosa',p:2500,ic:'💄'},{id:'batomverm',slot:'boca',n:'Batom vermelho',p:3000,ic:'💋'},
+ {id:'cilios',slot:'olhos',n:'Cílios',p:2000,ic:'👁️'},{id:'sombra',slot:'olhos',n:'Sombra lilás',p:3500,ic:'🎨'},
  {id:'cachorro',nm:'Cachorro',slot:'amigo',n:'Cachorrinho',p:9000,e:'🐶'},{id:'gato',nm:'Gato',slot:'amigo',n:'Gatinho',p:9000,e:'🐱'},{id:'coelho',nm:'Coelho',slot:'amigo',n:'Coelhinho',p:9000,e:'🐰'},
- {id:'dino',slot:'amigo',n:'Dino',p:16000,e:'🦕'},{id:'unicornio',g:'f',slot:'amigo',n:'Unicórnio',p:25000,e:'🦄'},{id:'tartaruga',slot:'amigo',n:'Tartaruga',p:9000,e:'🐢'},{id:'leao',nm:'Leão',slot:'amigo',n:'Leãozinho',p:16000,e:'🦁'},{id:'robo',g:'m',slot:'amigo',n:'Robô ciborgue',p:25000,e:'🤖'},
+ {id:'dino',slot:'amigo',n:'Dino',p:16000,e:'🦕'},{id:'unicornio',slot:'amigo',n:'Unicórnio',p:25000,e:'🦄'},{id:'tartaruga',slot:'amigo',n:'Tartaruga',p:9000,e:'🐢'},{id:'leao',nm:'Leão',slot:'amigo',n:'Leãozinho',p:16000,e:'🦁'},{id:'robo',slot:'amigo',n:'Robô ciborgue',p:25000,e:'🤖'},
  {id:'doce',slot:'fundo',n:'Doce',p:3000},{id:'praia',slot:'fundo',n:'Praia',p:4000},{id:'arco',slot:'fundo',n:'Arco-íris',p:6000},{id:'galaxia',slot:'fundo',n:'Galáxia',p:10000},{id:'ouro',slot:'fundo',n:'Ouro',p:30000},{id:'campo',slot:'fundo',n:'Campo de futebol',p:6000},
  {id:'tetris',slot:'jogo',n:'Blocos Mágicos',p:18000,e:'🧱'},{id:'carrinho',slot:'jogo',n:'Rali Turbo',p:25000,e:'🏎️'},{id:'queimada',slot:'jogo',n:'6-7 contra 42',p:20000,e:'🔥'}];
+/* duas lojas: SO_MENINA = loja das meninas (como nas primeiras versões); SO_MENINO = loja dos meninos; o resto aparece nas duas */
+const SO_MENINA=['liso','rabo','curto','coque','cacheado','trancas','rosa','lilas','blusaestrela','moletom','saia','legging','tule','florido','festa','princesa','sapatilha','sandalia','bota','tenisluz','laco','flor','bone','tiara','gatinha','coroa','brbolinha','brcoracao','brargola','brestrela','brdiamante','colarcoracao','perolas','oculoscor','bolsa','blush','glitter','batomrosa','batomverm','cilios','sombra','unicornio','doce','arco'],SO_MENINO=['menino','espetado','raspado','topete','samurai','moicano','listrada','futamarela','camisa10','timeverm','timerubro','timeverde','timeazul','bermuda','calcao','bermudao','comando','judeu','monge','chuteira','botamil','chinelo','descalco','boneazul','faixa','faixaluta','boneaba','cowboy','kipa','chapeupreto','correntinha','correntao','rapper','mochila','robo','campo'];
+SO_MENINA.forEach(id=>LOJA.find(i=>i.id===id).g='f');SO_MENINO.forEach(id=>LOJA.find(i=>i.id===id).g='m');
 const ITEM={};LOJA.forEach(i=>ITEM[i.id]=i);
-const genOf=p=>p&&p.gen==='m'?'m':'f';const vis=(i,g)=>!i.g||i.g===g;const nmOf=(i,g)=>g==='m'&&i.nm?i.nm:i.n;
-function fixGen(e,g){e=Object.assign({},e||{});Object.keys(e).forEach(k=>{const it=ITEM[e[k]];if(it&&!vis(it,g))delete e[k];});if(g==='m'&&!e.cabelo)e.cabelo='menino';return fixEquip(e);}
+const genOf=p=>p&&p.gen==='m'?'m':'f';const vis=(i,g,p)=>!i.g||i.g===g||(g==='f'&&!!p&&(p.itens||[]).includes(i.id));const nmOf=(i,g)=>g==='m'&&i.nm?i.nm:i.n;
+function fixGen(e,g,p){e=Object.assign({},e||{});Object.keys(e).forEach(k=>{const it=ITEM[e[k]];if(it&&!vis(it,g,p))delete e[k];});if(g==='m'&&!e.cabelo)e.cabelo='menino';return fixEquip(e);}
 const FUNDOS={doce:'repeating-linear-gradient(45deg,#ffd1e6 0 8px,#fff 8px 16px)',praia:'linear-gradient(180deg,#8fe3ff 55%,#ffe7a8 55%)',arco:'linear-gradient(135deg,#ff8ec2,#ffd36b,#8fe3a0,#7fd8ff,#b39cff)',galaxia:'radial-gradient(circle at 30% 30%,#8f74ff,#2a1a5e)',ouro:'linear-gradient(135deg,#fff3b0,#ffbf2e,#ff9f2e)',campo:'repeating-linear-gradient(90deg,#4caf50 0 16px,#43a047 16px 32px)'};
 const BG0='linear-gradient(135deg,#ffd1e6,#e2d6ff)',BGM='linear-gradient(135deg,#cfe8ff,#d4f5e2)';
 const EQ0={pele:'pele1',cabelo:'liso',cor:'castanho',top:'camiseta',baixo:'short',sapato:'tenis'};
@@ -727,7 +730,7 @@ function faceSVG(e,H,gen){let s='';
   const lip={batomrosa:'#ff6fa8',batomverm:'#e3304a'}[e.boca];
   s+=lip?`<path d="M91 108 Q100 121 109 108 Q100 112 91 108 Z" fill="${lip}"/>`:`<path d="M92 109 Q100 117 108 109" stroke="#3a2850" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
   return s;}
-function dollSVG(eq,mode,gen){gen=gen==='m'?'m':'f';const e=fixGen(eq,gen);const S=PELES[+String(e.pele).slice(4)]||PELES[1],H=CORES[e.cor]||CORES.castanho;
+function dollSVG(eq,mode,gen){gen=gen==='m'?'m':'f';const e=gen==='m'?fixGen(eq,'m'):fixEquip(eq);const S=PELES[+String(e.pele).slice(4)]||PELES[1],H=CORES[e.cor]||CORES.castanho;
   let g=hairBack(e.cabelo,H);
   if(e.bolsa==='mochila')g+=`<rect x="62" y="146" width="76" height="56" rx="13" fill="#2a6fd6"/>`;
   g+=`<rect x="81" y="194" width="15" height="74" rx="7" fill="${S}"/><rect x="104" y="194" width="15" height="74" rx="7" fill="${S}"/>`;
@@ -795,7 +798,7 @@ const Store={db:null,mode:'local',q:Promise.resolve(),mem:null,
 
 /* ---------- perfis ---------- */
 let P=null,PERFIS=[],newEq=null;
-function normalize(p){p.nome=p.nome||'Jogadora';p.coins=p.coins||0;p.itens=(p.itens||[]).filter(id=>ITEM[id]);p.equip=fixGen(p.equip,genOf(p));p.feitos=p.feitos||{};p.and=p.and||{};p.ano=p.ano||4;return p;}
+function normalize(p){p.nome=p.nome||'Jogadora';p.coins=p.coins||0;p.itens=(p.itens||[]).filter(id=>ITEM[id]);p.equip=fixGen(p.equip,genOf(p),p);p.feitos=p.feitos||{};p.and=p.and||{};p.ano=p.ano||4;return p;}
 async function boot(){
   $('whoList').innerHTML='<div class="loading">✨ Carregando…</div>';
   await Store.init();PERFIS=(await Store.list()).map(normalize);renderWho();
@@ -841,11 +844,11 @@ function itemIcon(i){if(i.slot==='pele')return `<span class="sw r" style="backgr
   return `<span class="se"${i.c?` style="background:${i.c};border-radius:50%;box-shadow:inset 0 0 0 2px #eee3f7"`:''}>${i.ic||'✨'}</span>`;}
 function openShop(){sfx.click();sel=null;renderShop();show('sShop');}
 function renderShop(){const G=genOf(P);if(G==='m'&&aba==='make')aba='visual';
-  P.equip=fixGen(P.equip,G);const prev=sel?withItem(P.equip,sel):P.equip;
+  P.equip=fixGen(P.equip,G,P);const prev=sel?withItem(P.equip,sel):P.equip;
   $('shopAv').innerHTML=avHTML(P,200,'full',prev);$('shopCoins').textContent=P.coins.toLocaleString('pt-BR');
   $('shopTabs').innerHTML=ABAS.filter(a=>!(G==='m'&&a[0]==='make')).map(([k,t])=>[k,G==='m'?(TABM[k]||t):t]).map(([k,t])=>`<button class="tab${k===aba?' on':''}" onclick="aba='${k}';sel=null;renderShop()">${t}</button>`).join('');
   const slots=ABAS.find(a=>a[0]===aba)[2];
-  $('shopBody').innerHTML=slots.filter(slot=>LOJA.some(i=>i.slot===slot&&vis(i,G))).map(slot=>`<div class="shopsec">${G==='m'&&SLOTM[slot]||SLOTN[slot]}</div>${slot==='jogo'?'<p class="jnote">Jogos especiais! Depois de destravar, você pode escolher jogar quando ganha o prêmio de um lugar. Eles não dão moedas.</p>':''}<div class="shopgrid">${LOJA.filter(i=>i.slot===slot&&vis(i,G)).map(i=>{const own=owns(i.id),on=P.equip[slot]===i.id;
+  $('shopBody').innerHTML=slots.filter(slot=>LOJA.some(i=>i.slot===slot&&vis(i,G,P))).map(slot=>`<div class="shopsec">${G==='m'&&SLOTM[slot]||SLOTN[slot]}</div>${slot==='jogo'?'<p class="jnote">Jogos especiais! Depois de destravar, você pode escolher jogar quando ganha o prêmio de um lugar. Eles não dão moedas.</p>':''}<div class="shopgrid">${LOJA.filter(i=>i.slot===slot&&vis(i,G,P)).map(i=>{const own=owns(i.id),on=P.equip[slot]===i.id;
     return `<button class="sitem${own?' own':''}${on?' on':''}${sel===i.id?' sel':''}${!own&&P.coins<i.p?' cant':''}" onclick="shopTap('${i.id}')">${itemIcon(i)}${nmOf(i,G)}<small>${i.slot==='jogo'&&own?'🔓 destravado':on?'✓ usando':own?(i.p?'é seu':'grátis'):'🪙 '+i.p.toLocaleString('pt-BR')}</small></button>`;}).join('')}</div>`).join('');
   const box=$('shopSel');
   if(!sel){box.innerHTML=`Toque numa peça para <b>provar</b> ${G==='m'?'👕':'👗'}`;return;}
@@ -855,7 +858,7 @@ function renderShop(){const G=genOf(P);if(G==='m'&&aba==='make')aba='visual';
     :(P.coins>=it.p?`<button class="sm go" onclick="shopBuy()">Comprar 🪙 ${it.p.toLocaleString('pt-BR')}</button>`:`<span class="falta">🪙 ${it.p.toLocaleString('pt-BR')}<br>faltam ${(it.p-P.coins).toLocaleString('pt-BR')}</span>`));
 }
 function shopTap(id){sfx.click();sel=sel===id?null:id;renderShop();}
-function shopWear(){P.equip=fixGen(withItem(P.equip,sel),genOf(P));sfx.click();Store.save(P);renderShop();}
+function shopWear(){P.equip=fixGen(withItem(P.equip,sel),genOf(P),P);sfx.click();Store.save(P);renderShop();}
 function shopOff(){P.equip=withoutItem(P.equip,sel);sfx.click();Store.save(P);renderShop();}
 function shopBuy(){const it=ITEM[sel];if(owns(sel)||P.coins<it.p)return;P.coins-=it.p;P.itens.push(sel);P.equip=withItem(P.equip,sel);
   Store.save(P);sfx.star();confetti(18);say('Ficou demais! ✨');renderShop();}
@@ -1542,7 +1545,7 @@ function paiAjustes(){
    <div class="row"><input class="name" id="bonV" inputmode="numeric" placeholder="quantas" style="flex:1"><input class="name" id="bonM" placeholder="motivo (opcional)" style="flex:2"></div>
    <div class="row"><button class="sm go" onclick="paiBonus(1)">＋ Dar</button><button class="sm undo" onclick="paiBonus(-1)">－ Tirar</button></div>
    ${bh.length?`<table class="ptbl" style="margin-top:8px">${bh.map(b=>`<tr><td>${dBR(b.q)} · ${esc(b.m||'')}</td><td>${b.v>0?'+':''}${b.v.toLocaleString('pt-BR')}</td></tr>`).join('')}</table>`:''}</div>`;}
-function paiGen(g){if(genOf(P)===g)return;P.gen=g;P.equip=fixGen(P.equip,g);Store.save(P);sfx.click();paiRender();}
+function paiGen(g){if(genOf(P)===g)return;P.gen=g;P.equip=fixGen(P.equip,g,P);Store.save(P);sfx.click();paiRender();}
 function paiRegua(v){P.regua=v;Store.save(P);sfx.click();paiRender();}
 function paiBonus(sg){const v=Math.floor(+$('bonV').value.replace(/\D/g,''));if(!v){say('Digite quantas moedas.');return;}
   const d=sg>0?v:-Math.min(v,P.coins);P.coins+=d;P.bonus=(P.bonus||[]).concat([{q:Date.now(),v:d,m:$('bonM').value.trim().slice(0,40)}]).slice(-30);Store.save(P);sfx.coin();paiRender();say(d>0?`+${d} moedas para ${P.nome}`:`${d} moedas`);}

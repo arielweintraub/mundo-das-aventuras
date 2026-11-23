@@ -731,17 +731,17 @@ function faceSVG(e,H,gen){let s='';
   const lip={batomrosa:'#ff6fa8',batomverm:'#e3304a'}[e.boca];
   s+=lip?`<path d="M91 108 Q100 121 109 108 Q100 112 91 108 Z" fill="${lip}"/>`:`<path d="M92 109 Q100 117 108 109" stroke="#3a2850" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
   return s;}
-function vHand(S){const o='rgba(60,30,40,.38)';
-  return `<path d="M134 192 Q130 190 121 188" stroke="${o}" stroke-width="15" stroke-linecap="round" fill="none"/><path d="M134 192 Q130 190 121 188" stroke="${S}" stroke-width="12.5" stroke-linecap="round" fill="none"/>`
-   +`<g transform="translate(113 180) rotate(-6)">`
-   +`<path d="M-5 -6 L-12 -32 M5 -6 L11 -32" stroke="${o}" stroke-width="13" stroke-linecap="round"/>`
-   +`<rect x="-14" y="-12" width="28" height="25" rx="11" fill="${S}" stroke="${o}" stroke-width="1.8"/>`
-   +`<path d="M-5 -6 L-12 -32 M5 -6 L11 -32" stroke="${S}" stroke-width="10" stroke-linecap="round"/>`
-   +`<path d="M-1.5 -8 L-1.5 -6" stroke="${o}" stroke-width="1.4" stroke-linecap="round"/>`
-   +`<path d="M3 -7 q4 -2 8 1 q2 3 -1 6 M3 -1 q4 -1 7 2" stroke="${o}" stroke-width="1.6" fill="none" stroke-linecap="round"/>`
-   +`<path d="M-13 2 Q-4 -3 7 3" stroke="${o}" stroke-width="1.8" fill="none" stroke-linecap="round"/>`
-      +`</g>`
-   +`<text x="86" y="152" font-size="11" fill="#ffbf2e">✦</text><text x="128" y="152" font-size="9" fill="#ffbf2e">✦</text><text x="132" y="166" font-size="6" fill="#ff8ec2">✦</text>`;}
+function vHand(S,cuf){const o='#4a3038';
+  return `<g transform="translate(110 178)" stroke="${o}" stroke-width="2" stroke-linejoin="round">`
+   +`<rect x="-9" y="6" width="18" height="10" fill="${S}"/>`
+   +`<rect x="-13" y="13" width="26" height="10" rx="4" fill="#8fc3ff"/>`
+   +`<rect x="-13.5" y="-36" width="12" height="34" rx="6" fill="${S}" transform="rotate(-8 -7 -4)"/>`
+   +`<rect x="1" y="-38" width="12" height="36" rx="6" fill="${S}" transform="rotate(8 7 -4)"/>`
+   +`<rect x="-15" y="-10" width="30" height="23" rx="10" fill="${S}"/>`
+   +`<path d="M2 -6 q10 -2 10 4.5 M2 0.5 q9 -1 9 4.5" fill="none" stroke-linecap="round" stroke-width="1.8"/>`
+   +`<path d="M-14 1 q10 -8 19 -2 q3 3 -1 5.5 q-9 2 -17 1 z" fill="${S}" stroke-width="1.8"/>`
+   +`</g>`
+   +`<text x="82" y="152" font-size="11" fill="#ffbf2e">✦</text><text x="130" y="154" font-size="9" fill="#ffbf2e">✦</text>`;}
 function dollSVG(eq,mode,gen){gen=gen==='m'?'m':'f';const e=gen==='m'?fixGen(eq,'m'):fixEquip(eq);const S=PELES[+String(e.pele).slice(4)]||PELES[1],H=CORES[e.cor]||CORES.castanho;
   let g=hairBack(e.cabelo,H);
   if(e.bolsa==='mochila')g+=`<rect x="62" y="146" width="76" height="56" rx="13" fill="#2a6fd6"/>`;
@@ -756,7 +756,7 @@ function dollSVG(eq,mode,gen){gen=gen==='m'?'m':'f';const e=gen==='m'?fixGen(eq,
   if(e.bolsa==='mochila')g+=`<path d="M84 140 L80 202 M116 140 L120 202" stroke="#1d55ad" stroke-width="6" stroke-linecap="round"/>`;
   else if(e.bolsa)g+=`<path d="M124 146 L146 202" stroke="#e0447a" stroke-width="2.5"/><rect x="136" y="200" width="22" height="17" rx="5" fill="#ff8ec2"/><circle cx="147" cy="208" r="2.5" fill="#ffd84d"/>`;
   g+=neckSVG(e.colar);
-  if(e.mao==='vsinal')g+=vHand(S);
+  if(e.mao==='vsinal')g+=vHand(S,e.vestido?((ITEM[e.vestido]||{}).c||({comando:'#222',judeu:'#fff',monge:'#f08a1c'})[e.vestido]||'#7fb0e0'):((ITEM[e.top]||{}).c||'#fff'));
   g+=`<circle cx="100" cy="84" r="45" fill="${S}"/>`+faceSVG(e,H,gen)+hairFront(e.cabelo,H)+earSVG(e.brinco)+glassSVG(e.oculos)+headAccSVG(e.cabeca,H);
   const pet=mode==='full'&&e.amigo&&ITEM[e.amigo]?`<g><animateTransform attributeName="transform" type="translate" values="0 0;0 -4;0 0" dur="1.6s" repeatCount="indefinite"/><text x="100" y="244" font-size="66" text-anchor="middle">${ITEM[e.amigo].e}</text><circle cx="70" cy="222" r="8" fill="${S}"/><circle cx="130" cy="222" r="8" fill="${S}"/></g>`:'';
   const vb=mode==='head'?'40 4 120 120':'16 0 168 290';
